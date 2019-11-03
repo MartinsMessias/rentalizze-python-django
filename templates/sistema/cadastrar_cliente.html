@@ -1,0 +1,47 @@
+{% extends 'sistema/base.html' %}
+
+{% block titulo_janela %}{{ test.page }}{% endblock %}
+{% block conteudo_janela %}
+    <!-- ============================================================== -->
+    <!-- basic form  -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Dados do cliente</h5>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="nome_cliente" class="col-form-label">Nome completo</label>
+                            <input id="nome_cliente" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email_cliente">Email</label>
+                            <input id="email_cliente" type="email" placeholder="nome@exemplo.com" class="form-control">
+                        </div>
+                        <div class="form-group">
+                           <label>Telefone <small class="text-muted">(99) 99999-9999</small></label>
+                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="rg_cliente" class="col-form-label">Documento de Identidade/RG</label>
+                            <input id="rg_cliente" type="number" class="form-control" placeholder="Somente números" minlength="5" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" class="form-control cpf-inputmask" id="cpf-mask" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="cnh_cliente">CNH</label>
+                            <input id="cnh_cliente" type="number" placeholder="Somente números" class="form-control">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end basic form  -->
+    <!-- ============================================================== -->
+
+{% endblock %}

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{% static 'assets/vendor/vector-map/jqvmap.css'%}">
     <link rel="stylesheet" href="{% static 'assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css'%}">
     <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icon-css/flag-icon.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/datepicker/tempusdominus-bootstrap-4.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/inputmask/css/inputmask.css'%}" />
     <title>Rentalizze - Admin Dashboard</title>
 </head>
 
@@ -77,7 +79,7 @@
                                         <div id="submenu-1-1" class="collapse submenu" style="">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Novo cliente</a>
+                                                    <a class="nav-link" href="{% url 'cadastrar_cliente' %}">Novo cliente</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#">Listar clientes</a>
@@ -210,7 +212,6 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
                         <h3 class="mb-2">{% block titulo_janela %}{% endblock %}</h3>
-                        <p class="pageheader-text">{% block descricao_janela %}{% endblock %}</p>
                     </div>
                 </div>
             </div>
@@ -272,6 +273,41 @@
 <script src="{% static 'assets/vendor/charts/sparkline/spark-js.js'%}"></script>
 <!-- dashboard sales js-->
 <script src="{% static 'assets/libs/js/dashboard-sales.js'%}"></script>
+<script src="{% static 'assets/vendor/inputmask/js/jquery.inputmask.bundle.js'%}"></script>
+<script>
+    $(function(e) {
+        "use strict";
+        $(".date-inputmask").inputmask("dd/mm/yyyy"),
+            $(".phone-inputmask").inputmask("(99) 99999-9999"),
+            $(".international-inputmask").inputmask("+99(99)99999-9999"),
+            $(".cpf-inputmask").inputmask("999.999.999-99"),
+            $(".purchase-inputmask").inputmask("aaaa 9999-****"),
+            $(".cc-inputmask").inputmask("9999 9999 9999 9999"),
+            $(".ssn-inputmask").inputmask("999-99-9999"),
+            $(".isbn-inputmask").inputmask("999-99-999-9999-9"),
+            $(".currency-inputmask").inputmask("$9999"),
+            $(".percentage-inputmask").inputmask("99%"),
+            $(".decimal-inputmask").inputmask({
+                alias: "decimal",
+                radixPoint: "."
+            }),
+
+            $(".email-inputmask").inputmask({
+                mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[*{2,6}][*{1,2}].*{1,}[.*{2,6}][.*{1,2}]",
+                greedy: !1,
+                onBeforePaste: function(n, a) {
+                    return (e = e.toLowerCase()).replace("mailto:", "")
+                },
+                definitions: {
+                    "*": {
+                        validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~/-]",
+                        cardinality: 1,
+                        casing: "lower"
+                    }
+                }
+            })
+    });
+    </script>
 </body>
 
 </html>
