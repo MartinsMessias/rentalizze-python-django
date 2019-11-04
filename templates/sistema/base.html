@@ -283,7 +283,7 @@
             $(".cpf-inputmask").inputmask("999.999.999-99"),
             $(".cep-inputmask").inputmask("99999-999"),
             $(".cc-inputmask").inputmask("9999 9999 9999 9999"),
-            $(".ssn-inputmask").inputmask("999-99-9999"),
+            $(".cnpj-inputmask").inputmask("99.999.999/9999-99"),
             $(".isbn-inputmask").inputmask("999-99-999-9999-9"),
             $(".currency-inputmask").inputmask("$9999"),
             $(".percentage-inputmask").inputmask("99%"),
@@ -310,10 +310,14 @@
     function someComCPF() {
         document.getElementById('cnpj_cliente').disabled = false;
         document.getElementById('cpf_cliente').disabled = true;
+        document.getElementById('cpf_cliente').value = "00000000000";
+        document.getElementById('cnpj_cliente').value = "";
     }
     function someComCNPJ() {
         document.getElementById('cpf_cliente').disabled = false;
         document.getElementById('cnpj_cliente').disabled = true;
+        document.getElementById('cnpj_cliente').value = "00000000000000";
+        document.getElementById('cpf_cliente').value = "";
     }
     </script>
 </body>
