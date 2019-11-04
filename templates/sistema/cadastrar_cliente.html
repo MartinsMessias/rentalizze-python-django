@@ -6,75 +6,89 @@
     <!-- basic form  -->
     <!-- ============================================================== -->
     <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="col-12">
             <div class="card">
                 <h5 class="card-header">Dados do cliente</h5>
                 <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="nome_cliente" class="col-form-label">Nome completo</label>
-                            <input id="nome_cliente" type="text" class="form-control">
+                    <form class="card-header">
+                        <div class="form-row">
+                            <div class="form-group col-md">
+                                <label for="nome_cliente">Nome completo</label>
+                                <input id="nome_cliente" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="email_cliente">Email</label>
+                                <input id="email_cliente" type="email" placeholder="email@exemplo.com" class="form-control">
+                            </div>
+                            <div class="form-group col-md">
+                                <label>Telefone/Celular <small class="text-muted">(99) 99999-9999</small></label>
+                                <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email_cliente">Email</label>
-                            <input id="email_cliente" type="email" placeholder="email@exemplo.com" class="form-control">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-2">
+                                <label for="rg_cliente">RG</label>
+                                <input id="rg_cliente" type="number" class="form-control" placeholder="Somente números" minlength="5" min="0">
+                            </div>
+                            <div class="form-group col-md">
+                                <label></label>
+                                <label class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="radio-inline" checked="" class="custom-control-input" onclick="someComCNPJ();"><span class="custom-control-label">Pessoa Física</span>
+                                </label>
+                            </div>
+                            <div class="form-group col-md">
+                                <label class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="radio-inline" class="custom-control-input" onclick="someComCPF();"><span class="custom-control-label">Pessoa Jurídica</span>
+                                </label>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>CPF</label>
+                                <input name="cpf_cliente" type="text" class="form-control cpf-inputmask" id="cpf_cliente" placeholder="">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="cnpj_cliente" disabled="true">CNPJ</label>
+                                <input name="cnpj_cliente" type="text" class="form-control cnpj-inputmask" id="cnpj_cliente" placeholder="" disabled="true">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Telefone/Celular <small class="text-muted">(99) 99999-9999</small></label>
-                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="cnh_cliente">CNH</label>
+                                <input id="cnh_cliente" type="number" placeholder="" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cnhvalidade_cliente">Validade da CNH</label>
+                                <input id="cnhvalidade_cliente" type="date" placeholder="00/00/0000" class="form-control date-inputmask">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="rg_cliente" class="col-form-label">Documento de Identidade/RG</label>
-                            <input id="rg_cliente" type="number" class="form-control" placeholder="Somente números" minlength="5" min="0">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="endereco_cliente">Endereço</label>
+                                <input id="endereco_cliente" type="text" placeholder="" class="form-control">
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="nrocasa_cliente">N°</label>
+                                <input id="nrocasa_cliente" type="number" placeholder="" class="form-control" min="0">
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="bairro_cliente">Bairro</label>
+                                <input id="bairro_cliente" type="text" placeholder="" class="form-control">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tipo: </label>
-                            <label class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="radio-inline" checked="" class="custom-control-input" onclick="someComCNPJ();"><span class="custom-control-label">Pessoa Física</span>
-                            </label>
-                            <label class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="radio-inline" class="custom-control-input" onclick="someComCPF();"><span class="custom-control-label">Pessoa Jurídica</span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>CPF</label>
-                            <input name="cpf_cliente" type="text" class="form-control cpf-inputmask" id="cpf_cliente" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="cnpj_cliente" disabled="true">CNPJ</label>
-                            <input name="cnpj_cliente" type="text" class="form-control cnpj-inputmask" id="cnpj_cliente" placeholder="" disabled="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="cnh_cliente">CNH</label>
-                            <input id="cnh_cliente" type="number" placeholder="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="cnhvalidade_cliente">Validade da CNH</label>
-                            <input id="cnhvalidade_cliente" type="date" placeholder="00/00/0000" class="form-control date-inputmask">
-                        </div>
-                        <div class="form-group">
-                            <label for="endereco_cliente">Endereço</label>
-                            <input id="endereco_cliente" type="text" placeholder="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="nrocasa_cliente">N°</label>
-                            <input id="nrocasa_cliente" type="number" placeholder="" class="form-control" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="bairro_cliente">Bairro</label>
-                            <input id="bairro_cliente" type="text" placeholder="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="cep_cliente">CEP</label>
-                            <input id="cep_cliente" type="text" placeholder="" class="form-control cep-inputmask">
-                        </div>
-                        <div class="form-group">
-                            <label for="cidade_cliente">Cidade</label>
-                            <input id="cidade_cliente" type="text" placeholder="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="estado_cliente">UF</label>
-                            <input id="estado_cliente" type="text" placeholder="" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-md">
+                                <label for="cep_cliente">CEP</label>
+                                <input id="cep_cliente" type="text" placeholder="" class="form-control cep-inputmask">
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="estado_cliente">UF</label>
+                                <input id="estado_cliente" type="text" placeholder="" class="form-control">
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="cidade_cliente">Cidade</label>
+                                <input id="cidade_cliente" type="text" placeholder="" class="form-control">
+                            </div>
                         </div>
                         <div class="form-group row text-left">
                             <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
