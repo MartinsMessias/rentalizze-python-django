@@ -28,8 +28,21 @@
                             <input id="rg_cliente" type="number" class="form-control" placeholder="Somente números" minlength="5" min="0">
                         </div>
                         <div class="form-group">
+                            <label>Tipo: </label>
+                            <label class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="radio-inline" checked="" class="custom-control-input" onclick="someComCNPJ();"><span class="custom-control-label">Pessoa Física</span>
+                            </label>
+                            <label class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="radio-inline" class="custom-control-input" onclick="someComCPF();"><span class="custom-control-label">Pessoa Jurídica</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
                             <label>CPF</label>
-                            <input type="text" class="form-control cpf-inputmask" id="cpf-mask" placeholder="">
+                            <input name="cpf_cliente" type="text" class="form-control cpf-inputmask" id="cpf_cliente" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="cnpj_cliente" disabled="true">CNPJ</label>
+                            <input name="cnpj_cliente" type="text" class="form-control cnpj-inputmask" id="cnpj_cliente" placeholder="" disabled="true">
                         </div>
                         <div class="form-group">
                             <label for="cnh_cliente">CNH</label>
