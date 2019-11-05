@@ -43,12 +43,12 @@
                                 </label>
                             </div>
                             <div class="form-group col-md-3">
-                                <label>CPF</label>
-                                <input name="cpf_cliente" type="text" class="form-control cpf-inputmask" id="cpf_cliente" placeholder="">
+                                <label id="cpf_label">CPF</label>
+                                <input name="cpf_cliente" type="text" class="form-control cpf-inputmask" id="cpf_cliente" placeholder="" onkeyup="TestaCPF(this);">
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="cnpj_cliente" disabled="true">CNPJ</label>
-                                <input name="cnpj_cliente" type="text" class="form-control cnpj-inputmask" id="cnpj_cliente" placeholder="" disabled="true">
+                                <label for="cnpj_cliente" id="cnpj_label" disabled="true">CNPJ</label>
+                                <input name="cnpj_cliente" type="text" class="form-control cnpj-inputmask" id="cnpj_cliente" placeholder="" disabled="true" onkeyup="validarCNPJ(this);">
                             </div>
                         </div>
                         <div class="form-row">
