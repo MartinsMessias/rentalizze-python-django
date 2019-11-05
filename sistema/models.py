@@ -54,7 +54,7 @@ class Estado(models.Model):
 
 
 class Locacao(models.Model):
-    statuss = (('Ativo', 'a'), ('inativo', 'i'))
+    STATUS_CHOICES = (('Ativo', 'a'), ('inativo', 'i'))
     dt_hora_locacao = models.CharField(max_length=50)
     dt_hora_devolucao = models.CharField(max_length=50)
     quilometragem = models.FloatField()
@@ -64,14 +64,14 @@ class Locacao(models.Model):
     automovel = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
     modificacao_em = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(CHOICES=statuss)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.dt_hora_locacao
 
 
 class Automovel(models.Model):
-    statuss = (('Ativo', 'a'), ('inativo', 'i'))
+    STATUS_CHOICES = (('Ativo', 'a'), ('inativo', 'i'))
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=10)
     nro_portas_automovel = models.IntegerField()
@@ -85,7 +85,7 @@ class Automovel(models.Model):
     categoria_automovel = models.ForeignKey('Categoria', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
     modificacao_em = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(CHOICES=statuss)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
 
     def __str__(self):
