@@ -61,7 +61,7 @@
     <div class="nav-left-sidebar sidebar-dark">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                <a class="d-xl-none d-lg-none" href="{% url 'index' %}">Dashboard</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -105,7 +105,7 @@
                                         <div id="submenu-1-3" class="collapse submenu" style="">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Novo veículo</a>
+                                                    <a class="nav-link" href="{% url 'cadastrar_veiculo' %}">Novo veículo</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#">Listar veículos</a>
