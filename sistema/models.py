@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Cliente(models.Model):
-    STATUS_CHOICES = (('Ativo', 'a'), ('inativo', 'i'))
+    STATUS_CHOICES = (('Ativo', 'a'), ('Inativo', 'i'))
     nome_cliente = models.CharField(max_length=100)
     cpf_cliente = models.CharField(max_length=50)
     rua_cliente = models.CharField(max_length=200)
@@ -36,22 +36,6 @@ class Endereco(models.Model):
 
     def __str__(self):
         return self.rua
-
-
-class Cidade(models.Model):
-    nome_cidade = models.CharField(max_length=100)
-    estado = models.ForeignKey('Estado', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nome_cidade
-
-
-class Estado(models.Model):
-    nome_estado = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nome_estado
-
 
 class Locacao(models.Model):
     STATUS_CHOICES = (('Ativo', 'a'), ('inativo', 'i'))
