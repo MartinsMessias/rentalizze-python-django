@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from pyUFbr import *
+from pyUFbr import baseuf
 from .forms import *
 
 #################################################
@@ -9,18 +9,18 @@ from .forms import *
 #################################################
 
 def index(request):
-    titulo_pagina = {'page': 'Homepage'}
     return render(request, 'sistema/index.html', locals())
 
 def cadastrar_cliente(request):
     form = ClienteForm()
-    estados = ufbr.list_uf()
-    print(estados)
-    titulo_pagina = {'page': 'Cadastro de cliente'}
+    # Gabiarra para pegar os estados e municípios
+    em = {}
+    for estado in baseuf.ufbr.list_uf:
+        em[str(estado)] = baseuf.ufbr.list_cidades(str(estado))
+
     return render(request, 'sistema/cadastrar_cliente.html', locals())
 
 def cadastrar_veiculo(request):
     # form = Envie para essa variavel o VeiculoForm
-    titulo_pagina = {'page': 'Cadastro de veículo'}
     return render(request, 'sistema/cadastrar_veiculo.html', locals())
 
