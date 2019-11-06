@@ -23,5 +23,8 @@ def cadastrar_cliente(request):
 
 
 def cadastrar_veiculo(request):
-    # form = Envie para essa variavel o VeiculoForm
-    return render(request, 'sistema/cadastrar_veiculo.html', locals())
+    form = AutomovelForm()
+    # ###################################################### #
+    # Fazer o código de salvar o automóvel no banco de dados #
+    # ###################################################### #
+    return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})

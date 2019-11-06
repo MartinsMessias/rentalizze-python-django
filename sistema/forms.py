@@ -27,7 +27,7 @@ class ClienteForm(forms.ModelForm):
         fields = '__all__'
 
 
-class AutomovelForm(forms.Form):
+class AutomovelForm(forms.ModelForm):
 
     class Meta:
         model = Automovel

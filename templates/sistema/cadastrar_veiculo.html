@@ -1,8 +1,6 @@
 {% extends 'sistema/base.html' %}
+{% load tags %}
 
-<!-- ============================================================== -->
-<!-- pagehader  -->
-<!-- ============================================================== -->
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -10,66 +8,69 @@
         </div>
     </div>
 </div>
-<!-- ============================================================== -->
-<!-- pagehader  -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
+
 {% block conteudo_janela %}
-    <!-- ============================================================== -->
-    <!-- basic form  -->
-    <!-- ============================================================== -->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <h5 class="card-header">Dados do veículo</h5>
                 <div class="card-body">
-                    <form class="card-header">
+                    <form class="card-header" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="modelo_carro">Modelo</label>
-                                <input id="modelo_carro" type="text" class="form-control">
+                                {{ form.modelo_automovel | addclass:'form-control' }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="placa_carro">Placa</label>
-                                <input id="placa_carro" type="text" placeholder="" class="form-control">
+                                {{ form.placa_automovel | addclass:'form-control' }}
                             </div>
                             <div class="form-group col-md-2">
                                 <label>Marca</label>
-                                <input type="text" class="form-control" placeholder="">
+                                {{ form.marca_automovel | addclass:'form-control'}}
                             </div>
                             <div class="form-group col-md">
                                 <label for="cnhvalidade_cliente">Ano</label>
-                                <input id="cnhvalidade_cliente" type="number" class="form-control">
+                                {{ form.ano_automovel | addclass:'form-control'}}
                             </div>
-
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-1">
                                 <label for="cnhvalidade_cliente">Portas</label>
-                                <input id="cnhvalidade_cliente" type="number" class="form-control">
+                                {{ form.nro_portas_automovel | addclass:'form-control'}}
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="cnhvalidade_cliente">Categoria</label>
-                                <input id="cnhvalidade_cliente" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="cor_veiculo">Cor</label>
-                                <input id="cor_veiculo" type="text" class="form-control">
+                                {{ form.categoria_automovel | addclass:'form-control'}}
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="cor_veiculo">Quilometragem</label>
-                                <input id="cor_veiculo" type="text" class="form-control">
+                                {{ form.quilometragem_automovel | addclass:'form-control'  }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="cnh_cliente">Renavan/Chassis</label>
-                                <input id="cnh_cliente" type="number" placeholder="" class="form-control">
+                                {{ form.chassi_automovel | addclass:'form-control' }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="cor_veiculo">Cor</label>
+                                {{ form.cor_automovel | addclass:'form-control'}}
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="tipo_combustivel_automovel">Tipo de Combustível</label>
+                                {{ form.tipo_combustivel_automovel | addclass:'form-control'}}
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="valor_locacao">Valor de locação</label>
+                                {{ form.valor_locacao | addclass:'form-control'}}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label>Ativo: </label>
-                                <label class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" name="status" checked="true" class="custom-control-input"><span class="custom-control-label">Sim</span>
+                                <label class=" custom-control-inline">
+                                    {{ form.status | addclass:'custom-control custom-select' }}
                                 </label>
                             </div>
                         </div>
@@ -84,7 +85,4 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end basic form  -->
-    <!-- ============================================================== -->
 {% endblock %}
