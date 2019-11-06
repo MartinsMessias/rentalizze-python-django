@@ -40,7 +40,7 @@ class Locacao(models.Model):
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
     automovel = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
-    modificacao_em = models.DateTimeField(auto_now_add=True)
+    modificacado_em = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Automovel(models.Model):
     marca_automovel = models.CharField(max_length=50)
     categoria_automovel = models.ForeignKey('Categoria', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
-    modificacao_em = models.DateTimeField(auto_now_add=True)
+    modificacado_em = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
 
