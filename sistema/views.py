@@ -3,6 +3,7 @@ from django.shortcuts import render
 from pyUFbr import baseuf
 from .forms import *
 
+
 #################################################
 # As views de CADASTRAR_... devem enviar o form para o template
 # As views de CADASTRAR_... devem realizar o salvamento das informações recebidas pelo template
@@ -10,6 +11,7 @@ from .forms import *
 
 def index(request):
     return render(request, 'sistema/index.html', locals())
+
 
 def cadastrar_cliente(request):
     form = ClienteForm()
@@ -20,7 +22,7 @@ def cadastrar_cliente(request):
 
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form, 'em': em})
 
+
 def cadastrar_veiculo(request):
     # form = Envie para essa variavel o VeiculoForm
     return render(request, 'sistema/cadastrar_veiculo.html', locals())
-
