@@ -1,16 +1,20 @@
 from django import forms
 from .models import *
 
+
 class ClienteForm(forms.ModelForm):
     nome_cliente = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    cpf_cliente = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control cpf-inputmask', 'id':'cpf_cliente', 'onkeyup':'TestaCPF(this);'}))
+    cpf_cliente = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control cpf-inputmask', 'id': 'cpf_cliente', 'onkeyup': 'TestaCPF(this);'}))
     telefone_cliente = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control phone-inputmask'}))
-    email_cliente = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'email@email.com'}))
-    rg_cliente = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control', 'min':'1'}))
-    cnpj_cliente = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control cnpj-inputmask', 'id':'cnpj_cliente', 'onkeyup':'validarCNPJ(this);'}))
+    email_cliente = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'email@email.com'}))
+    rg_cliente = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '1'}))
+    cnpj_cliente = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control cnpj-inputmask', 'id': 'cnpj_cliente', 'onkeyup': 'validarCNPJ(this);'}))
     cnh_cliente = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     validade_cnh = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
-    #endereco_rua = forms.ModelChoiceField(queryset=Endereco.objects.all())
+    rua = forms.ModelChoiceField(queryset=Endereco.rua)
 
     class Meta:
         model = Cliente
