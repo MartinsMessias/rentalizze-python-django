@@ -1,5 +1,5 @@
 {% extends 'sistema/base.html' %}
-
+{% load tags %}
 <!-- ============================================================== -->
 <!-- pagehader  -->
 <!-- ============================================================== -->
@@ -23,26 +23,26 @@
             <div class="card">
                 <h5 class="card-header">Dados do cliente</h5>
                 <div class="card-body">
-                    <form class="card-header">
+                    <form class="card-header" method="post" enctype="multipart/form-data">
+                         {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <label for="nome_cliente">Nome completo</label>
-                                <input id="nome_cliente" type="text" class="form-control">
+                                {{ form.nome_cliente }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="email_cliente">Email</label>
-                                <input id="email_cliente" type="email" placeholder="email@exemplo.com" class="form-control">
+                                {{ form.email_cliente }}
                             </div>
                             <div class="form-group col-md">
                                 <label>Telefone/Celular <small class="text-muted">(99) 99999-9999</small></label>
-                                <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="">
+                                {{ form.telefone_cliente }}
                             </div>
                         </div>
                         <div class="form-row">
-
                             <div class="form-group col-md-2">
                                 <label for="rg_cliente">RG</label>
-                                <input id="rg_cliente" type="number" class="form-control" placeholder="Somente números" minlength="5" min="0">
+                                {{ form.rg_cliente }}
                             </div>
                             <div class="form-group col-md">
                                 <label></label>

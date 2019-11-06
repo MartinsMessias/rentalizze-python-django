@@ -18,7 +18,7 @@ def cadastrar_cliente(request):
     for estado in baseuf.ufbr.list_uf:
         em[str(estado)] = baseuf.ufbr.list_cidades(str(estado))
 
-    return render(request, 'sistema/cadastrar_cliente.html', locals())
+    return render(request, 'sistema/cadastrar_cliente.html', {'form': form, 'em': em})
 
 def cadastrar_veiculo(request):
     # form = Envie para essa variavel o VeiculoForm

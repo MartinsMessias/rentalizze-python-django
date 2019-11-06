@@ -1,6 +1,6 @@
 from django.db import models
 
-STATUS_CHOICES = (('Ativo', 'a'), ('Inativo', 'i'))
+STATUS_CHOICES = (('A', 'Ativo'), ('I', 'Inativo'))
 
 class Cliente(models.Model):
     nome_cliente = models.CharField(max_length=200)
@@ -15,9 +15,6 @@ class Cliente(models.Model):
     status = models.CharField(max_length=6, choices=STATUS_CHOICES)
     criado_em = models.DateTimeField(auto_now=True)
     modificado_em = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.nome_cliente
 
 
 class Endereco(models.Model):
