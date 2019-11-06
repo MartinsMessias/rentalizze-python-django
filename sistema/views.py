@@ -16,15 +16,9 @@ def index(request):
 def cadastrar_cliente(request):
     em = baseuf.ufbr.list_uf
     form = ClienteForm()
-
-    if request.method == 'POST':
-        form = ClienteForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-        else:
-            return HttpResponse(form)
-
+    #########################################################
+    # Fazer o código de salvar o cliente no banco de dados #
+    ########################################################
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form, 'em': em})
 
 
