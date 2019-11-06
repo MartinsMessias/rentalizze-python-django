@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from pyUFbr import baseuf
 from .forms import *
 
@@ -14,11 +14,16 @@ def index(request):
 
 
 def cadastrar_cliente(request):
+    em = baseuf.ufbr.list_uf
     form = ClienteForm()
-    # Gabiarra para pegar os estados e municípios
-    em = {}
-    for estado in baseuf.ufbr.list_uf:
-        em[str(estado)] = baseuf.ufbr.list_cidades(str(estado))
+
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+        else:
+            return HttpResponse(form)
 
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form, 'em': em})
 

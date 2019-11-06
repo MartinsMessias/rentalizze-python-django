@@ -10,23 +10,20 @@ class Cliente(models.Model):
     rg_cliente = models.CharField(max_length=50)
     cnpj_cliente = models.CharField(max_length=50)
     cnh_cliente = models.CharField(max_length=100)
-    validade_cnh = models.CharField(max_length=50)
-    endereco_cliente = models.ForeignKey('Endereco', on_delete=models.CASCADE)
-    status = models.CharField(max_length=6, choices=STATUS_CHOICES)
+    validade_cnh = models.DateField(max_length=50)
     criado_em = models.DateTimeField(auto_now=True)
-    modificado_em = models.DateTimeField(auto_now_add=True)
-
-
-class Endereco(models.Model):
-    rua = models.CharField('Rua', max_length=200)
+    rua = models.CharField(max_length=200)
     numero = models.IntegerField()
     complemento = models.CharField(max_length=200)
     cep = models.CharField(max_length=10)
     bairro = models.CharField(max_length=200)
+    estado = models.CharField(max_length=2)
     cidade = models.CharField(max_length=200)
+    modificado_em = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=6, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return self.rua
+        return self.nome_cliente
 
 class Locacao(models.Model):
     dt_hora_locacao = models.CharField(max_length=50)

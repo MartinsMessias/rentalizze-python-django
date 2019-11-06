@@ -1,8 +1,6 @@
 {% extends 'sistema/base.html' %}
 {% load tags %}
-<!-- ============================================================== -->
-<!-- pagehader  -->
-<!-- ============================================================== -->
+
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -10,21 +8,16 @@
         </div>
     </div>
 </div>
-<!-- ============================================================== -->
-<!-- pagehader  -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
+
 {% block conteudo_janela %}
-    <!-- ============================================================== -->
-    <!-- basic form  -->
-    <!-- ============================================================== -->
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <h5 class="card-header">Dados do cliente</h5>
                 <div class="card-body">
-                    <form class="card-header" method="post" enctype="multipart/form-data">
-                         {% csrf_token %}
+                    <form class="card-header" method="post" >
+                        {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <label for="nome_cliente">Nome completo</label>
@@ -77,39 +70,40 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="endereco_cliente">Rua</label>
+                                {{ form.rua }}
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="nrocasa_cliente">N°</label>
-                                <input id="nrocasa_cliente" type="number" placeholder="" class="form-control" min="0">
+                                {{ form.numero }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="bairro_cliente">Bairro</label>
-                                <input id="bairro_cliente" type="text" placeholder="" class="form-control">
+                                {{ form.bairro }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="bairro_cliente">Complemento</label>
-                                <input id="bairro_cliente" type="text" placeholder="" class="form-control">
+                                {{ form.complemento }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <label for="cep_cliente">CEP</label>
-                                <input id="cep_cliente" type="text" placeholder="" class="form-control cep-inputmask">
+                                {{ form.cep }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="estado_cliente">UF</label>
-                                <input id="estado_cliente" type="text" placeholder="" class="form-control">
+                                {{ form.estado }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="cidade_cliente">Cidade</label>
-                                <input id="cidade_cliente" type="text" placeholder="" class="form-control">
+                                {{ form.cidade }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-2">
-                                <label>Ativo: </label>
+                                <label>Status: </label>
                                 <label class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" name="status" checked="true" class="custom-control-input"><span class="custom-control-label">Sim</span>
+                                    {{ form.status | addclass:'custom-control custom-select' }}
                                 </label>
                             </div>
                         </div>
@@ -119,12 +113,10 @@
                                 <button class="btn btn-space btn-secondary">Cancelar</button>
                             </div>
                         </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end basic form  -->
-    <!-- ============================================================== -->
+    </div>
 {% endblock %}
