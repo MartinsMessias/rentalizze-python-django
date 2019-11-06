@@ -57,27 +57,27 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label id="cpf_label">CPF</label>
-                                <input name="cpf_cliente" type="text" class="form-control cpf-inputmask" id="cpf_cliente" placeholder="" onkeyup="TestaCPF(this);">
+                                {{ form.cpf_cliente }}
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="cnpj_cliente" id="cnpj_label" disabled="true">CNPJ</label>
-                                <input name="cnpj_cliente" type="text" class="form-control cnpj-inputmask" id="cnpj_cliente" placeholder="" disabled="true" onkeyup="validarCNPJ(this);">
+                                {{ form.cnpj_cliente }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="cnh_cliente">CNH</label>
-                                <input id="cnh_cliente" type="number" placeholder="" class="form-control">
+                                {{ form.cnh_cliente }}
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="cnhvalidade_cliente">Validade da CNH</label>
-                                <input id="cnhvalidade_cliente" type="date" placeholder="00/00/0000" class="form-control date-inputmask">
+                                <label for="validade_cnh">Validade da CNH</label>
+                                {{ form.validade_cnh }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="endereco_cliente">Rua</label>
-                                <input id="endereco_cliente" type="text" placeholder="" class="form-control">
+                                {{ form.teste }}
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="nrocasa_cliente">N°</label>
