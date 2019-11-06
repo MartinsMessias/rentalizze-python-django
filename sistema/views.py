@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from pyUFbr import *
 from .forms import *
 
 #################################################
@@ -11,10 +12,10 @@ def index(request):
     titulo_pagina = {'page': 'Homepage'}
     return render(request, 'sistema/index.html', locals())
 
-# Exemplo
 def cadastrar_cliente(request):
-    # form = Envie para essa variavel o ClientForm
-    # form = ClienteForm()
+    form = ClienteForm()
+    estados = ufbr.list_uf()
+    print(estados)
     titulo_pagina = {'page': 'Cadastro de cliente'}
     return render(request, 'sistema/cadastrar_cliente.html', locals())
 

@@ -35,7 +35,7 @@ class Locacao(models.Model):
     dt_hora_locacao = models.CharField(max_length=50)
     dt_hora_devolucao = models.CharField(max_length=50)
     quilometragem = models.FloatField()
-    valor_locacao = models.DecimalField(decimal_places=2)
+    valor_locacao = models.DecimalField(max_digits=6, decimal_places=2)
     # usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
     automovel = models.ForeignKey('Automovel', on_delete=models.CASCADE)
@@ -54,7 +54,7 @@ class Automovel(models.Model):
     tipo_combustivel_automovel = models.CharField(max_length=20)
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
-    valor_locacao = models.DecimalField(decimal_places=2)
+    valor_locacao = models.DecimalField(max_digits=6, decimal_places=2)
     modelo_automovel = models.ForeignKey('Modelo', on_delete=models.CASCADE)
     ano_automovel = models.IntegerField()
     marca_automovel = models.CharField(max_length=50)
@@ -84,7 +84,7 @@ class Modelo(models.Model):
 
 class Categoria(models.Model):
     nome_categoria = models.CharField(max_length=200)
-    valor_diario = models.DecimalField(decimal_places=2)
+    valor_diario = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
         return self.nome_categoria
