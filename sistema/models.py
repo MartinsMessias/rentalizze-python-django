@@ -42,16 +42,19 @@ class Locacao(models.Model):
 
 
 class Automovel(models.Model):
+    COMBUSTIVEL_CHOICES = (
+        ('Gasolina', 'Gasolina'),
+    )
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.IntegerField()
-    tipo_combustivel_automovel = models.CharField(max_length=20)
+    tipo_combustivel_automovel = models.CharField(max_length=20, choices=COMBUSTIVEL_CHOICES)
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
     valor_locacao = models.DecimalField(max_digits=6, decimal_places=2)
     modelo_automovel = models.ForeignKey('Modelo', on_delete=models.CASCADE)
     ano_automovel = models.IntegerField()
-    marca_automovel = models.CharField(max_length=50)
+    marca_automovel = models.ForeignKey('Marca', on_delete=models.CASCADE)
     categoria_automovel = models.ForeignKey('Categoria', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
     modificacado_em = models.DateTimeField(auto_now_add=True)

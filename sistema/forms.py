@@ -43,8 +43,12 @@ class ClienteForm(forms.ModelForm):
 
 
 class AutomovelForm(forms.ModelForm):
-    css_class = 'form-control'
 
     class Meta:
         model = Automovel
-        exclude = ('criado_em', 'modificado_em',)
+        exclude = ('criado_em', 'modificado_em', )
+
+    def __init__(self, *args, **kwargs):
+        for l in self.base_fields:
+            self.base_fields[l].widget.attrs['class'] = 'form-control'
+        super(AutomovelForm, self).__init__(*args, **kwargs)
