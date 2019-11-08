@@ -14,12 +14,11 @@ def index(request):
 
 
 def cadastrar_cliente(request):
-    em = baseuf.ufbr.list_uf
     form = ClienteForm()
     #########################################################
     # Fazer o código de salvar o cliente no banco de dados #
     ########################################################
-    return render(request, 'sistema/cadastrar_cliente.html', {'form': form, 'em': em})
+    return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
 
 def cadastrar_veiculo(request):
