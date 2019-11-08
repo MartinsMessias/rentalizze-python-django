@@ -9,6 +9,7 @@
             </div>
         </div>
     </div>
+    {{ form.as_table }}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -69,7 +70,7 @@
                             <div class="form-group col-md-2">
                                 <label>Ativo: </label>
                                 <label class=" custom-control-inline">
-                                    {{ form.status | addclass:'custom-control custom-select' }}
+                                    {{ form.status }}
                                 </label>
                             </div>
                         </div>
