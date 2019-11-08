@@ -1,20 +1,18 @@
 {% extends 'sistema/base.html' %}
 {% load tags %}
 
-<div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="page-header">
-            <h3 class="mb-2">Cadastro de cliente</h3>
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Cadastro de cliente</h3>
+            </div>
         </div>
     </div>
-</div>
-
-{% block conteudo_janela %}
-
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 card">
             <h5 class="card-header">Dados do cliente</h5>
-            <form class="card-header" method="post" >
+            <form class="card-body" method="post" >
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-md">
@@ -115,5 +113,5 @@
             </form>
         </div>
     </div>
-    </div>
+
 {% endblock %}

@@ -4,11 +4,11 @@ STATUS_CHOICES = (('A', 'Ativo'), ('I', 'Inativo'))
 
 class Cliente(models.Model):
     nome_cliente = models.CharField(max_length=200)
-    cpf_cliente = models.CharField(max_length=20)
+    cpf_cliente = models.CharField(max_length=20, unique=True)
     telefone_cliente = models.CharField(max_length=14)
     email_cliente = models.CharField(max_length=20)
     rg_cliente = models.CharField(max_length=50)
-    cnpj_cliente = models.CharField(max_length=50)
+    cnpj_cliente = models.CharField(max_length=50, unique=True)
     cnh_cliente = models.CharField(max_length=100)
     validade_cnh = models.DateField(max_length=50)
     criado_em = models.DateTimeField(auto_now=True)

@@ -24,7 +24,7 @@ class ClienteForm(forms.ModelForm):
 
     class Meta:
         model = Cliente
-        fields = '__all__'
+        exclude = ('criado_em', 'modificado_em', )
 
 
 class AutomovelForm(forms.ModelForm):
