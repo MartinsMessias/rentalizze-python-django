@@ -94,19 +94,19 @@ function validarCNPJ(cnpj) {
 }
 
 function aceita_cnpj() {
-    document.getElementById("cnpj_label").innerHTML = 'CNPJ - <i class="fas fa-check bg-success"></i>';
-    elemento.style.backgroundColor = "#2096004d";
+    document.getElementById("cnpj_label").innerHTML = 'CNPJ - <i class="fas fa-check"></i>';
+    document.getElementById("cnpj_cliente").className = 'form-control is-valid';
 }
 function regeita_cnpj() {
-    document.getElementById("cnpj_label").innerHTML = 'CNPJ - <i class="fas fa-exclamation-triangle bg-danger-light"></i>';
-    elemento.style.backgroundColor = "#ff00006e";
+    document.getElementById("cnpj_label").innerHTML = 'CNPJ - <i class="fas fa-exclamation-triangle"></i>';
+    document.getElementById("cnpj_cliente").className = 'form-control is-invalid';
 }
 function aceita_cpf(elemento) {
-    document.getElementById("cpf_label").innerHTML = 'CPF - <i class="fas fa-check bg-success"></i>';
-    elemento.style.backgroundColor = "#2096004d";
+    document.getElementById("cpf_label").innerHTML = 'CPF - <i class="fas fa-check"></i>';
+    document.getElementById("cpf_cliente").className = 'form-control is-valid';
 }
 function regeita_cpf(elemento) {
-    document.getElementById("cpf_label").innerHTML = 'CPF - <i class="fas fa-exclamation-triangle bg-danger-light"></i>';
-    elemento.style.backgroundColor = "#ff00006e";
+    document.getElementById("cpf_label").innerHTML = 'CPF - <i class="fas fa-exclamation-triangle"></i>';
+    document.getElementById("cpf_cliente").className = 'form-control is-invalid';
 }
 
