@@ -65,14 +65,14 @@
                                 {{ form.cor_automovel }}
                                 {{ form.cor_automovel.errors }}
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="tipo_combustivel_automovel">Tipo de Combustível</label>
                                 {{ form.tipo_combustivel_automovel }}
                                 {{ form.tipo_combustivel_automovel.errors }}
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="valor_locacao">Valor de locação(diário)</label>
-                                R${{ form.valor_locacao }}
+                                R${{ form.valor_locacao | addclass:'decimal form-control' }}
                                 {{ form.valor_locacao.errors }}
                             </div>
                         </div>

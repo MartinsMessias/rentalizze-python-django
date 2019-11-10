@@ -45,7 +45,12 @@ class Locacao(models.Model):
 
 class Automovel(models.Model):
     COMBUSTIVEL_CHOICES = (
-        ('Gasolina', 'Gasolina'),
+        ('Gasolina AD', 'Gasolina AD'),
+        ('Gasolina C', 'Gasolina C'),
+        ('Etanol', 'Etanol'),
+        ('Diesel', 'Diesel'),
+        ('GNV', 'Gás GNV'),
+        ('Elétrico/Outro', 'Elétrico/Outro'),
     )
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
