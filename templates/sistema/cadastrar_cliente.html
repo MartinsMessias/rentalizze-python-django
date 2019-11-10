@@ -14,86 +14,100 @@
             <h5 class="card-header">Dados do cliente</h5>
             <form class="card-body" method="post" >
                 {% csrf_token %}
+                {{ form.non_field_errors }}
                 <div class="form-row">
                     <div class="form-group col-md">
                         <label for="nome_cliente">Nome completo</label>
                         {{ form.nome_cliente }}
+                        {{ form.nome_cliente.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label for="email_cliente">Email</label>
                         {{ form.email_cliente }}
+                        {{ form.email_cliente.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label>Telefone/Celular <small class="text-muted">(99) 99999-9999</small></label>
                         {{ form.telefone_cliente }}
+                        {{ form.telefone_cliente.errors }}
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="rg_cliente">RG</label>
                         {{ form.rg_cliente }}
+                        {{ form.rg_cliente.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label></label>
                         <label class="custom-control custom-radio">
-                            <input type="radio" name="radio-inline" class="custom-control-input" onclick="someComCNPJ();"><span class="custom-control-label">Pessoa Física</span>
+                            <input type="radio" class="custom-control-input" onclick="someComCNPJ();"><span class="custom-control-label">Pessoa Física</span>
                         </label>
                     </div>
                     <div class="form-group col-md">
                         <label></label>
                         <label class="custom-control custom-radio">
-                            <input type="radio" name="radio-inline" class="custom-control-input" onclick="someComCPF();"><span class="custom-control-label">Pessoa Jurídica</span>
+                            <input type="radio" class="custom-control-input" onclick="someComCPF();"><span class="custom-control-label">Pessoa Jurídica</span>
                         </label>
                     </div>
                     <div class="form-group col-md-3">
                         <label id="cpf_label">CPF</label>
                         {{ form.cpf_cliente }}
+                        {{ form.cpf_cliente.errors }}
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cnpj_cliente" id="cnpj_label" disabled="true">CNPJ</label>
                         {{ form.cnpj_cliente }}
+                        {{ form.cnpj_cliente.errors }}
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="cnh_cliente">CNH</label>
                         {{ form.cnh_cliente }}
+                        {{ form.cnh_cliente.errors }}
                     </div>
                     <div class="form-group col-md-6">
                         <label for="validade_cnh">Validade da CNH</label>
                         {{ form.validade_cnh }}
+                        {{ form.validade_cnh.errors }}
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="endereco_cliente">Rua</label>
                         {{ form.rua }}
+                        {{ form.rua.errors }}
                     </div>
                     <div class="form-group col-md-1">
                         <label for="nrocasa_cliente">N°</label>
                         {{ form.numero }}
+                        {{ form.numero.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label for="bairro_cliente">Bairro</label>
                         {{ form.bairro }}
+                        {{ form.bairro.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label for="bairro_cliente">Complemento</label>
                         {{ form.complemento }}
+                        {{ form.complemento.errors }}
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md">
                         <label for="cep_cliente">CEP</label>
                         {{ form.cep }}
+                        {{ form.cep.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label for="estado_cliente">UF</label>
-                        {{ form.estado }}
+                        {{ form.estado.errors }}
                     </div>
                     <div class="form-group col-md">
                         <label for="cidade_cliente">Cidade</label>
-                        {{ form.cidade }}
+                        {{ form.cidade.errors }}
                     </div>
                 </div>
                 <div class="form-row">
@@ -101,6 +115,7 @@
                         <label>Status: </label>
                         <label class="custom-control custom-checkbox custom-control-inline">
                             {{ form.status }}
+                            {{ form.status.errors }}
                         </label>
                     </div>
                 </div>
