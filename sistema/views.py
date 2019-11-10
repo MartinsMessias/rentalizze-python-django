@@ -23,3 +23,10 @@ def cadastrar_veiculo(request):
     # Fazer o código de salvar o automóvel no banco de dados #
     # ###################################################### #
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
+
+def locar_veiculo(request):
+    form = LocacaoForm()
+    # ###################################################### #
+    # Fazer o código de salvar a locação no banco de dados  #
+    # ###################################################### #
+    return render(request, 'sistema/reserva.html', {'form':form})

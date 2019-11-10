@@ -84,3 +84,19 @@ class AutomovelForm(forms.ModelForm):
         for l in self.base_fields:
             self.base_fields[l].widget.attrs['class'] = 'form-control'
         super(AutomovelForm, self).__init__(*args, **kwargs)
+
+
+class LocacaoForm(forms.ModelForm):
+    data_locacao = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    hora_locacao = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+    hora_devolucao = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+    data_devolucao = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+
+    class Meta:
+        model = Locacao
+        exclude = ('criado_em', 'modificado_em', )
+
+    def __init__(self, *args, **kwargs):
+        for l in self.base_fields:
+            self.base_fields[l].widget.attrs['class'] = 'form-control'
+        super(LocacaoForm, self).__init__(*args, **kwargs)

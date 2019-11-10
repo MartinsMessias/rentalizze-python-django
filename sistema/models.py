@@ -29,16 +29,15 @@ class Cliente(models.Model):
         return self.nome_cliente
 
 class Locacao(models.Model):
+    TIPO_CHOICES = (('R', 'Reserva'), ('S', 'Saída'))
     dt_hora_locacao = models.CharField(max_length=50)
     dt_hora_devolucao = models.CharField(max_length=50)
-    quilometragem = models.FloatField()
-    valor_locacao = models.DecimalField(max_digits=6, decimal_places=2)
     # usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
-    automovel = models.ForeignKey('Automovel', on_delete=models.CASCADE)
+    carro = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
     modificacado_em = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    tipo = models.CharField(max_length=1, choices=TIPO_CHOICES)
 
     def __str__(self):
         return self.cliente
@@ -64,7 +63,6 @@ class Automovel(models.Model):
         help_text="Informe um ano válido!")
     criado_em = models.DateTimeField(auto_now=True)
     categoria = models.CharField(max_length=200)
-    valor_diario = models.DecimalField(max_digits=6, decimal_places=2)
     modificacado_em = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
