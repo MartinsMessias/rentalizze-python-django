@@ -18,51 +18,62 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="modelo_carro">Modelo</label>
-                                {{ form.modelo_automovel | addclass:'custom-select'}}
+                                {{ form.modelo }}
+                                {{ form.modelo.errors }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="placa_carro">Placa</label>
                                 {{ form.placa_automovel }}
+                                {{ form.placa_automovel.errors }}
                             </div>
                             <div class="form-group col-md-2">
                                 <label>Marca</label>
-                                {{ form.marca_automovel | addclass:'custom-select' }}
+                                {{ form.marca }}
+                                {{ form.marca.errors }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="cnhvalidade_cliente">Ano</label>
-                                {{ form.ano_automovel }}
+                                {{ form.ano }}
+                                {{ form.ano.errors }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-1">
                                 <label for="cnhvalidade_cliente">Portas</label>
                                 {{ form.nro_portas_automovel }}
+                                {{ form.nro_portas_automovel.errors }}
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="cnhvalidade_cliente">Categoria</label>
-                                {{ form.categoria_automovel | addclass:'custom-select'}}
+                                {{ form.categoria }}
+                                {{ form.categoria.errors }}
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="cor_veiculo">Quilometragem</label>
                                 {{ form.quilometragem_automovel }}
+                                {{ form.quilometragem_automovel.errors }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="cnh_cliente">Renavan/Chassis</label>
                                 {{ form.chassi_automovel }}
+                                {{ form.chassi_automovel.errors }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label for="cor_veiculo">Cor</label>
                                 {{ form.cor_automovel }}
+                                {{ form.cor_automovel.errors }}
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="tipo_combustivel_automovel">Tipo de Combustível</label>
-                                {{ form.tipo_combustivel_automovel | addclass:'custom-select'}}
+                                {{ form.tipo_combustivel_automovel }}
+                                {{ form.tipo_combustivel_automovel.errors }}
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="valor_locacao">Valor de locação</label>
-                                R${{ form.valor_locacao | addclass:'form-control grana-inputmask' }}
+                                R${{ form.valor_locacao }}
+                                {{ form.valor_locacao.errors }}
                             </div>
                         </div>
                         <div class="form-row">
@@ -70,6 +81,7 @@
                                 <label>Ativo: </label>
                                 <label class=" custom-control-inline">
                                     {{ form.status | addclass:'custom-select' }}
+                                    {{ form.status.errors }}
                                 </label>
                             </div>
                         </div>

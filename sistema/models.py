@@ -1,4 +1,7 @@
 from django.db import models
+import datetime
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 STATUS_CHOICES = (('A', 'Ativo'), ('I', 'Inativo'))
 
@@ -52,36 +55,19 @@ class Automovel(models.Model):
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
     valor_locacao = models.DecimalField(max_digits=6, decimal_places=2)
-    modelo_automovel = models.ForeignKey('Modelo', on_delete=models.CASCADE)
-    ano_automovel = models.IntegerField()
-    marca_automovel = models.ForeignKey('Marca', on_delete=models.CASCADE)
-    categoria_automovel = models.ForeignKey('Categoria', on_delete=models.CASCADE)
+    marca = models.CharField(max_length=200)
+    modelo = models.CharField(max_length=200)
+    ano = models.PositiveIntegerField(
+        validators=[
+            MinValueValidator(1900),
+            MaxValueValidator(datetime.datetime.now().year)],
+        help_text="Informe um ano válido!")
     criado_em = models.DateTimeField(auto_now=True)
+    categoria = models.CharField(max_length=200)
+    valor_diario = models.DecimalField(max_digits=6, decimal_places=2)
     modificacado_em = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
 
     def __str__(self):
-        return self.modelo_automovel
-
-
-class Marca(models.Model):
-    descricao_marca = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.descricao_marca
-
-
-class Modelo(models.Model):
-    modelo = models.CharField(max_length=200)
-
-    def __str__(self):
         return self.modelo
-
-
-class Categoria(models.Model):
-    nome_categoria = models.CharField(max_length=200)
-    valor_diario = models.DecimalField(max_digits=6, decimal_places=2)
-
-    def __str__(self):
-        return self.nome_categoria

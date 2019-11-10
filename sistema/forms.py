@@ -75,6 +75,7 @@ class ClienteForm(forms.ModelForm):
 
 class AutomovelForm(forms.ModelForm):
 
+    ano = forms.IntegerField(widget=forms.NumberInput(attrs={'min':1900}))
     class Meta:
         model = Automovel
         exclude = ('criado_em', 'modificado_em', )
