@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-                <h3 class="mb-2">Locação</h3>
+                <h3 class="mb-2">Cadastro de veículo</h3>
             </div>
         </div>
     </div>
@@ -30,10 +30,10 @@
                                 <label for="dt_hora_locacao">Data/Hora - Inicío</label>
                                 {{ form.data_locacao }}
                                 {{ form.hora_locacao }}
-                                {{ form.hora_locacao.errors }}
                                 {{ form.data_locacao.errors }}
+                                {{ form.hora_locacao.errors }}
                             </div>
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md">
                                 <label for="dt_hora_devolucao">Data/Hora - Fim</label>
                                 {{ form.data_devolucao }}
                                 {{ form.hora_devolucao }}

@@ -30,8 +30,10 @@ class Cliente(models.Model):
 
 class Locacao(models.Model):
     TIPO_CHOICES = (('R', 'Reserva'), ('S', 'Saída'))
-    dt_hora_locacao = models.CharField(max_length=50)
-    dt_hora_devolucao = models.CharField(max_length=50)
+    hora_locacao = models.TimeField()
+    data_locacao = models.DateField()
+    hora_devolucao = models.TimeField()
+    data_devolucao = models.DateField()
     # usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
     carro = models.ForeignKey('Automovel', on_delete=models.CASCADE)
@@ -64,8 +66,7 @@ class Automovel(models.Model):
     ano = models.PositiveIntegerField(
         validators=[
             MinValueValidator(1900),
-            MaxValueValidator(datetime.datetime.now().year)],
-        help_text="Informe um ano válido!")
+            MaxValueValidator(datetime.datetime.now().year)])
     criado_em = models.DateTimeField(auto_now=True)
     categoria = models.CharField(max_length=200)
     modificacado_em = models.DateTimeField(auto_now_add=True)
