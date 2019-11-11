@@ -1,0 +1,105 @@
+{% extends 'sistema/base.html' %}
+{% load tags %}
+
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Reservas e locações</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- data table  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Dados das locações e reservas cadastradas</h5>
+                    <p></p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Carro</th>
+                                <th>Saída</th>
+                                <th>Volta</th>
+                                <th>Usuário</th>
+                                <th>Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if dados %}
+                                {% for dado in dados %}
+
+                                    <tr>
+                                        <td>{{ dado.tipo }}</td>
+                                        <td>{{ dado.cliente }}</td>
+                                        <td>{{ dado.carro.marca }} {{ dado.carro.modelo }} {{ dado.carro.ano }}</td>
+                                        <td>{{ dado.data_locacao}} | {{ dado.hora_locacao }}</td>
+                                        <td>{{ dado.data_devolucao}} | {{ dado.hora_devolucao }}</td>
+                                        <td>{{ dado.usuario }}</td>
+                                        <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="card-header">Exibir</a></td>
+                                    </tr>
+                                    <!-- Exibir Modal-->
+                                    <div class="modal fade" id="exibirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{ dado.cliente }}</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {% include 'sistema/vizualizar_loc.html' with form=dado %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+                                                    {#                                                    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>#}
+                                                    {#                                                    <a class="btn btn-info" href="{% url 'editar' dado.id %}">Editar</a>#}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="warning">Sem dados cadastrados</p>
+                            {% endif %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Carro</th>
+                                <th>Saída</th>
+                                <th>Volta</th>
+                                <th>Usuário</th>
+                                <th>Ação</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="form-group row text-left">
+                        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                            <a href="{% url 'locar_veiculo' %}" class="btn btn-space btn-primary">Nova reserva</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- end data table  -->
+        <!-- ============================================================== -->
+
+    </div>
+
+
+{% endblock %}

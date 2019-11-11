@@ -1,0 +1,46 @@
+{% load tags %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="btn-light btn-sm" disabled="true" align="center">
+                        Locação pelo usuário: <span class="text-uppercase">{{ form.usuario.username }}</span>
+                        em {{ form.criado_em }}
+                    </div>
+                </li>
+            </ul>
+            <h5 class="card-header">Dados da Locação</h5>
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <h4>Cliente:</h4>{{ form.cliente }}
+                            <h4>Tel.: <span>{{ form.cliente.telefone_cliente }}</span></h4>
+                        </div>
+                        <div class="form-group col-md">
+                            <h4>Veículo:</h4> {{ form.carro.marca }} {{ form.carro.modelo }} {{ form.carro.ano }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md bg-success-light">
+                            <h4>Inicío</h4>
+                            Saída dia: {{ form.data_locacao }} às {{ form.hora_locacao }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md bg-danger-light">
+                            <h4>Fim</h4>
+                            Retorno dia: {{ form.data_devolucao }} às {{ form.hora_devolucao }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <h4>Tipo: <span>{{ form.tipo }}</span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

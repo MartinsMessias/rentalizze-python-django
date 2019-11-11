@@ -29,7 +29,7 @@ class Cliente(models.Model):
         return self.nome_cliente
 
 class Locacao(models.Model):
-    TIPO_CHOICES = (('R', 'Reserva'), ('S', 'Saída'))
+    TIPO_CHOICES = (('Reserva', 'Reserva'), ('Saída', 'Saída'))
     hora_locacao = models.TimeField()
     data_locacao = models.DateField()
     hora_devolucao = models.TimeField()
@@ -53,7 +53,7 @@ class Automovel(models.Model):
         ('Etanol', 'Etanol'),
         ('Diesel', 'Diesel'),
         ('GNV', 'Gás GNV'),
-        ('Alcool', 'Alcool'),
+        ('Álcool', 'Álcool'),
         ('Elétrico/Outro', 'Elétrico/Outro'),
     )
     placa_automovel = models.CharField(max_length=15)
