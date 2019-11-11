@@ -15,6 +15,7 @@
                 <h5 class="card-header">Dados da Locação</h5>
                 <div class="card-body">
                     <form class="card-header" method="post">
+                        {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="cliente">Cliente</label>

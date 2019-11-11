@@ -15,11 +15,7 @@ STATE_CHOICES = (
 )
 
 class ClienteForm(forms.ModelForm):
-    nome_cliente = forms.CharField(
-        widget=forms.TextInput(
-            attrs={'class': 'form-control'}
-        )
-    )
+
     cpf_cliente = forms.CharField(
         required=False,
         widget=forms.TextInput(
@@ -47,31 +43,21 @@ class ClienteForm(forms.ModelForm):
     )
 
     status = forms.ChoiceField(choices=STATUS_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
-
     rg_cliente = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '0'}))
-
-    cnh_cliente = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-
     validade_cnh = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}))
-
-    rua = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     numero = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'min': '0'}))
-
-    complemento = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    cep = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    bairro = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     estado = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
-
-    cidade = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Cliente
         exclude = ('criado_em', 'modificado_em',)
 
+    def __init__(self, *args, **kwargs):
+        for l in self.base_fields:
+            if not self.base_fields[l].widget.attrs.get('class'):
+                self.base_fields[l].widget.attrs['class'] = 'form-control'
+
+        super(ClienteForm, self).__init__(*args, **kwargs)
 
 class AutomovelForm(forms.ModelForm):
 
