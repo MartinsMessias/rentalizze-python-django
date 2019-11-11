@@ -1,7 +1,7 @@
-from django.db import models
 import datetime
+from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
-
 
 STATUS_CHOICES = (('A', 'Ativo'), ('I', 'Inativo'))
 
@@ -34,7 +34,7 @@ class Locacao(models.Model):
     data_locacao = models.DateField()
     hora_devolucao = models.TimeField()
     data_devolucao = models.DateField()
-    # usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
     carro = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
@@ -42,7 +42,8 @@ class Locacao(models.Model):
     tipo = models.CharField(max_length=1, choices=TIPO_CHOICES)
 
     def __str__(self):
-        return self.cliente
+        inicio, fim = str(self.data_locacao), str(self.data_devolucao)
+        return self.cliente.nome_cliente + ' | ' + inicio + '/' + fim
 
 
 class Automovel(models.Model):
@@ -52,6 +53,7 @@ class Automovel(models.Model):
         ('Etanol', 'Etanol'),
         ('Diesel', 'Diesel'),
         ('GNV', 'Gás GNV'),
+        ('Alcool', 'Alcool'),
         ('Elétrico/Outro', 'Elétrico/Outro'),
     )
     placa_automovel = models.CharField(max_length=15)
