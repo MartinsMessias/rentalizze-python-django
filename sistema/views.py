@@ -14,6 +14,8 @@ def cadastrar_cliente(request):
         if form.is_valid():
             form.save()
             return redirect(cadastrar_cliente)
+    else:
+        form = ClienteForm()
     #########################################################
     # Fazer o código de salvar o cliente no banco de dados #
     ########################################################
