@@ -16,6 +16,7 @@ STATE_CHOICES = (
 
 
 class ClienteForm(forms.ModelForm):
+    STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
     cpf_cliente = forms.CharField(
         required=False,
         widget=forms.TextInput(

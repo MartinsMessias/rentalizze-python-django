@@ -44,7 +44,6 @@
                                         <td>{{ dado.cnpj_cliente }}</td>
                                         <td>{{ dado.telefone_cliente }}</td>
                                         <td>{{ dado.email_cliente }}</td>
-                                        <td>{{ dado.cnh_cliente }}</td>
                                         <td>{{ dado.cnh_cliente }} - {{ dado.validade_cnh }}</td>
                                         <td>{{ dado.status }}</td>
                                         <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="card-header">Exibir</a></td>
@@ -60,7 +59,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {% include 'sistema/vizualizar_loc.html' with form=dado %}
+{#                                                    {% include 'sistema/vizualizar_loc.html' with form=dado %}#}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>

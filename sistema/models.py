@@ -3,9 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-STATUS_CHOICES = (('A', 'Ativo'), ('I', 'Inativo'))
-
 class Cliente(models.Model):
+    STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
     nome_cliente = models.CharField(max_length=200)
     cpf_cliente = models.CharField(max_length=20, unique=True, default='---')
     telefone_cliente = models.CharField(max_length=20)
@@ -39,7 +38,7 @@ class Locacao(models.Model):
     carro = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
     modificacado_em = models.DateTimeField(auto_now_add=True)
-    tipo = models.CharField(max_length=1, choices=TIPO_CHOICES)
+    tipo = models.CharField(max_length=7, choices=TIPO_CHOICES)
 
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
@@ -47,6 +46,10 @@ class Locacao(models.Model):
 
 
 class Automovel(models.Model):
+    STATUS_CHOICES = (
+        ('Disponível', 'Disponível'),
+        ('Indisponível', 'Indisponível')
+    )
     COMBUSTIVEL_CHOICES = (
         ('Gasolina AD', 'Gasolina AD'),
         ('Gasolina C', 'Gasolina C'),
@@ -72,7 +75,7 @@ class Automovel(models.Model):
     criado_em = models.DateTimeField(auto_now=True)
     categoria = models.CharField(max_length=200)
     modificacado_em = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=6, choices=STATUS_CHOICES)
 
 
     def __str__(self):
