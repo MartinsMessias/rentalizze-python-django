@@ -34,7 +34,7 @@ class Locacao(models.Model):
     hora_devolucao = models.TimeField()
     data_devolucao = models.DateField()
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     carro = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
     modificacado_em = models.DateTimeField(auto_now_add=True)

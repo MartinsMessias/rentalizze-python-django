@@ -32,9 +32,7 @@ def cadastrar_veiculo(request):
             return redirect(cadastrar_veiculo)
     else:
         form = AutomovelForm()
-    # ###################################################### #
-    # Fazer o código de salvar o automóvel no banco de dados #
-    # ###################################################### #
+
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
 def locar_veiculo(request):

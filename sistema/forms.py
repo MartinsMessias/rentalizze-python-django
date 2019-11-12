@@ -76,8 +76,8 @@ class AutomovelForm(forms.ModelForm):
 
 class LocacaoForm(forms.ModelForm):
     data_locacao = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
-    hora_locacao = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'time', 'class': 'form-control'}))
-    hora_devolucao = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+    hora_locacao = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+    hora_devolucao = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
     data_devolucao = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
 
     class Meta:
