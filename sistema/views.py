@@ -25,6 +25,13 @@ def listar_clientes(request):
 
 def cadastrar_veiculo(request):
     form = AutomovelForm()
+    if request.method =='POST':
+        form = AutomovelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(cadastrar_veiculo)
+    else:
+        form = AutomovelForm()
     # ###################################################### #
     # Fazer o código de salvar o automóvel no banco de dados #
     # ###################################################### #
