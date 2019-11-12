@@ -14,6 +14,13 @@ def cadastrar_cliente(request):
     ########################################################
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
+def listar_clientes(request):
+    dados = Cliente.objects.all()
+    ##########################################################
+    # Retornar para a variável dados todos os clientes       #
+    #########################################################
+    return render(request, 'sistema/listar_clientes.html', {'dados':dados})
+
 def cadastrar_veiculo(request):
     form = AutomovelForm()
     # ###################################################### #
@@ -31,12 +38,12 @@ def locar_veiculo(request):
 def listar_reservas(request):
     dados = 1
     # ###################################################### #
-    # Fazer o código para enviar todos os objetos de Locacao #
+    # Fazer o código para enviar todos os objetos(all) de Locacao #
     # ###################################################### #
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def visualizar_loc(request, id):
-    dados = 1 # Mandar para essa variável os objetos com "id" igual ao que foi pedido
+    dados = 1 # Mandar para essa variável os objetos com "id" igual ao que foi pedido (get)
     # ################################################################## #
     # Fazer o código para enviar o objeto de Locacao com o id que pede ###
     # ################################################################## #
