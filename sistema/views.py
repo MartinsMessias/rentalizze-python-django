@@ -16,9 +16,7 @@ def cadastrar_cliente(request):
             return redirect(cadastrar_cliente)
     else:
         form = ClienteForm()
-    #########################################################
-    # Fazer o código de salvar o cliente no banco de dados #
-    ########################################################
+
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
 def listar_clientes(request):
@@ -34,18 +32,24 @@ def cadastrar_veiculo(request):
 
 def locar_veiculo(request):
     form = LocacaoForm()
+    if request.method =='POST':
+        form = LocacaoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(listar_reservas)
+    else:
+        form = LocacaoForm()
 
-    # ###################################################### #
-    # Fazer o código de salvar a locação no banco de dados  #
-    # ###################################################### #
     return render(request, 'sistema/reserva.html', {'form':form})
 
 def listar_reservas(request):
     dados = Locacao.objects.all()
+
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def visualizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
+
     return render(request, 'sistema/vizualizar_loc.html', {'dados':dados})
 
 
