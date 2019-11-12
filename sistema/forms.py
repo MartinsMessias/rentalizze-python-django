@@ -48,7 +48,7 @@ class ClienteForm(forms.ModelForm):
     validade_cnh = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}))
     numero = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'min': '0'}))
     estado = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
-
+    complemento = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = Cliente
         exclude = ('criado_em', 'modificado_em',)
