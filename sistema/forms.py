@@ -2,20 +2,20 @@ from django import forms
 from .models import *
 
 STATE_CHOICES = (
-	('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', 'Amapá'),
-	('AM', 'Amazonas'), ('BA', 'Bahia'), ('CE', 'Ceará'),
-	('DF', 'Distrito Federal'), ('ES', 'Espírito Santo'),
-	('GO', 'Goiás'), ('MA', 'Maranhão'), ('MT', 'Mato Grosso'),
-	('MS', 'Mato Grosso do Sul'), ('MG', 'Minas Gerais'),
-	('PA', 'Pará'), ('PB', 'Paraíba'), ('PR', 'Paraná'),
-	('PE', 'Pernambuco'), ('PI', 'Piauí'), ('RJ', 'Rio de Janeiro'),
-	('RN', 'Rio Grande do Norte'), ('RS', 'Rio Grande do Sul'),
-	('RO', 'Rondônia'), ('RR', 'Roraima'), ('SC', 'Santa Catarina'),
-	('SP', 'São Paulo'), ('SE', 'Sergipe'), ('TO', 'Tocantins')
+    ('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', 'Amapá'),
+    ('AM', 'Amazonas'), ('BA', 'Bahia'), ('CE', 'Ceará'),
+    ('DF', 'Distrito Federal'), ('ES', 'Espírito Santo'),
+    ('GO', 'Goiás'), ('MA', 'Maranhão'), ('MT', 'Mato Grosso'),
+    ('MS', 'Mato Grosso do Sul'), ('MG', 'Minas Gerais'),
+    ('PA', 'Pará'), ('PB', 'Paraíba'), ('PR', 'Paraná'),
+    ('PE', 'Pernambuco'), ('PI', 'Piauí'), ('RJ', 'Rio de Janeiro'),
+    ('RN', 'Rio Grande do Norte'), ('RS', 'Rio Grande do Sul'),
+    ('RO', 'Rondônia'), ('RR', 'Roraima'), ('SC', 'Santa Catarina'),
+    ('SP', 'São Paulo'), ('SE', 'Sergipe'), ('TO', 'Tocantins')
 )
 
-class ClienteForm(forms.ModelForm):
 
+class ClienteForm(forms.ModelForm):
     cpf_cliente = forms.CharField(
         required=False,
         widget=forms.TextInput(
@@ -59,12 +59,13 @@ class ClienteForm(forms.ModelForm):
 
         super(ClienteForm, self).__init__(*args, **kwargs)
 
-class AutomovelForm(forms.ModelForm):
 
-    ano = forms.IntegerField(widget=forms.NumberInput(attrs={'min':1900}))
+class AutomovelForm(forms.ModelForm):
+    ano = forms.IntegerField(widget=forms.NumberInput(attrs={'min': 1900}))
+
     class Meta:
         model = Automovel
-        exclude = ('criado_em', 'modificado_em', )
+        exclude = ('criado_em', 'modificado_em',)
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
@@ -80,7 +81,7 @@ class LocacaoForm(forms.ModelForm):
 
     class Meta:
         model = Locacao
-        exclude = ('criado_em', 'modificado_em', 'usuario', )
+        exclude = ('criado_em', 'modificado_em', 'usuario',)
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
