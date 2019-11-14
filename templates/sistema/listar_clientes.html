@@ -16,8 +16,15 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Dados de clientes cadastradas</h5>
-                    <p></p>
+                    <h5 class="mb-0">Dados de clientes cadastrados</h5>
+                    <!-- MESSAGES-->
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -43,7 +50,7 @@
                                         <td>{{ dado.cnpj_cliente }}</td>
                                         <td>{{ dado.telefone_cliente }}</td>
                                         <td>{{ dado.email_cliente }}</td>
-                                        <td>{{ dado.cnh_cliente }} - {{ dado.validade_cnh }}</td>
+                                        <td>{{ dado.cnh_cliente }} - {{ dado.validade_cnh | date:'d/m/Y' }}</td>
                                         <td>{{ dado.status }}</td>
                                         <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="card-header bg-primary">Exibir</a></td>
                                     </tr>
@@ -93,15 +100,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
         <!-- ============================================================== -->
         <!-- end data table  -->
         <!-- ============================================================== -->
-
     </div>
-
 
 {% endblock %}
