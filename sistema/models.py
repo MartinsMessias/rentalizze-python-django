@@ -48,16 +48,12 @@ class Locacao(models.Model):
 class Automovel(models.Model):
     STATUS_CHOICES = (
         ('Disponível', 'Disponível'),
-        ('Indisponível', 'Indisponível')
+        ('Indisponível', 'Indisponível'),
     )
     COMBUSTIVEL_CHOICES = (
-        ('Gasolina AD', 'Gasolina AD'),
-        ('Gasolina C', 'Gasolina C'),
-        ('Etanol', 'Etanol'),
-        ('Diesel', 'Diesel'),
-        ('GNV', 'Gás GNV'),
-        ('Álcool', 'Álcool'),
-        ('Elétrico/Outro', 'Elétrico/Outro'),
+        ('Gasolina AD', 'Gasolina AD'), ('Gasolina C', 'Gasolina C'),
+        ('Etanol', 'Etanol'), ('Diesel', 'Diesel'), ('GNV', 'Gás GNV'),
+        ('Álcool', 'Álcool'), ('Elétrico/Outro', 'Elétrico/Outro'),
     )
     MARCA_CHOICES = (
         ('Mercedes - Benz', 'Mercedes - Benz'), ('Audi', 'Audi'),('BMW', 'BMW'),
@@ -66,6 +62,12 @@ class Automovel(models.Model):
         ('Peugeot', 'Peugeot'), ('Lexus', 'Lexus'), ('Kia','Kia'), ('Citroën', 'Citroën'),
         ('Nissan', 'Nissan'), ('Mitsubishi', 'Mitsubishi'), ('Chery', 'Chery'),('Jeep', 'Jeep'),
     )
+    CATEGORIA_CHOICES = (
+        ('Utilitário Esportivo', 'Utilitário Esportivo'),
+        ('Sedã', 'Sedã'), ('Conversível / Cupê', 'Conversível / Cupê'),
+        ('Hatch', 'Hatch'), ('Picape', 'Picape'), ('Hibrido / Elétrico', 'Hibrido / Elétrico'),
+        ('Van','Van'), ('Outro', 'Outro'),
+    )
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.IntegerField()
@@ -73,14 +75,14 @@ class Automovel(models.Model):
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
     valor_locacao = models.FloatField()
-    marca = models.CharField(choices=MARCA_CHOICES, max_length=25)
+    marca = models.CharField(choices=MARCA_CHOICES, max_length=50)
     modelo = models.CharField(max_length=200)
     ano = models.PositiveIntegerField(
         validators=[
             MinValueValidator(1900),
             MaxValueValidator(datetime.datetime.now().year)])
     criado_em = models.DateTimeField(auto_now=True)
-    categoria = models.CharField(max_length=200)
+    categoria = models.CharField(choices=CATEGORIA_CHOICES, max_length=50)
     modificacado_em = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=12, choices=STATUS_CHOICES)
 
