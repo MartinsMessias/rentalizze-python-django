@@ -33,7 +33,8 @@ def listar_clientes(request):#########################################
 
 
 def editar_cliente(request, id):
-    pass
+    form = {}
+    return render(request, 'sistema/editar_cliente.html', {'form': form})
 ############# FIM CLIENTE #################
 
 
@@ -60,7 +61,8 @@ def listar_veiculos(request):
 
 
 def editar_veiculo(request, id):
-    pass
+    dados = {}
+    return render(request, 'sistema/editar_veiculo.html', {'dados': dados})
 
 ############# FIM VEÍCULO #################
 
@@ -81,6 +83,8 @@ def listar_locacoes(request):
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def editar_loc(request, id):
-    pass
+    dados = {}
+    return render(request, 'sistema/editar_locacao.html', {'dados': dados})
+
 ############# FIM LOCAÇÃO #################
 
