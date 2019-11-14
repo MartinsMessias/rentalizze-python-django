@@ -15,13 +15,17 @@ def cadastrar_cliente(request):
         form = ClienteForm(request.POST)
 
         if form.is_valid():
-            if not Cliente.objects.filter(cpf_cliente=request.GET.get('cpf_cliente')):# or not Cliente.objects.filter(cnpj_cliente=form.cnpj_cliente):
+            q1 = Cliente.objects.filter(cpf_cliente=form.cleaned_data['cpf_cliente'])
+            q2 = Cliente.objects.filter(cnpj_cliente=form.cleaned_data['cnpj_cliente'])
+            if not q1 or not q2:
+
                 form.save()
                 messages.success(request, 'Cliente cadastrado com sucesso!')
                 return redirect(listar_clientes)
-        else:
-            messages.warning(request, 'Houve um erro! {}'.format(form.errors))
 
+            else:
+                messages.warning(request, "Cpf ou Cnpj ja existe!")
+                return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
     form = ClienteForm()
 
     # Fazer verificação pra n permitir CPF e CNPJ duplicados
@@ -35,6 +39,14 @@ def listar_clientes(request):#########################################
 
 def editar_cliente(request, id):
     form = {}
+    #cliente = Cliente.objects.get.(id=id)
+   # form = ClienteForm(request.POST or None, instance=Cliente)
+    #if form.is_valid():
+       # form.save()
+      #  messages.success(request, "Cliente modificado com sucesso!")
+     #   return redirect()
+
+
     return render(request, 'sistema/editar_cliente.html', {'form': form})
 ############# FIM CLIENTE #################
 

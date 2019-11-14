@@ -7,6 +7,13 @@
             <div class="page-header">
                 <h3 class="mb-2">Cadastro de cliente</h3>
             </div>
+            {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
         </div>
     </div>
     <div class="row">
