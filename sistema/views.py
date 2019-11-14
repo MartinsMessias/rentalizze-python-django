@@ -3,11 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
 
-#
+# Renderiza a página inicial
 def index(request):
     return render(request, 'sistema/index.html', locals())
 
-####### CLIENTE
+
+############# CLIENTE #################
 def cadastrar_cliente(request):
     if request.method =='POST':
         form = ClienteForm(request.POST)
@@ -21,9 +22,18 @@ def cadastrar_cliente(request):
 def listar_clientes(request):
     dados = Cliente.objects.all()
     return render(request, 'sistema/listar_clientes.html', {'dados':dados})
-###### FIM CLIENTE
 
-####### VEÍCULO
+
+def visualizar_cliente(request, id):
+    dados = {}
+    #########################################################
+    # Mandar para a variável 'dados' o cliente cujo o id=id #
+    #########################################################
+    return render(request, 'sistema/visualizar_cli.html', {'dados':dados})
+############# FIM CLIENTE #################
+
+
+############# VEÍCULO #################
 def cadastrar_veiculo(request):
     if request.method =='POST':
         form = AutomovelForm(request.POST)
@@ -40,7 +50,16 @@ def listar_veiculos(request):
     return render(request, 'sistema/listar_veiculos.html')
 
 
-####### FIM VEÍCULO
+def visualizar_veiculo(request, id):
+    dados = {}
+    #########################################################
+    # Mandar para a variável 'dados' o veículo cujo o id=id #
+    #########################################################
+    return render(request, 'sistema/visualizar_vei.html', {'dados':dados})
+
+############# FIM VEÍCULO #################
+
+############# LOCAÇÃO #################
 def locar_veiculo(request):
     if request.method =='POST':
         form = LocacaoForm(request.POST)
@@ -54,12 +73,11 @@ def locar_veiculo(request):
 
 def listar_locacoes(request):
     dados = Locacao.objects.all()
-
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def visualizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
+    return render(request, 'sistema/visualizar_loc.html', {'dados':dados})
 
-    return render(request, 'sistema/vizualizar_loc.html', {'dados':dados})
-
+############# FIM LOCAÇÃO #################
 
