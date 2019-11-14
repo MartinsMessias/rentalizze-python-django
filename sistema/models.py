@@ -67,13 +67,21 @@ class Automovel(models.Model):
         ('Hatch', 'Hatch'), ('Picape', 'Picape'), ('Hibrido / Elétrico', 'Hibrido / Elétrico'),
         ('Van','Van'), ('Outro', 'Outro'),
     )
+
+    NRO_PORTAS_AUTOMOVEL_CHOICES =(
+        ('2', '2 Portas')
+        ('3', '3 Portas')
+        ('4', '4 Portas')
+        ('5', '5 Portas')
+    )
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
-    nro_portas_automovel = models.IntegerField()
+    nro_portas_automovel = models.CharField(max_length=10, choices=NRO_PORTAS_AUTOMOVEL_CHOICES)
     tipo_combustivel_automovel = models.CharField(max_length=50, choices=COMBUSTIVEL_CHOICES)
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
     valor_locacao = models.FloatField()
+    valor_locacao_fds = models.FloatField()
     marca = models.CharField(choices=MARCA_CHOICES, max_length=50)
     modelo = models.CharField(max_length=200)
     ano = models.PositiveIntegerField(
