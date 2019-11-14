@@ -25,7 +25,7 @@ class Cliente(models.Model):
     status = models.CharField(max_length=7, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return self.nome_cliente
+        return self.nome_cliente + ' - ' + self.status
 
 class Locacao(models.Model):
     TIPO_CHOICES = (('Reserva', 'Reserva'), ('Saída', 'Saída'))
@@ -79,4 +79,4 @@ class Automovel(models.Model):
 
 
     def __str__(self):
-        return self.modelo
+        return self.marca +' '+ self.modelo +' '+ str(self.ano) + ' - ' + self.status

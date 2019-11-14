@@ -46,8 +46,11 @@ def cadastrar_veiculo(request):
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
 def listar_veiculos(request):
-
-    return render(request, 'sistema/listar_veiculos.html')
+    dados = {}
+    #########################################################
+    # Mandar para a variável 'dados' todos os veículos (all)#
+    #########################################################
+    return render(request, 'sistema/listar_veiculos.html', {'dados':dados})
 
 
 def visualizar_veiculo(request, id):

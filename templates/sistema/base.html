@@ -110,7 +110,7 @@
                                                     <a class="nav-link" href="{% url 'cadastrar_veiculo' %}">Novo veículo</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Listar veículos</a>
+                                                    <a class="nav-link" href="{% url 'listar_veiculos' %}">Listar veículos</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -276,7 +276,9 @@
             $(".cnpj-inputmask").inputmask("99.999.999/9999-99"),
             $(".isbn-inputmask").inputmask("999-99-999-9999-9"),
             $(".grana").inputmask("9.999,99"),
+            $(".salario-inputmask").inputmask("999,99", {reverse: true}),
             $(".percentage-inputmask").inputmask("99%"),
+            $(".placa").inputmask("AAA-0000", options)
             $(".decimal-inputmask").inputmask({
                 alias: "decimal",
                 radixPoint: ","
