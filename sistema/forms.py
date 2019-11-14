@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from datetime import date, time
 
 STATE_CHOICES = (
     ('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', 'Amapá'),
@@ -48,7 +49,7 @@ class ClienteForm(forms.ModelForm):
     validade_cnh = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}))
     numero = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'min': '0'}))
     estado = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
-    complemento = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Cliente
         exclude = ('criado_em', 'modificado_em',)
@@ -75,10 +76,10 @@ class AutomovelForm(forms.ModelForm):
 
 
 class LocacaoForm(forms.ModelForm):
-    data_locacao = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
-    hora_locacao = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
-    hora_devolucao = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
-    data_devolucao = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    data_locacao = forms.DateField(widget=forms.DateInput(attrs={'value': date.today(),'type': 'date', 'class': 'form-control'}))
+    hora_locacao = forms.TimeField(widget=forms.TimeInput(attrs={'value': time(),'type': 'time', 'class': 'form-control'}))
+    hora_devolucao = forms.TimeField(widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
+    data_devolucao = forms.DateField(widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
 
     class Meta:
         model = Locacao
