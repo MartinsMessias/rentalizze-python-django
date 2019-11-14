@@ -15,9 +15,10 @@ def cadastrar_cliente(request):
         form = ClienteForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Cliente cadastrado com sucesso!')
-            return redirect(listar_clientes)
+            if not Cliente.objects.filter(cpf_cliente=request.GET.get('cpf_cliente')):# or not Cliente.objects.filter(cnpj_cliente=form.cnpj_cliente):
+                form.save()
+                messages.success(request, 'Cliente cadastrado com sucesso!')
+                return redirect(listar_clientes)
         else:
             messages.warning(request, 'Houve um erro! {}'.format(form.errors))
 
