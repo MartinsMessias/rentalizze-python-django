@@ -22,6 +22,9 @@ def cadastrar_cliente(request):
             messages.warning(request, 'Houve um erro! {}'.format(form.errors))
 
     form = ClienteForm()
+
+    # Fazer verificação pra n permitir CPF e CNPJ duplicados
+
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
 def listar_clientes(request):#########################################
@@ -48,6 +51,8 @@ def cadastrar_veiculo(request):#################################################
     else:
         form = AutomovelForm()
 
+    # Fazer verificação pra não permitir duplicados (com a mesma placa)
+
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
 def listar_veiculos(request):
@@ -58,12 +63,8 @@ def listar_veiculos(request):
     return render(request, 'sistema/listar_veiculos.html', {'dados':dados})
 
 
-def visualizar_veiculo(request, id):
-    dados = {}
-    #########################################################
-    # Mandar para a variável 'dados' o veículo cujo o id=id #
-    #########################################################
-    return render(request, 'sistema/visualizar_vei.html', {'dados':dados})
+def editar_veiculo(request, id):
+    pass
 
 ############# FIM VEÍCULO #################
 
@@ -83,9 +84,7 @@ def listar_locacoes(request):
     dados = Locacao.objects.all()
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
-def visualizar_loc(request, id):
-    dados = Locacao.objects.get(id=id)
-    return render(request, 'sistema/visualizar_loc.html', {'dados':dados})
-
+def editar_loc(request, id):
+    pass
 ############# FIM LOCAÇÃO #################
 
