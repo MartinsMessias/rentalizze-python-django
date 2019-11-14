@@ -51,9 +51,8 @@ class Automovel(models.Model):
         ('Indisponível', 'Indisponível'),
     )
     COMBUSTIVEL_CHOICES = (
-        ('Gasolina AD', 'Gasolina AD'), ('Gasolina C', 'Gasolina C'),
-        ('Etanol', 'Etanol'), ('Diesel', 'Diesel'), ('GNV', 'Gás GNV'),
-        ('Álcool', 'Álcool'), ('Elétrico/Outro', 'Elétrico/Outro'),
+        ('Gasolina', 'Gasolina'), ('Flex', 'Flex'),
+        ('Diesel', 'Diesel'), ('Híbrido/Elétrico', 'Híbrido/Elétrico'),
     )
     MARCA_CHOICES = (
         ('Mercedes - Benz', 'Mercedes - Benz'), ('Audi', 'Audi'),('BMW', 'BMW'),
@@ -71,7 +70,7 @@ class Automovel(models.Model):
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.IntegerField()
-    tipo_combustivel_automovel = models.CharField(max_length=20, choices=COMBUSTIVEL_CHOICES)
+    tipo_combustivel_automovel = models.CharField(max_length=50, choices=COMBUSTIVEL_CHOICES)
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
     valor_locacao = models.FloatField()
