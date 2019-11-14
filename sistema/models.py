@@ -59,6 +59,13 @@ class Automovel(models.Model):
         ('Álcool', 'Álcool'),
         ('Elétrico/Outro', 'Elétrico/Outro'),
     )
+    MARCA_CHOICES = (
+        ('Mercedes - Benz', 'Mercedes - Benz'), ('Audi', 'Audi'),('BMW', 'BMW'),
+        ('Volkswagen',  'Volkswagen'), ('Chevrolet', 'Chevrolet'), ('Renault', 'Renault'),
+        ('Ford', 'Ford'), ('Toyota', 'Toyota'), ('Fiat', 'Fiat'), ('Hyundai', 'Hyundai'),
+        ('Peugeot', 'Peugeot'), ('Lexus', 'Lexus'), ('Kia','Kia'), ('Citroën', 'Citroën'),
+        ('Nissan', 'Nissan'), ('Mitsubishi', 'Mitsubishi'), ('Chery', 'Chery'),('Jeep', 'Jeep'),
+    )
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.IntegerField()
@@ -66,7 +73,7 @@ class Automovel(models.Model):
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
     valor_locacao = models.FloatField()
-    marca = models.CharField(max_length=200)
+    marca = models.CharField(choices=MARCA_CHOICES, max_length=25)
     modelo = models.CharField(max_length=200)
     ano = models.PositiveIntegerField(
         validators=[

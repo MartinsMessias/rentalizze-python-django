@@ -55,8 +55,7 @@ class ClienteForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
-            if not self.base_fields[l].widget.attrs.get('class'):
-                self.base_fields[l].widget.attrs['class'] = 'form-control'
+            self.base_fields[l].widget.attrs['class'] = 'form-control'
 
         super(ClienteForm, self).__init__(*args, **kwargs)
 
@@ -71,6 +70,7 @@ class AutomovelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
             self.base_fields[l].widget.attrs['class'] = 'form-control'
+            self.base_fields[l].widget.attrs['onkeyup'] = 'this.value=this.value.toUpperCase()'
         super(AutomovelForm, self).__init__(*args, **kwargs)
 
 
