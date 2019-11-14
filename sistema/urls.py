@@ -10,7 +10,7 @@ urlpatterns = [
     path('listar_clientes/', views.listar_clientes, name='listar_clientes'),
     path('listar_veiculos/', views.listar_veiculos, name='listar_veiculos'),
     path('listar_locacoes/', views.listar_locacoes, name='listar_locacoes'),
-    path('visualizar_loc/<id>', views.visualizar_loc, name='visualizar_loc'),
-    path('visualizar_cli/<id>', views.visualizar_cliente, name='visualizar_cli'),
-    path('visualizar_vei/<id>', views.visualizar_veiculo, name='visualizar_vei'),
+    path('editar_locacao/<id>', views.editar_loc, name='editar_loc'),
+    path('editar_cliente/<id>', views.editar_cliente, name='editar_cli'),
+    path('editar_veiculo/<id>', views.editar_veiculo, name='editar_vei'),
 ]

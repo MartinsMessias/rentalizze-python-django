@@ -32,12 +32,8 @@ def listar_clientes(request):#########################################
     return render(request, 'sistema/listar_clientes.html', {'dados':dados})
 
 
-def visualizar_cliente(request, id):
-    dados = {}
-    #########################################################
-    # Mandar para a variável 'dados' o cliente cujo o id=id #
-    #########################################################
-    return render(request, 'sistema/visualizar_cli.html', {'dados':dados})
+def editar_cliente(request, id):
+    pass
 ############# FIM CLIENTE #################
 
 
