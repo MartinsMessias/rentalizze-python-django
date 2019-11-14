@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label>Marca</label>
-                                {{ form.marca }}
+                                {{ form.marca | addclass:'custom-select' }}
                                 {{ form.marca.errors }}
                             </div>
                             <div class="form-group col-md">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="cnhvalidade_cliente">Categoria</label>
-                                {{ form.categoria }}
+                                {{ form.categoria | addclass:'custom-select'  }}
                                 {{ form.categoria.errors }}
                             </div>
                             <div class="form-group col-md-2">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="tipo_combustivel_automovel">Tipo de Combustível</label>
-                                {{ form.tipo_combustivel_automovel }}
+                                {{ form.tipo_combustivel_automovel | addclass:'custom-select'  }}
                                 {{ form.tipo_combustivel_automovel.errors }}
                             </div>
                             <div class="form-group col-md-4">
