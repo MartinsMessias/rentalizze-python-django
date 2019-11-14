@@ -48,16 +48,18 @@ def editar_cliente(request, id):
 
 
 ############# VEÍCULO #################
-def cadastrar_veiculo(request):###################################################
-    if request.method =='POST':## DEIXAR NO MESMO FORMATO DA CADASTRAR CLIENTE ##
-        form = AutomovelForm(request.POST)#######################################
+def cadastrar_veiculo(request):
+    if request.method =='POST':
+        form = AutomovelForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Veiculo cadastrado com sucesso!')
-            return redirect(listar_veiculos)
+            q1 = Automovel.objects.filter(placa_automovel=form.cleaned_data['placa_automovel'])
+            if not q1:
+                form.save()
+                messages.success(request, 'Veiculo cadastrado com sucesso!')
+                return redirect(listar_veiculos)
         else:
-            messages.warning(request, 'Houve um erro! {}'.format(form.errors))
+            messages.warning(request, 'Houve um erro, placa ja existe! {}'.format(form.errors))
     form = AutomovelForm()
 
     # Fazer verificação pra não permitir duplicados (com a mesma placa)
