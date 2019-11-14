@@ -75,8 +75,13 @@ def listar_veiculos(request):
 
 
 def editar_veiculo(request, id):
-    dados = {}
-    return render(request, 'sistema/editar_veiculo.html', {'dados': dados})
+    automovel = Automovel.objects.get(id=id)
+    form = AutomovelForm(request.POST or None, instance=automovel)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Veiculo modificado com sucesso!")
+        return redirect(listar_veiculos)
+    return render(request, 'sistema/editar_veiculo.html', {'form': form})
 
 ############# FIM VEÍCULO #################
 
