@@ -82,6 +82,7 @@ class Automovel(models.Model):
     chassi_automovel = models.IntegerField()
     valor_locacao = models.FloatField()
     valor_locacao_fds = models.FloatField()
+    motor = models.CharField(max_length=3)
     marca = models.CharField(choices=MARCA_CHOICES, max_length=50)
     modelo = models.CharField(max_length=200)
     ano = models.PositiveIntegerField(
