@@ -65,7 +65,7 @@ class Automovel(models.Model):
     tipo_combustivel_automovel = models.CharField(max_length=20, choices=COMBUSTIVEL_CHOICES)
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField()
-    valor_locacao = models.DecimalField(max_digits=6, decimal_places=2)
+    valor_locacao = models.FloatField()
     marca = models.CharField(max_length=200)
     modelo = models.CharField(max_length=200)
     ano = models.PositiveIntegerField(
