@@ -69,10 +69,10 @@ class Automovel(models.Model):
     )
 
     NRO_PORTAS_AUTOMOVEL_CHOICES =(
-        ('2', '2 Portas')
-        ('3', '3 Portas')
-        ('4', '4 Portas')
-        ('5', '5 Portas')
+        ('2', '2 Portas'),
+        ('3', '3 Portas'),
+        ('4', '4 Portas'),
+        ('5', '5 Portas'),
     )
     placa_automovel = models.CharField(max_length=15)
     cor_automovel = models.CharField(max_length=20)
