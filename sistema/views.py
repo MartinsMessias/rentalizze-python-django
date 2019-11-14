@@ -98,11 +98,17 @@ def locar_veiculo(request):
     return render(request, 'sistema/reserva.html', {'form':form})
 
 def listar_locacoes(request):
-    dados = Locacao.objects.all().orde_by('criado_em')
+    dados = Locacao.objects.all().order_by('criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def editar_loc(request, id):
     dados = {}
+    locacao = Locacao.objects.get(id=id)
+    form = ClienteForm(request.POST or None, instance=locacao)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Locação modificada com sucesso!")
+        return redirect(listar_locacoes)
     return render(request, 'sistema/editar_locacao.html', {'dados': dados})
 
 ############# FIM LOCAÇÃO #################
