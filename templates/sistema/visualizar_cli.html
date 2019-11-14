@@ -1,10 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load tags %}
 
-</body>
-</html>
+<div class="row">
+    <div class="col-12 card">
+        <div class="card-body" >
+            <div class="form-row">
+                <div class="form-group col-md">
+                    <label for="nome_cliente">Nome completo</label>
+                    <fieldset class="text-secondary">{{ form.nome_cliente }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label for="email_cliente">Email</label>
+                    <fieldset class="text-secondary">{{ form.email_cliente }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label>Telefone/Celular</label>
+                    <fieldset class="text-secondary">{{ form.telefone_cliente }}</fieldset>
+                </div>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="form-group col-md">
+                    <label for="rg_cliente">RG</label>
+                    <fieldset class="text-secondary">{{ form.rg_cliente }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label id="cpf_label">CPF</label>
+                    <fieldset class="text-secondary">{{ form.cpf_cliente }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label for="cnpj_cliente" id="cnpj_label" disabled="true">CNPJ</label>
+                    <fieldset class="text-secondary">{{ form.cnpj_cliente }}</fieldset>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cnh_cliente">CNH</label>
+                    <fieldset class="text-secondary">{{ form.cnh_cliente }}</fieldset>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="validade_cnh">Validade da CNH</label>
+                    <fieldset class="text-secondary">{{ form.validade_cnh }}</fieldset>
+                </div>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="endereco_cliente">Rua</label>
+                    <fieldset class="text-secondary">{{ form.rua }}</fieldset>
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="nrocasa_cliente">N°</label>
+                    <fieldset class="text-secondary">{{ form.numero }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label for="bairro_cliente">Bairro</label>
+                    <fieldset class="text-secondary">{{ form.bairro }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label for="bairro_cliente">Complemento</label>
+                    <fieldset class="text-secondary">{{ form.complemento }}</fieldset>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md">
+                    <label for="cep_cliente">CEP</label>
+                    <fieldset class="text-secondary">{{ form.cep }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label for="estado_cliente">UF</label>
+                    <fieldset class="text-secondary">{{ form.estado }}</fieldset>
+                </div>
+                <div class="form-group col-md">
+                    <label for="cidade_cliente">Cidade</label>
+                    <fieldset class="text-secondary">{{ form.cidade }}</fieldset>
+                </div>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="form-group col-md-2 {% if form.status == 'Ativo' %} bg-success-light {% else %} bg-danger-light {% endif %}">
+                    <label>Status: </label>
+                    <span class="text-secondary">{{ form.status }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -248,7 +248,7 @@ label {
     max-width: 100%;
     margin-bottom: 5px;
     font-size: 15px;
-    color: #71748d;
+    color: #0d0d0e;
 }
 
 .form-control {
@@ -966,7 +966,7 @@ Borders
 }
 
 .text-secondary {
-    color: #ff407b !important;
+    color: #358794 !important;
 }
 
 .text-success {

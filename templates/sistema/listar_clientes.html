@@ -37,7 +37,6 @@
                             <tbody>
                             {% if dados %}
                                 {% for dado in dados %}
-
                                     <tr>
                                         <td>{{ dado.nome_cliente }}</td>
                                         <td>{{ dado.cpf_cliente }}</td>
@@ -53,13 +52,13 @@
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header bg-primary text-white">
-                                                    <h5 class="modal-title" id="exampleModalLabel">{{ dado.nome_cliente }}</h5>
+                                                    <h5 class="modal-title text-white" id="exampleModalLabel">Dados do Cliente</h5>
                                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">×</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-{#                                                    {% include 'sistema/visualizar_loc.html' with form=dado %}#}
+                                                    {% include 'sistema/visualizar_cli.html' with form=dado %}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>

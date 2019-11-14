@@ -16,13 +16,13 @@ class Cliente(models.Model):
     criado_em = models.DateTimeField(auto_now=True)
     rua = models.CharField(max_length=200)
     numero = models.IntegerField()
-    complemento = models.CharField(max_length=200)
+    complemento = models.CharField(max_length=200, default='SEM')
     cep = models.CharField(max_length=10)
     bairro = models.CharField(max_length=200)
     estado = models.CharField(max_length=2)
     cidade = models.CharField(max_length=200)
     modificado_em = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=6, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.nome_cliente
