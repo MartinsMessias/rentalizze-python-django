@@ -32,8 +32,8 @@ def cadastrar_cliente(request):
 
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
-def listar_clientes(request):#########################################
-    dados = Cliente.objects.all() # Ordenar por 'criado_em'###########
+def listar_clientes(request):
+    dados = Cliente.objects.all().order_by('criado_em')
     return render(request, 'sistema/listar_clientes.html', {'dados':dados})
 
 
@@ -55,21 +55,22 @@ def editar_cliente(request, id):
 def cadastrar_veiculo(request):###################################################
     if request.method =='POST':## DEIXAR NO MESMO FORMATO DA CADASTRAR CLIENTE ##
         form = AutomovelForm(request.POST)#######################################
+
         if form.is_valid():
             form.save()
+            messages.success(request, 'Veiculo cadastrado com sucesso!')
             return redirect(listar_veiculos)
-    else:
-        form = AutomovelForm()
+        else:
+            messages.warning(request, 'Houve um erro! {}'.format(form.errors))
+    form = AutomovelForm()
 
     # Fazer verificação pra não permitir duplicados (com a mesma placa)
 
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
 def listar_veiculos(request):
-    dados = {}
-    #########################################################
-    # Mandar para a variável 'dados' todos os veículos (all)#
-    #########################################################
+    dados = Automovel.objects.all().order_by('criado_em')
+
     return render(request, 'sistema/listar_veiculos.html', {'dados':dados})
 
 
@@ -80,19 +81,21 @@ def editar_veiculo(request, id):
 ############# FIM VEÍCULO #################
 
 ############# LOCAÇÃO #################
-def locar_veiculo(request):############################################## #
-    if request.method =='POST':### DEIXAR NO FORMATO DA CADASTRAR CLIENTE #
-        form = LocacaoForm(request.POST)################################# #
+def locar_veiculo(request):
+    if request.method =='POST':
+        form = LocacaoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
-    else:
-        form = LocacaoForm()
+        else:
+            messages.warning(request, 'Houve um erro {}'.format(form.errors))
+    form = LocacaoForm()
 
     return render(request, 'sistema/reserva.html', {'form':form})
 
 def listar_locacoes(request):
-    dados = Locacao.objects.all()
+    dados = Locacao.objects.all().orde_by('criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def editar_loc(request, id):
