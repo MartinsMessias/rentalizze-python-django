@@ -266,7 +266,7 @@ label {
 .form-control:focus {
     color: #71748d;
     background-color: #fff;
-    border-color: #a7a7f0;
+    border-color: #007bff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(214, 214, 255, .75);
 }

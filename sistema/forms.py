@@ -55,7 +55,8 @@ class ClienteForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
-            self.base_fields[l].widget.attrs['class'] = 'form-control'
+            if not self.base_fields[l].widget.attrs.get('class'):
+                self.base_fields[l].widget.attrs['class'] = 'form-control'
 
         super(ClienteForm, self).__init__(*args, **kwargs)
 
