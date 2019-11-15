@@ -81,7 +81,7 @@ class Automovel(models.Model):
         ('4', '4 Portas'),
         ('5', '5 Portas'),
     )
-    placa_automovel = models.CharField(max_length=15, unique=True)
+    placa_automovel = models.CharField(max_length=15, unique=True, error_messages={'unique':"Já há um automóvel com esta placa!"})
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.CharField(max_length=10, choices=NRO_PORTAS_AUTOMOVEL_CHOICES)
     tipo_combustivel_automovel = models.CharField(max_length=50, choices=COMBUSTIVEL_CHOICES)

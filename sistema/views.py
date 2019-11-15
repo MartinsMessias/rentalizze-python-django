@@ -21,6 +21,7 @@ def cadastrar_cliente(request):
             messages.success(request, 'Cliente cadastrado com sucesso!')
             return redirect(listar_clientes)
 
+        messages.warning(request, 'Houve um erro!')
         return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
     form = ClienteForm()
@@ -63,6 +64,9 @@ def cadastrar_veiculo(request):
             messages.success(request, 'Veículo cadastrado com sucesso!')
             return redirect(listar_veiculos)
 
+        messages.warning(request, 'Houve um erro!')
+        return render(request, 'sistema/cadastrar_veiculo.html', {'form': form})
+
     form = AutomovelForm()
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
@@ -101,6 +105,9 @@ def locar_veiculo(request):
             form.save()
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
+
+        messages.warning(request, 'Houve um erro!')
+        return render(request, 'sistema/reserva.html', {'form':form})
 
     form = LocacaoForm()
     return render(request, 'sistema/reserva.html', {'form':form})

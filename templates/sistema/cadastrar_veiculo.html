@@ -23,6 +23,7 @@
             <div class="card-body">
                 <form class="card-header" method="post">
                     {% csrf_token %}
+                    {{ form.non_field_errors }}
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="modelo_carro">Modelo</label>

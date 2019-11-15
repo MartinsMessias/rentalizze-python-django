@@ -3996,7 +3996,9 @@ Pills vertical
     vertical-align: baseline;
     border-radius: .25rem;
 }
-
+ul.errorlist {
+    list-style: none;
+    color: red;}
 .badge-primary {
     background-color: #17a2b8;
 }
