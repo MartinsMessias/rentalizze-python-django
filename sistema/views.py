@@ -147,11 +147,6 @@ def excluir_loc(request, id):
     messages.success(request, "Locação excluída com sucesso")
     return redirect(listar_locacoes)
 
-def excluir_automovel(request, id):
-    automovel = Automovel.objects.get(id=id)
-    automovel.delete()
-    messages.success(request, "Automovel excluído com sucesso")
-    return redirect(listar_veiculos)
 ############# FIM LOCAÇÃO #################
 
 @login_required
