@@ -27,22 +27,24 @@
                     {% endif %}
                 </div>
                 <div class="card-body">
+
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>CNPJ</th>
-                                <th>Telefone</th>
-                                <th>Email</th>
-                                <th>CNH - Validade</th>
-                                <th>Status</th>
-                                <th>Ação</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% if dados %}
+                        {% if dados %}
+                            <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>CNPJ</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th>CNH - Validade</th>
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
                                 {% for dado in dados %}
                                     <tr>
                                         <td>{{ dado.nome_cliente }}</td>
@@ -94,23 +96,28 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-                            {% else %}
+
+                                </tbody>
+
+                                <tfoot>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>CNPJ</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th>CNH - Validade</th>
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                </tr>
+                                </tfoot>
+
+                            </table>
+                        {% else %}
+                            <div class="text-center">
                                 <h3 class="alert-danger btn">Sem dados de clientes</h3>
-                            {% endif %}
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>CNPJ</th>
-                                <th>Telefone</th>
-                                <th>Email</th>
-                                <th>CNH - Validade</th>
-                                <th>Status</th>
-                                <th>Ação</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="form-group row text-left">
                         <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
