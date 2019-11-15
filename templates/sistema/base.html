@@ -41,13 +41,15 @@
                     <li class="nav-item dropdown nav-user">
                         <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'assets/images/avatar-1.jpg'%}" alt="" class="user-avatar-md rounded-circle"></a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                            <div class="nav-user-info">
-                                <h5 class="mb-0 text-white nav-user-name">Azul caneta</h5>
-                                <span class="status"></span><span class="ml-2">Ativo</span>
-                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">{{ user.username }}</h5>
+                                    <span class="status"></span><span class="ml-2">{% now "j/M/Y" %}</span>
+                                </div>
+                            {% endif %}
                             <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Conta</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Configurações</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-power-off mr-2"></i>Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -57,6 +59,23 @@
     <!-- ============================================================== -->
     <!-- end navbar -->
     <!-- ============================================================== -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Deseja realmente sair?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Selecione "Logout" abaixo, se você estiver pronto para encerrar sua sessão atual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- left sidebar -->
     <!-- ============================================================== -->
@@ -279,10 +298,10 @@
             $(".salario-inputmask").inputmask("999,99", {reverse: true}),
             $(".percentage-inputmask").inputmask("99%"),
             $(".placa").inputmask("AAA-0000", options)
-            $(".decimal-inputmask").inputmask({
-                alias: "decimal",
-                radixPoint: ","
-            }),
+        $(".decimal-inputmask").inputmask({
+            alias: "decimal",
+            radixPoint: ","
+        }),
 
             $(".email-inputmask").inputmask({
                 mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[*{2,6}][*{1,2}].*{1,}[.*{2,6}][.*{1,2}]",
@@ -302,7 +321,6 @@
     function someComCPF() {
         document.getElementById('cnpj_cliente').disabled = false;
         document.getElementById('cpf_cliente').disabled = true;
-        document.getElementById('cpf_cliente').value = "00000000000";
         document.getElementById('cpf_cliente').className = "form-control";
         document.getElementById('cnpj_cliente').value = "";
         document.getElementById('cpf_label').innerHTML = 'CPF';
@@ -311,13 +329,20 @@
     function someComCNPJ() {
         document.getElementById('cpf_cliente').disabled = false;
         document.getElementById('cnpj_cliente').disabled = true;
-        document.getElementById('cnpj_cliente').value = "00000000000000";
         document.getElementById('cnpj_cliente').className = "form-control";
         document.getElementById('cpf_cliente').value = "";
         document.getElementById('cnpj_label').innerHTML = 'CNPJ';
 
     }
 
+</script>
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.messages').slideToggle('slow');
+        }, 5000); // <-- time in milliseconds, 1000 =  1 sec
+    });
 </script>
 
 </body>
