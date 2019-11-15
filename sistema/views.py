@@ -17,17 +17,16 @@ def cadastrar_cliente(request):
         if form.is_valid():
             q1 = Cliente.objects.filter(cpf_cliente=form.cleaned_data['cpf_cliente'])
             q2 = Cliente.objects.filter(cnpj_cliente=form.cleaned_data['cnpj_cliente'])
-            if not q1 or not q2:
 
+            if not q1 or not q2:
                 form.save()
                 messages.success(request, 'Cliente cadastrado com sucesso!')
                 return redirect(listar_clientes)
-
             else:
                 messages.warning(request, "Já existe um cliente com este CPF/CNPJ!")
                 return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
-    form = ClienteForm()
 
+    form = ClienteForm()
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
 def listar_clientes(request):
@@ -38,6 +37,7 @@ def listar_clientes(request):
 def editar_cliente(request, id):
     cliente = Cliente.objects.get(id=id)
     form = ClienteForm(request.POST or None, instance=cliente)
+
     if form.is_valid():
         form.save()
         messages.success(request, "Cliente modificado com sucesso!")
@@ -56,29 +56,29 @@ def cadastrar_veiculo(request):
             q1 = Automovel.objects.filter(placa_automovel=form.cleaned_data['placa_automovel'])
             if not q1:
                 form.save()
-                messages.success(request, 'Veiculo cadastrado com sucesso!')
+                messages.success(request, 'Veículo cadastrado com sucesso!')
                 return redirect(listar_veiculos)
-        else:
-            messages.warning(request, 'Houve um erro, placa ja existe! {}'.format(form.errors))
-    form = AutomovelForm()
+            else:
+                messages.warning(request, 'Houve um erro, placa já cadastrada!')
 
-    # Fazer verificação pra não permitir duplicados (com a mesma placa)
+    form = AutomovelForm()
 
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
 def listar_veiculos(request):
     dados = Automovel.objects.all().order_by('criado_em')
-
     return render(request, 'sistema/listar_veiculos.html', {'dados':dados})
 
 
 def editar_veiculo(request, id):
     automovel = Automovel.objects.get(id=id)
     form = AutomovelForm(request.POST or None, instance=automovel)
+
     if form.is_valid():
         form.save()
         messages.success(request, "Veiculo modificado com sucesso!")
         return redirect(listar_veiculos)
+
     return render(request, 'sistema/editar_veiculo.html', {'form': form})
 
 ############# FIM VEÍCULO #################
@@ -87,14 +87,15 @@ def editar_veiculo(request, id):
 def locar_veiculo(request):
     if request.method =='POST':
         form = LocacaoForm(request.POST)
+
         if form.is_valid():
             form.save()
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
         else:
-            messages.warning(request, 'Houve um erro {}'.format(form.errors))
-    form = LocacaoForm()
+            messages.warning(request, 'Houve um erro!')
 
+    form = LocacaoForm()
     return render(request, 'sistema/reserva.html', {'form':form})
 
 def listar_locacoes(request):
@@ -102,21 +103,22 @@ def listar_locacoes(request):
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 def editar_loc(request, id):
-    dados = {}
     locacao = Locacao.objects.get(id=id)
     form = ClienteForm(request.POST or None, instance=locacao)
+
     if form.is_valid():
         form.save()
         messages.success(request, "Locação modificada com sucesso!")
         return redirect(listar_locacoes)
-    return render(request, 'sistema/editar_locacao.html', {'dados': dados})
+
+    return render(request, 'sistema/editar_locacao.html', {'form': form})
 
 def excluir_cliente(request, id):
     cliente = Cliente.objects.get(id=id)
     cliente.delete()
-    messages.success(request, "Cliente excluido com sucesso!")
+    messages.success(request, "Cliente excluído com sucesso!")
     return redirect(listar_clientes)
-    return render(request, 'sistema/excluir_cliente', {'dados': dados})
+
 
 
 
