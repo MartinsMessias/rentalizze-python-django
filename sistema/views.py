@@ -94,6 +94,12 @@ def editar_veiculo(request, id):
 
     return render(request, 'sistema/editar_veiculo.html', {'form': form})
 
+@login_required
+def excluir_automovel(request, id):
+    automovel = Automovel.objects.get(id=id)
+    automovel.delete()
+    messages.success(request, "Automovel excluído com sucesso")
+    return redirect(listar_veiculos)
 ############# FIM VEÍCULO #################
 
 ############# LOCAÇÃO #################
@@ -129,9 +135,15 @@ def editar_loc(request, id):
 
     return render(request, 'sistema/editar_locacao.html', {'form': form})
 
-
+@login_required
+def excluir_locacao(request, id):
+    locacao = Locacao.objects.get(id=id)
+    locacao.delete()
+    messages.success(request, "Locação excluída com sucesso")
+    return redirect(listar_locacoes)
 ############# FIM LOCAÇÃO #################
 
 @login_required
 def accounts(request):
     return HttpResponse(404)
+
