@@ -49,6 +49,9 @@ class ClienteForm(forms.ModelForm):
     numero = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'min': '0'}))
     estado = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
 
+    def clean_cpf(self):
+        return self.cleaned_data['cpf_cliente'] or None
+
     class Meta:
         model = Cliente
         exclude = ('criado_em', 'modificado_em',)
