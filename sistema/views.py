@@ -118,7 +118,7 @@ def excluir_cliente(request, id):
     cliente.delete()
     messages.success(request, "Cliente excluído com sucesso!")
     return redirect(listar_clientes)
-    return render(request, 'sistema/excluir_cliente')
+
 
 
 
