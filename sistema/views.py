@@ -136,7 +136,7 @@ def editar_loc(request, id):
     return render(request, 'sistema/editar_locacao.html', {'form': form})
 
 @login_required
-def excluir_locacao(request, id):
+def excluir_loc(request, id):
     locacao = Locacao.objects.get(id=id)
     locacao.delete()
     messages.success(request, "Locação excluída com sucesso")
