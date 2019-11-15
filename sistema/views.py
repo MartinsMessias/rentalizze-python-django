@@ -49,6 +49,12 @@ def editar_cliente(request, id):
         return redirect(listar_clientes)
 
     return render(request, 'sistema/editar_cliente.html', {'form': form})
+
+def excluir_cliente(request, id):
+    cliente = Cliente.objects.get(id=id)
+    cliente.delete()
+    messages.success(request, "Cliente excluído com sucesso!")
+    return redirect(listar_clientes)
 ############# FIM CLIENTE #################
 
 
@@ -86,6 +92,11 @@ def editar_veiculo(request, id):
 
     return render(request, 'sistema/editar_veiculo.html', {'form': form})
 
+def excluir_automovel(request, id):
+    automovel = Automovel.objects.get(id=id)
+    automovel.delete()
+    messages.success(request, "Automovel excluído com sucesso")
+    return redirect(listar_veiculos)
 ############# FIM VEÍCULO #################
 
 ############# LOCAÇÃO #################
@@ -118,22 +129,11 @@ def editar_loc(request, id):
 
     return render(request, 'sistema/editar_locacao.html', {'form': form})
 
-def excluir_cliente(request, id):
-    cliente = Cliente.objects.get(id=id)
-    cliente.delete()
-    messages.success(request, "Cliente excluído com sucesso!")
-    return redirect(listar_clientes)
 
 def excluir_loc(request, id):
     locaçao = Locacao.objects.get(id=id)
     locaçao.delete()
     messages.success(request, "Locação excluída com sucesso!")
     return redirect(listar_locacoes)
-
-def excluir_automovel(request, id):
-    automovel = Automovel.objects.get(id=id)
-    automovel.delete()
-    messages.success(request, "Automovel excluído com sucesso")
-    return redirect(listar_veiculos)
 ############# FIM LOCAÇÃO #################
 
