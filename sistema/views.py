@@ -18,13 +18,18 @@ def cadastrar_cliente(request):
             q1 = Cliente.objects.filter(cpf_cliente=form.cleaned_data['cpf_cliente'])
             q2 = Cliente.objects.filter(cnpj_cliente=form.cleaned_data['cnpj_cliente'])
 
-            if not q1 or not q2:
+            if not q1:
                 form.save()
                 messages.success(request, 'Cliente cadastrado com sucesso!')
                 return redirect(listar_clientes)
-            else:
-                messages.warning(request, "Já existe um cliente com este CPF/CNPJ!")
-                return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
+
+            if not q2:
+                form.save()
+                messages.success(request, 'Cliente cadastrado com sucesso!')
+                return redirect(listar_clientes)
+
+            messages.warning(request, "Já existe um cliente com este CPF/CNPJ!")
+            return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
     form = ClienteForm()
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
