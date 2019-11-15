@@ -24,7 +24,7 @@ def cadastrar_cliente(request):
                 return redirect(listar_clientes)
 
             else:
-                messages.warning(request, "CPF ou CNPJ ja existe!")
+                messages.warning(request, "Já existe um cliente com este CPF/CNPJ!")
                 return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
     form = ClienteForm()
 
@@ -110,6 +110,17 @@ def editar_loc(request, id):
         messages.success(request, "Locação modificada com sucesso!")
         return redirect(listar_locacoes)
     return render(request, 'sistema/editar_locacao.html', {'dados': dados})
+
+def excluir_cliente(request, id):
+    cliente = Cliente.objects.get(id=id)
+    cliente.delete()
+    messages.success(request, "Cliente excluido com sucesso!")
+    return redirect(listar_clientes)
+    return render(request, 'sistema/excluir_cliente')
+
+
+
+
 
 ############# FIM LOCAÇÃO #################
 
