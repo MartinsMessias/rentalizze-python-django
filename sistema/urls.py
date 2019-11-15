@@ -13,4 +13,6 @@ urlpatterns = [
     path('editar_cliente/<id>', views.editar_cliente, name='editar_cli'),
     path('editar_veiculo/<id>', views.editar_veiculo, name='editar_veiculo'),
     path('exluir_cliente/<id>', views.excluir_cliente, name='excluir_cliente'),
+    path('excluir_loc/<id>', views.excluir_loc, name='excluir_loc'),
+    path('excluir_automovel/<id>', views.excluir_automovel, name='excluir_automovel'),
 ]
