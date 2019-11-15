@@ -81,12 +81,12 @@ class Automovel(models.Model):
         ('4', '4 Portas'),
         ('5', '5 Portas'),
     )
-    placa_automovel = models.CharField(max_length=15)
+    placa_automovel = models.CharField(max_length=15, unique=True)
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.CharField(max_length=10, choices=NRO_PORTAS_AUTOMOVEL_CHOICES)
     tipo_combustivel_automovel = models.CharField(max_length=50, choices=COMBUSTIVEL_CHOICES)
     quilometragem_automovel = models.FloatField()
-    chassi_automovel = models.IntegerField()
+    chassi_automovel = models.IntegerField(unique=True)
     valor_locacao = models.FloatField()
     valor_locacao_fds = models.FloatField()
     motor = models.CharField(max_length=3)

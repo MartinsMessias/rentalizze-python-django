@@ -17,7 +17,6 @@ def cadastrar_cliente(request):
         form = ClienteForm(request.POST)
 
         if form.is_valid():
-
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
             return redirect(listar_clientes)
@@ -50,7 +49,6 @@ def excluir_cliente(request, id):
     cliente.delete()
     messages.success(request, "Cliente excluído com sucesso!")
     return redirect(listar_clientes)
-
 ############# FIM CLIENTE #################
 
 
@@ -61,16 +59,11 @@ def cadastrar_veiculo(request):
         form = AutomovelForm(request.POST)
 
         if form.is_valid():
-            q1 = Automovel.objects.filter(placa_automovel=form.cleaned_data['placa_automovel'])
-            if not q1:
-                form.save()
-                messages.success(request, 'Veículo cadastrado com sucesso!')
-                return redirect(listar_veiculos)
-            else:
-                messages.warning(request, 'Houve um erro, placa já cadastrada!')
+            form.save()
+            messages.success(request, 'Veículo cadastrado com sucesso!')
+            return redirect(listar_veiculos)
 
     form = AutomovelForm()
-
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
 @login_required
@@ -108,8 +101,6 @@ def locar_veiculo(request):
             form.save()
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
-        else:
-            messages.warning(request, 'Houve um erro!')
 
     form = LocacaoForm()
     return render(request, 'sistema/reserva.html', {'form':form})
