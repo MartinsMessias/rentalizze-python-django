@@ -21,7 +21,7 @@ class ClienteForm(forms.ModelForm):
         required=False, disabled=True,
         widget=forms.TextInput(
             attrs={'class': 'form-control cpf-inputmask', 'id': 'cpf_cliente', 'onkeyup': 'TestaCPF(this);'}
-        ), initial='00000000000'
+        )
     )
 
     telefone_cliente = forms.CharField(
@@ -40,7 +40,7 @@ class ClienteForm(forms.ModelForm):
         required=False, disabled=True,
         widget=forms.TextInput(
             attrs={'class': 'form-control cnpj-inputmask', 'id': 'cnpj_cliente', 'onkeyup': 'validarCNPJ(this);'}
-        ), initial='0000000000000000'
+        )
     )
 
     status = forms.ChoiceField(choices=STATUS_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
