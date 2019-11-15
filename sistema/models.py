@@ -6,17 +6,17 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Cliente(models.Model):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
     nome_cliente = models.CharField(max_length=200)
-    cpf_cliente = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    cpf_cliente = models.CharField(max_length=14, unique=True, null=True, blank=True, default='')
     telefone_cliente = models.CharField(max_length=20)
     email_cliente = models.CharField(max_length=120)
     rg_cliente = models.CharField(max_length=50)
-    cnpj_cliente = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    cnpj_cliente = models.CharField(max_length=50, unique=True, blank=True, null=True, default='')
     cnh_cliente = models.CharField(max_length=100)
     validade_cnh = models.DateField(max_length=50)
     criado_em = models.DateTimeField(auto_now=True)
     rua = models.CharField(max_length=200)
     numero = models.IntegerField()
-    complemento = models.CharField(max_length=200, default='SEM')
+    complemento = models.CharField(max_length=200, default='SEM', blank=True)
     cep = models.CharField(max_length=10)
     bairro = models.CharField(max_length=200)
     estado = models.CharField(max_length=2)
@@ -26,6 +26,13 @@ class Cliente(models.Model):
 
     def __str__(self):
         return self.nome_cliente + ' - ' + self.status
+
+    def save(self, *args, **kwargs):
+        if not self.cpf_cliente:
+            self.cpf_cliente = None
+        else:
+            self.cnpj_cliente = None
+        super(Cliente, self).save(*args, **kwargs)
 
 class Locacao(models.Model):
     TIPO_CHOICES = (('Reserva', 'Reserva'), ('Saída', 'Saída'))
