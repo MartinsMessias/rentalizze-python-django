@@ -6,11 +6,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Cliente(models.Model):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
     nome_cliente = models.CharField(max_length=200)
-    cpf_cliente = models.CharField(max_length=14, unique=True, null=True, blank=True, default='')
+    cpf_cliente = models.CharField(max_length=14, unique=True, null=True, blank=True)
     telefone_cliente = models.CharField(max_length=20)
     email_cliente = models.CharField(max_length=120)
     rg_cliente = models.CharField(max_length=50)
-    cnpj_cliente = models.CharField(max_length=50, unique=True, blank=True, null=True, default='')
+    cnpj_cliente = models.CharField(max_length=50, unique=True, blank=True, null=True)
     cnh_cliente = models.CharField(max_length=100)
     validade_cnh = models.DateField(max_length=50)
     criado_em = models.DateTimeField(auto_now=True)
