@@ -19,6 +19,7 @@ class ClienteForm(forms.ModelForm):
     )
     cpf_cliente = forms.CharField(
         required=False,
+        disabled=True,
         widget=forms.TextInput(
             attrs={'class': 'form-control cpf-inputmask', 'id': 'cpf_cliente', 'onkeyup': 'TestaCPF(this);'}
         )
@@ -38,6 +39,7 @@ class ClienteForm(forms.ModelForm):
 
     cnpj_cliente = forms.CharField(
         required=False,
+        disabled=True,
         widget=forms.TextInput(
             attrs={'class': 'form-control cnpj-inputmask', 'id': 'cnpj_cliente', 'onkeyup': 'validarCNPJ(this);'}
         )
