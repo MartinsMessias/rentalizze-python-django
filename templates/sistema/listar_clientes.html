@@ -70,9 +70,27 @@
                                                     {% include 'sistema/visualizar_cli.html' with form=dado %}
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
-                                                    <a class="btn btn-danger" href="{% url 'excluir_cliente' dado.id %}" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir cliente</a>
+                                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
+                                                    <a class="btn btn-danger" href="{% url 'excluir_cliente' dado.id %}"data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
                                                     <a class="btn btn-info" href="{% url 'editar_cli' dado.id %}">Editar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Excluir Modal-->
+                                    <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">Deseja realmente excluir esse cliente?</div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <a class="btn btn-danger" href="{% url 'excluir_cliente' dado.id %}">Excluir</a>
                                                 </div>
                                             </div>
                                         </div>
