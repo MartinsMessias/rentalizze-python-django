@@ -17,7 +17,14 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-0">Dados das locações e reservas cadastradas</h5>
-                    <p></p>
+                    <!-- MESSAGES-->
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
