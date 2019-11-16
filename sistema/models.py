@@ -53,6 +53,13 @@ class Locacao(models.Model):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
         return self.cliente.nome_cliente + ' | ' + inicio + '/' + fim
 
+    def save(self, *args, **kwargs):
+        if self.carro.status == 'Disponível':
+            carro = Automovel.objects.get(id=self.carro.id)
+            carro.status = 'Indisponível'
+            carro.save()
+        super(Locacao, self).save(*args, **kwargs)
+
 class Automovel(models.Model):
     STATUS_CHOICES = (
         ('Disponível', 'Disponível'),
