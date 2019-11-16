@@ -44,9 +44,9 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-1">
+                            <div class="form-group col-md-2">
                                 <label for="cnhvalidade_cliente">Portas</label>
-                                {{ form.nro_portas_automovel }}
+                                {{ form.nro_portas_automovel | addclass:'custom-select' }}
                                 {{ form.nro_portas_automovel.errors }}
                             </div>
                             <div class="form-group col-md-4">

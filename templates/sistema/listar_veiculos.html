@@ -52,7 +52,7 @@
                                         <td>{{ dado.cor_automovel }}</td>
                                         <td>{{ dado.nro_portas_automovel }}</td>
                                         <td>{{ dado.status }}</td>
-                                        <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="card-header bg-primary">Exibir</a></td>
+                                        <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="btn btn-primary btn-sm">Exibir</a></td>
                                     </tr>
                                     <!-- Exibir Modal-->
                                     <div class="modal fade" id="exibirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -68,9 +68,27 @@
                                                     {% include 'sistema/visualizar_vei.html' with form=dado %}
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
-                                                    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                                                    <a class="btn btn-info" href="{% url 'editar_veiculo' dado.id %}">Editar</a>
+                                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Ok</button>
+                                                    <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
+                                                    <a class="btn btn-info btn-sm" href="{% url 'editar_veiculo' dado.id %}">Editar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Excluir Modal-->
+                                    <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">Deseja realmente excluir esse veículo?</div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <a class="btn btn-danger btn-sm" href="{% url 'excluir_veiculo' dado.id %}">Excluir</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +117,7 @@
                     </div>
                     <div class="form-group row text-left">
                         <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
-                            <a href="{% url 'cadastrar_veiculo' %}" class="btn btn-space btn-primary">Novo veículo</a>
+                            <a href="{% url 'cadastrar_veiculo' %}" class="btn btn-space btn-primary btn-sm">Novo veículo</a>
                         </div>
                     </div>
                 </div>

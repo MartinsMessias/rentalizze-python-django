@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <h5 class="card-header">Dados do veículo</h5>
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="form-row">
+                        <div class="form-group col-md border">
+                            <label for="modelo_carro">Modelo</label>
+                            <fieldset class="text-secondary">{{ form.modelo }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="placa_carro">Placa</label>
+                            <fieldset class="text-secondary">{{ form.placa_automovel }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="motor">Motor</label>
+                            <fieldset class="text-secondary">{{ form.motor }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label>Marca</label>
+                            <fieldset class="text-secondary">{{ form.marca }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="cnhvalidade_cliente">Ano</label>
+                            <fieldset class="text-secondary">{{ form.ano }}</fieldset>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md border">
+                            <label for="cnhvalidade_cliente">Portas</label>
+                            <fieldset class="text-secondary">{{ form.nro_portas_automovel }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="cnhvalidade_cliente">Categoria</label>
+                            <fieldset class="text-secondary">{{ form.categoria  }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="cor_veiculo">Quilometragem</label>
+                            <fieldset class="text-secondary">{{ form.quilometragem_automovel }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="cnh_cliente">Renavan/Chassis</label>
+                            <fieldset class="text-secondary">{{ form.chassi_automovel }}</fieldset>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md border">
+                            <label for="cor_veiculo">Cor</label>
+                            <fieldset class="text-secondary">{{ form.cor_automovel }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="tipo_combustivel_automovel">Tipo de Combustível</label>
+                            <fieldset class="text-secondary">{{ form.tipo_combustivel_automovel  }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="valor_locacao">Valor de locação(diário)</label>
+                            <fieldset class="text-secondary">R${{ form.valor_locacao }}</fieldset>
+                        </div>
+                        <div class="form-group col-md border">
+                            <label for="valor_locacao">Valor de locação(FDS)</label>
+                            <fieldset class="text-secondary">R${{ form.valor_locacao_fds }}</fieldset>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md {% if form.status == 'Disponível' %} bg-success-light {% else %} bg-danger-light {% endif %}">
+                            <label>Status: </label>
+                            <label class=" custom-control-inline">
+                                <fieldset class="text-secondary">{{ form.status }}</fieldset>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
