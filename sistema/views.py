@@ -93,6 +93,12 @@ def excluir_automovel(request, id):
     automovel.delete()
     messages.success(request, "Automovel excluído com sucesso")
     return redirect(listar_veiculos)
+
+@login_required
+def listar_auto_locados(request):
+    dados = Automovel.objects.filter(status='Indisponível').order_by('data_locacao')
+    return render(request, 'sistema/lista_locados.html', {'dados': dados})
+
 ############# FIM VEÍCULO #################
 
 ############# LOCAÇÃO #################
