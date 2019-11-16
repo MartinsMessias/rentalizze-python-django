@@ -96,7 +96,7 @@ def excluir_automovel(request, id):
 
 @login_required
 def listar_auto_locados(request):
-    dados = Locacao.objects.filter(carro__status='Indisponível')
+    dados = Locacao.objects.filter(carro__status='Indisponível').order_by('data_locacao')
     return render(request, 'sistema/lista_locados.html', {'dados': dados})
 
 ############# FIM VEÍCULO #################
