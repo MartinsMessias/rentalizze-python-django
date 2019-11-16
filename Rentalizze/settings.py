@@ -124,6 +124,6 @@ DEFAULT_CHARSET = 'utf-8'
 
 STATIC_URL = '/static/'
 
-TIME_INPUT_FORMATS = [
-    '%H:%M',        # '14:30'
+INPUT_FORMATS = [
+    '%d/%m/%Y %H:%M',
 ]

@@ -31,7 +31,7 @@
                     <div class="form-row">
                         <div class="form-group col-md bg-danger-light">
                             <h4>Fim</h4>
-                            Retorno dia: {{ form.data_devolucao }} às {{ form.hora_devolucao }}
+                            Retorno dia: {{ form.data_devolucao | date:'d/m/Y' }} às {{ form.hora_devolucao }}
                         </div>
                     </div>
                     <div class="form-row">
