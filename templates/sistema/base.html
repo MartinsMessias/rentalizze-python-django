@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
+    <!--  CSS -->
     <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}">
     <link href="{% static 'assets/vendor/fonts/circular-std/style.css'%}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'assets/libs/css/style.css'%}">
@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icon-css/flag-icon.min.css'%}">
     <link rel="stylesheet" href="{% static 'assets/vendor/datepicker/tempusdominus-bootstrap-4.css'%}" />
     <link rel="stylesheet" href="{% static 'assets/vendor/inputmask/css/inputmask.css'%}" />
-    <link href="{% static 'assets/vendor/datatables/css/dataTables.bootstrap4.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/vendor/datatables/css/dataTables.bootstrap4.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/datatables/css/buttons.bootstrap4.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/datatables/css/select.bootstrap4.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/datatables/css/fixedHeader.bootstrap4.css'%}">
+
     <title>Rentalizze - Admin Dashboard</title>
 </head>
 
@@ -210,9 +214,9 @@
                                 </ul>
                             </div>
                         </li>
-                        {#                        <li class="nav-item">#}
-                        {#                            <img src="{% static 'assets/images/automo.png' %}" style="width: 88%;position: absolute;top: 188%;filter: contrast(0.5);">#}
-                        {#                        </li>#}
+                        <li class="nav-item">
+                            <img src="{% static 'assets/images/automo.png' %}" style="width: 88%;position: absolute;top: 188%;filter: contrast(0.5);">
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -232,7 +236,7 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer" style="position: fixed;top: 95%;">
+        <div class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -256,33 +260,36 @@
     <!-- end wrapper  -->
     <!-- ============================================================== -->
 </div>
-<!-- ============================================================== -->
-<!-- end main wrapper  -->
-<!-- ============================================================== -->
-<!-- Optional JavaScript -->
-<!-- jquery 3.3.1 js-->
+
 <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js'%}"></script>
-<!-- bootstrap bundle js-->
+<script src="{% static 'assets/vendor/multi-select/js/jquery.multi-select.js'%}"></script>
+<script src="{% static 'assets/vendor/datatables/js/buttons.bootstrap4.min.js'%}"></script>
 <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js'%}"></script>
-<!-- slimscroll js-->
 <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js'%}"></script>
-<!-- chartjs js-->
 <script src="{% static 'assets/vendor/charts/charts-bundle/Chart.bundle.js'%}"></script>
 <script src="{% static 'assets/vendor/charts/charts-bundle/chartjs.js'%}"></script>
-
-<!-- main js-->
+<script src="{% static 'assets/vendor/datatables/js/data-table.js'%}"></script>
+<script src="{% static 'assets/vendor/datatables/js/dataTables.bootstrap4.min.js'%}"></script>
 <script src="{% static 'assets/libs/js/main-js.js'%}"></script>
-<!-- jvactormap js-->
 <script src="{% static 'assets/vendor/jvectormap/jquery-jvectormap-2.0.2.min.js'%}"></script>
 <script src="{% static 'assets/vendor/jvectormap/jquery-jvectormap-world-mill-en.js'%}"></script>
-<!-- sparkline js-->
 <script src="{% static 'assets/vendor/charts/sparkline/jquery.sparkline.js'%}"></script>
 <script src="{% static 'assets/vendor/charts/sparkline/spark-js.js'%}"></script>
-<!-- dashboard sales js-->
 <script src="{% static 'assets/libs/js/dashboard-sales.js'%}"></script>
 <script src="{% static 'assets/libs/js/valida_cpf_cnpj.js'%}"></script>
 <script src="{% static 'assets/vendor/inputmask/js/jquery.inputmask.bundle.js'%}"></script>
-
+<script src="{% static 'assets/libs/js/datatables-demo.js'%}"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
 <script>
     $(function(e) {
         "use strict";
@@ -298,10 +305,10 @@
             $(".salario-inputmask").inputmask("999,99", {reverse: true}),
             $(".percentage-inputmask").inputmask("99%"),
             $(".placa").inputmask("AAA-9999"),
-        $(".decimal-inputmask").inputmask({
-            alias: "decimal",
-            radixPoint: ","
-        }),
+            $(".decimal-inputmask").inputmask({
+                alias: "decimal",
+                radixPoint: ","
+            }),
 
             $(".email-inputmask").inputmask({
                 mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[*{2,6}][*{1,2}].*{1,}[.*{2,6}][.*{1,2}]",
