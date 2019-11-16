@@ -140,6 +140,9 @@ def editar_loc(request, id):
 @login_required
 def excluir_loc(request, id):
     locacao = Locacao.objects.get(id=id)
+    carro = Automovel.objects.get(id=locacao.carro.id)
+    carro.status = 'Disponível'
+    carro.save()
     locacao.delete()
     messages.success(request, "Locação excluída com sucesso")
     return redirect(listar_locacoes)
