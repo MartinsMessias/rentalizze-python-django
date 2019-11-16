@@ -37,21 +37,21 @@
                                     <th>Motor</th>
                                     <th>Ano</th>
                                     <th>Cor</th>
-                                    <th>Portas</th>
-                                    <th>Status</th>
+                                    <th>Data saída</th>
+                                    <th>Data retorno</th>
                                     <th>Ação</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for dado in dados %}
                                     <tr>
-                                        <td>{{ dado.marca }}</td>
-                                        <td>{{ dado.modelo }}</td>
-                                        <td>{{ dado.motor }}</td>
-                                        <td>{{ dado.ano }}</td>
-                                        <td>{{ dado.cor_automovel }}</td>
-                                        <td>{{ dado.nro_portas_automovel }}</td>
-                                        <td>{{ dado.status }}</td>
+                                        <td>{{ dado.carro.marca }}</td>
+                                        <td>{{ dado.carro.modelo }}</td>
+                                        <td>{{ dado.carro.motor }}</td>
+                                        <td>{{ dado.carro.ano }}</td>
+                                        <td>{{ dado.carro.cor_automovel }}</td>
+                                        <td>{{ dado.data_locacao }}</td>
+                                        <td>{{ dado.data_devolucao }}</td>
                                         <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="btn btn-primary btn-sm">Exibir</a></td>
                                     </tr>
                                     <!-- Exibir Modal-->
