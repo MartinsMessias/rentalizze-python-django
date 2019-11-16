@@ -15,7 +15,6 @@
                     <fieldset class="text-secondary">{{ form.telefone_cliente }}</fieldset>
                 </div>
             </div>
-            <hr>
             <div class="form-row">
                 <div class="form-group col-md border">
                     <label for="rg_cliente">RG</label>
@@ -40,7 +39,6 @@
                     <fieldset class="text-secondary">{{ form.validade_cnh | date:'d/m/Y' }}</fieldset>
                 </div>
             </div>
-            <hr>
             <div class="form-row">
                 <div class="form-group col-md border">
                     <label for="endereco_cliente">Rua</label>
@@ -73,7 +71,6 @@
                     <fieldset class="text-secondary">{{ form.cidade }}</fieldset>
                 </div>
             </div>
-            <hr>
             <div class="form-row">
                 <div class="form-group col-md {% if form.status == 'Ativo' %} bg-success-light {% else %} bg-danger-light {% endif %}">
                     <label>Status: </label>
