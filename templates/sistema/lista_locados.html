@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-                <h3 class="mb-2">Veículos</h3>
+                <h3 class="mb-2">Veículos em locação</h3>
             </div>
             {% if messages %}
                 <ul class="messages">
@@ -23,7 +23,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Dados dos veículos cadastradas</h5>
+                    <h5 class="mb-0">Dados dos veículos locados</h5>
                     <p></p>
                 </div>
                 <div class="card-body">
@@ -67,29 +67,6 @@
                                                 <div class="modal-body">
                                                     {% include 'sistema/visualizar_vei.html' with form=dado %}
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Ok</button>
-                                                    <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                                                    <a class="btn btn-info btn-sm" href="{% url 'editar_veiculo' dado.id %}">Editar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Excluir Modal-->
-                                    <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-primary text-white">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
-                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">Deseja realmente excluir esse veículo?</div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                                    <a class="btn btn-danger btn-sm" href="{% url 'excluir_veiculo' dado.id %}">Excluir</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -111,14 +88,9 @@
                             </table>
                         {% else %}
                             <div class="text-center">
-                                <h3 class="alert-danger btn">Sem veículos cadastrados</h3>
+                                <h3 class="alert-danger btn">Sem veículos locados</h3>
                             </div>
                         {% endif %}
-                    </div>
-                    <div class="form-group row text-left">
-                        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
-                            <a href="{% url 'cadastrar_veiculo' %}" class="btn btn-space btn-primary btn-sm">Novo veículo</a>
-                        </div>
                     </div>
                 </div>
 
