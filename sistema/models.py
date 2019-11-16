@@ -58,6 +58,7 @@ class Locacao(models.Model):
             carro = Automovel.objects.get(id=self.carro.id)
             carro.status = 'Indisponível'
             carro.save()
+
         super(Locacao, self).save(*args, **kwargs)
 
 class Automovel(models.Model):

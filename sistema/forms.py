@@ -103,6 +103,7 @@ class LocacaoForm(forms.ModelForm):
         super(LocacaoForm, self).__init__(*args, **kwargs)
 
 class FimLocacaoForm(forms.Form):
+
     quilometragem = forms.FloatField(widget=forms.NumberInput())
     hora_devolucao = forms.TimeField(
         widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))

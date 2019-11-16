@@ -136,10 +136,24 @@ def excluir_loc(request, id):
     messages.success(request, "Locação excluída com sucesso")
     return redirect(listar_locacoes)
 
-
+@login_required
 def finalizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
     form = FimLocacaoForm()
+
+    if request.method == 'POST':
+        form = FimLocacaoForm(request.POST)
+
+        if form.is_valid():
+            carro = Automovel.objects.get(id=dados.carro.id)
+            carro.status = 'Disponível'
+            carro.quilometragem_automovel += form.cleaned_data['quilometragem']
+            carro.save()
+            locacao = Locacao.objects.get(id=dados.id)
+            locacao.delete()
+            messages.success(request, "Locação finalizada com sucesso!")
+            return redirect(listar_locacoes)
+
     return render(request, 'sistema/fim_locacao.html', {'dados': dados,'form':form})
 ############# FIM LOCAÇÃO #################
 
