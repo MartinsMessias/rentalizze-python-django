@@ -60,6 +60,7 @@ class ClienteForm(forms.ModelForm):
 
         super(ClienteForm, self).__init__(*args, **kwargs)
 
+    # Aceitar CPF/CPNJ com valor 'None'
     def clean_cpf_cliente(self):
         return self.cleaned_data['cpf_cliente'] or None
 
@@ -86,16 +87,20 @@ class LocacaoForm(forms.ModelForm):
     hora_locacao = forms.TimeField(
         widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
     hora_devolucao = forms.TimeField(
-        widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
+        widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control','onmouseout':'calcular();'}))
     data_devolucao = forms.DateField(
         widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
+    valor_locacao = forms.FloatField(required=False, widget=forms.NumberInput(
+        attrs={'readonly': 'true', 'class': 'btn bg-success-light border-0', 'min': '0',
+               'onkeyup': 'calcular();', 'onmouseout': 'calcular();'}))
 
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
     carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
 
+
     class Meta:
         model = Locacao
-        exclude = ('criado_em', 'modificado_em', 'usuario')
+        exclude = ('criado_em', 'modificado_em', 'usuario',)
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:

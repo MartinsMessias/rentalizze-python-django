@@ -48,6 +48,7 @@ class Locacao(models.Model):
     criado_em = models.DateTimeField(auto_now=True)
     modificacado_em = models.DateTimeField(auto_now_add=True)
     tipo = models.CharField(max_length=7, choices=TIPO_CHOICES)
+    valor_locacao = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
@@ -112,5 +113,7 @@ class Automovel(models.Model):
 
 
     def __str__(self):
-        return self.marca +' '+ self.modelo +' '+ str(self.ano) +' - '+ self.status
+        carro = self.marca +' '+ self.modelo +' '+ str(self.ano)
+        carro += ' - '+ self.placa_automovel +' - Diária padrão R$ '+ str(self.valor_locacao)
+        return  carro
 
