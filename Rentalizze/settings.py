@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
-DATE_FORMAT = "d-m-Y"
+DATE_FORMAT = 'd/m/Y'
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -112,9 +112,9 @@ TIME_ZONE = 'America/Rio_Branco'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DEFAULT_CHARSET = 'utf-8'
@@ -123,3 +123,7 @@ DEFAULT_CHARSET = 'utf-8'
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TIME_INPUT_FORMATS = [
+    '%H:%M',        # '14:30'
+]

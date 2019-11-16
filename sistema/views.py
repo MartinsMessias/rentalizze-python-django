@@ -120,7 +120,7 @@ def listar_locacoes(request):
 @login_required
 def editar_loc(request, id):
     locacao = Locacao.objects.get(id=id)
-    form = ClienteForm(request.POST or None, instance=locacao)
+    form = LocacaoForm(request.POST or None, instance=locacao)
 
     if form.is_valid():
         form.save()
