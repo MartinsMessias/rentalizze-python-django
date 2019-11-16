@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 from datetime import date, time
-from simple_autocomplete.widgets import AutoCompleteWidget
 
 class ClienteForm(forms.ModelForm):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
