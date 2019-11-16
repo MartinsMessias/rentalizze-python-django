@@ -48,7 +48,7 @@ class ClienteForm(forms.ModelForm):
     validade_cnh = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}))
     numero = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'min': '0'}))
     estado = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
-    cep = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select cep-inputmask'}))
+    cep = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control cep-inputmask', 'min': '0'}))
 
     class Meta:
         model = Cliente
