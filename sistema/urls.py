@@ -16,5 +16,7 @@ urlpatterns = [
     path('excluir_loc/<id>', views.excluir_loc, name='excluir_loc'),
     path('excluir_automovel/<id>', views.excluir_automovel, name='excluir_veiculo'),
     path('excluir_cliente/<id>', views.excluir_cliente, name='excluir_cliente'),
+    path('fim_locacao/<id>', views.finalizar_loc, name='finalizar_loc'),
+
     path('accounts/', views.accounts, name='accounts'),
 ]

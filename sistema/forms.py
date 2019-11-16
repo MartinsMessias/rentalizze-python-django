@@ -48,6 +48,7 @@ class ClienteForm(forms.ModelForm):
     validade_cnh = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}))
     numero = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'min': '0'}))
     estado = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select'}))
+    cep = forms.ChoiceField(choices=STATE_CHOICES, widget=forms.Select(attrs={'class': 'custom-select cep-inputmask'}))
 
     class Meta:
         model = Cliente
@@ -94,8 +95,27 @@ class LocacaoForm(forms.ModelForm):
         model = Locacao
         exclude = ('criado_em', 'modificado_em', 'usuario')
 
-
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
-            self.base_fields[l].widget.attrs['class'] = 'form-control'
+            if not self.base_fields[l].widget.attrs.get('class'):
+                self.base_fields[l].widget.attrs['class'] = 'form-control'
+
         super(LocacaoForm, self).__init__(*args, **kwargs)
+
+class FimLocacaoForm(forms.Form):
+    quilometragem = forms.FloatField(widget=forms.NumberInput())
+    hora_devolucao = forms.TimeField(
+        widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
+    data_devolucao = forms.DateField(
+        widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
+    valor_adicional = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control decimal-inputmask'}
+        )
+    )
+    def __init__(self, *args, **kwargs):
+        for l in self.base_fields:
+            if not self.base_fields[l].widget.attrs.get('class'):
+                self.base_fields[l].widget.attrs['class'] = 'form-control'
+        super(FimLocacaoForm, self).__init__(*args, **kwargs)

@@ -1,0 +1,98 @@
+{% extends 'sistema/base.html' %}
+{% load tags %}
+
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Edição de locação</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <div class="btn-light btn-sm" disabled="true" align="center">
+                            Locação pelo usuário: <span class="text-uppercase">{{ dados.usuario.username }}</span>
+                            em {{ dados.criado_em }}
+                        </div>
+                    </li>
+                </ul>
+                <h5 class="card-header">Dados da Locação</h5>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="form-row">
+                            <div class="form-group col-md">
+                                <h4>Cliente:</h4>{{ dados.cliente }}
+                                <h4>Tel.: <span>{{ dados.cliente.telefone_cliente }}</span></h4>
+                            </div>
+                            <div class="form-group col-md">
+                                <h4>Veículo:</h4> {{ dados.carro.marca }} {{ dados.carro.modelo }} {{ dados.carro.ano }} - {{ dados.carro.placa_automovel }}
+                            </div>
+                            <div class="form-group col-md">
+                                <h4>Quilometragem:</h4> {{ dados.carro.quilometragem_automovel }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md bg-success-light">
+                                <h4>Inicío</h4>
+                                Saída dia: {{ dados.data_locacao | date:'d/m/Y'}} às {{ dados.hora_locacao }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md bg-danger-light">
+                                <h4>Fim</h4>
+                                Retorno dia: {{ dados.data_devolucao | date:'d/m/Y' }} às {{ dados.hora_devolucao }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md">
+                                <h4>Tipo: <span>{{ dados.tipo }}</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <div class="btn-light btn-sm" disabled="true" align="center">
+                                Usuário atual: <span class="text-uppercase">{{ user.username }}</span>
+                                <span class="btn-sm"> - {% now "j/M/Y" %}</span>
+                            </div>
+                        </li>
+                    </ul>
+                {% endif %}
+                <h5 class="card-header">Finalizar locação</h5>
+                <div class="card-body">
+                    <form class="card-header" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md">
+                                <label for="automovel">Quilometragem</label>
+                                {{ form.quilometragem }}
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="dt_hora_devolucao">Data/Hora - Fim</label>
+                                {{ form.data_devolucao }}
+                                {{ form.hora_devolucao }}
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="valor_adicional">Valor adicional/Taxas</label>
+                                {{ form.valor_adicional }}
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-primary btn-sm">Concluir</button>
+                                <button class="btn btn-space btn-secondary btn-sm">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

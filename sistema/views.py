@@ -136,6 +136,11 @@ def excluir_loc(request, id):
     messages.success(request, "Locação excluída com sucesso")
     return redirect(listar_locacoes)
 
+
+def finalizar_loc(request, id):
+    dados = Locacao.objects.get(id=id)
+    form = FimLocacaoForm()
+    return render(request, 'sistema/fim_locacao.html', {'dados': dados,'form':form})
 ############# FIM LOCAÇÃO #################
 
 @login_required
