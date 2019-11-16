@@ -92,7 +92,8 @@ class LocacaoForm(forms.ModelForm):
 
     class Meta:
         model = Locacao
-        exclude = ('criado_em', 'modificado_em', 'usuario',)
+        exclude = ('criado_em', 'modificado_em', 'usuario')
+
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:

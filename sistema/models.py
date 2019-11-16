@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django_currentuser.db.models import CurrentUserField
 
 class Cliente(models.Model):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
@@ -34,13 +35,14 @@ class Cliente(models.Model):
             self.cnpj_cliente = None
         super(Cliente, self).save(*args, **kwargs)
 
+
 class Locacao(models.Model):
     TIPO_CHOICES = (('Reserva', 'Reserva'), ('Saída', 'Saída'))
     hora_locacao = models.TimeField()
     data_locacao = models.DateField()
     hora_devolucao = models.TimeField()
     data_devolucao = models.DateField()
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    usuario =  CurrentUserField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     carro = models.ForeignKey('Automovel', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now=True)
@@ -50,7 +52,6 @@ class Locacao(models.Model):
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
         return self.cliente.nome_cliente + ' | ' + inicio + '/' + fim
-
 
 class Automovel(models.Model):
     STATUS_CHOICES = (
