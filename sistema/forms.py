@@ -95,7 +95,7 @@ class LocacaoForm(forms.ModelForm):
                'onkeyup': 'calcular();', 'onmouseout': 'calcular();'}))
 
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
-    carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
+    # carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
 
 
     class Meta:

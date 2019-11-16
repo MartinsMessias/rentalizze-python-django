@@ -113,7 +113,7 @@ class Automovel(models.Model):
 
 
     def __str__(self):
-        carro = self.marca +' '+ self.modelo +' '+ str(self.ano)
-        carro += ' - '+ self.placa_automovel +' - Diária padrão R$ '+ str(self.valor_locacao)
-        return  carro
+        carro = self.marca +' '+ self.modelo +' '+ str(self.ano) + ' - '
+        carro += self.placa_automovel +' - Diária padrão R$ '+ str(self.valor_locacao)
+        return carro + ' | STATUS:' + self.status
 
