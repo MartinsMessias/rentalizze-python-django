@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
+import datetime
+
 
 # Renderiza a página inicial
 @login_required
@@ -108,6 +110,10 @@ def locar_veiculo(request):
         form = LocacaoForm(request.POST)
 
         if form.is_valid():
+            # data_inicio = datetime.strptime(form.cleaned_data['data_locacao'], form.cleaned_data['hora_locacao'])
+            # data_fim = datetime.strptime(form.cleaned_data['data_devolucao'], form.cleaned_data['hora_devolucao'])
+            # quantidade_dias = abs((data_fim - data_inicio).days)
+            # valor = form.carro.valor_locacao * quantidade_dias
             form.save()
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
