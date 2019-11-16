@@ -1,0 +1,107 @@
+{% extends 'sistema/base.html' %}
+{% load tags %}
+
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Veículos em locação</h3>
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- data table  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Dados dos veículos locados</h5>
+                    <p></p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        {% if dados %}
+                            <table id="dataTable" class="table table-striped table-bordered second" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Motor</th>
+                                    <th>Ano</th>
+                                    <th>Cor</th>
+                                    <th>Portas</th>
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for dado in dados %}
+                                    <tr>
+                                        <td>{{ dado.marca }}</td>
+                                        <td>{{ dado.modelo }}</td>
+                                        <td>{{ dado.motor }}</td>
+                                        <td>{{ dado.ano }}</td>
+                                        <td>{{ dado.cor_automovel }}</td>
+                                        <td>{{ dado.nro_portas_automovel }}</td>
+                                        <td>{{ dado.status }}</td>
+                                        <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="btn btn-primary btn-sm">Exibir</a></td>
+                                    </tr>
+                                    <!-- Exibir Modal-->
+                                    <div class="modal fade" id="exibirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{ dado }}</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {% include 'sistema/visualizar_vei.html' with form=dado %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Motor</th>
+                                    <th>Ano</th>
+                                    <th>Cor</th>
+                                    <th>Portas</th>
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        {% else %}
+                            <div class="text-center">
+                                <h3 class="alert-danger btn">Sem veículos locados</h3>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- end data table  -->
+        <!-- ============================================================== -->
+
+    </div>
+
+
+{% endblock %}
