@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 from datetime import date, time
-
+from simple_autocomplete.widgets import AutoCompleteWidget
 
 class ClienteForm(forms.ModelForm):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
@@ -90,6 +90,9 @@ class LocacaoForm(forms.ModelForm):
         widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
     data_devolucao = forms.DateField(
         widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
+
+    cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
+    carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
 
     class Meta:
         model = Locacao
