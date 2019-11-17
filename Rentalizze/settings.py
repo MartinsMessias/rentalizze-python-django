@@ -2,11 +2,10 @@
 Django settings for Rentalizze project.
 """
 import os
-
+import whitenoise
 try:
     import django_heroku
     import dj_database_url
-    import whitenoise
 except ModuleNotFoundError:
     pass
 
@@ -56,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_currentuser.middleware.ThreadLocalUserMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 
@@ -142,8 +142,6 @@ INPUT_FORMATS = [
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Change 'default' database configuration with $DATABASE_URL.
 try:
-    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
-    # Simplified static file serving.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 except:
     pass
