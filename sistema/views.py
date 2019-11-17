@@ -179,8 +179,7 @@ def finalizar_loc(request, id):
         if form.is_valid():
             locacao = Locacao.objects.get(id=dados.id)
             locacao.status = 'Inativo'
-            locacao.valor_locacao += float(form.cleaned_data['valor_adicional'])
-            print(locacao.valor_locacao)
+            locacao.valor_locacao = float(form.cleaned_data['valor_locacao_f'])
             carro = Automovel.objects.get(id=dados.carro.id)
             carro.status = 'Disponível'
             carro.quilometragem_automovel += form.cleaned_data['quilometragem']

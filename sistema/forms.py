@@ -127,7 +127,7 @@ class FimLocacaoForm(forms.Form):
 
     data_devolucao_f = forms.DateField(
         widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
-    valor_adicional = forms.CharField(
+    valor_adicional = forms.FloatField(
         required=False,
         widget=forms.NumberInput(
             attrs={'class': 'form-control','value':'0'}
