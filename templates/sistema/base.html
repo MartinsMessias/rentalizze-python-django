@@ -89,55 +89,49 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
-                            <div id="submenu-1" class="collapse submenu" style="">
+                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1"><i class="fa fa-fw fa-user-circle"></i>Clientes <span class="badge badge-success"></span></a>
+                            <div id="submenu-1-1" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Cliente</a>
-                                        <div id="submenu-1-1" class="collapse submenu" style="">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'cadastrar_cliente' %}">Novo cliente</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'listar_clientes' %}">Listar clientes</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a class="nav-link" href="{% url 'cadastrar_cliente' %}">Novo cliente</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Locações</a>
-                                        <div id="submenu-1-2" class="collapse submenu" style="">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'locar_veiculo' %}">Nova locação</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'listar_locacoes' %}">Listar locações</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a class="nav-link" href="{% url 'listar_clientes' %}">Listar clientes</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-3" aria-controls="submenu-1-3">Veículos</a>
-                                        <div id="submenu-1-3" class="collapse submenu" style="">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'cadastrar_veiculo' %}">Novo veículo</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'listar_veiculos' %}">Listar veículos</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'listar_auto_locados' %}">Listar veículos locados</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
                                 </ul>
                             </div>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2"><i class="fa fa-fw fa-list"></i>Locações<span class="badge badge-success"></span></a>
+                            <div id="submenu-1-2" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'locar_veiculo' %}">Nova locação</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'listar_locacoes' %}">Listar locações</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-3" aria-controls="submenu-1-3"><i class="fa fa-fw fa-car"></i>Veículos<span class="badge badge-success"></span></a>
+                            <div id="submenu-1-3" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'cadastrar_veiculo' %}">Novo veículo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'listar_veiculos' %}">Listar veículos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'listar_auto_locados' %}">Listar veículos locados</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
                         <li class="nav-item">
                             <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Relatórios</a>
                             <div id="submenu-3" class="collapse submenu" style="">
@@ -240,9 +234,9 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="text-md-right footer-links d-none d-sm-block">
-{#                            <a href="javascript: void(0);">Sobre</a>#}
-{#                            <a href="javascript: void(0);">Suporte</a>#}
-{#                            <a href="javascript: void(0);">Contate-nos</a>#}
+                            {#                            <a href="javascript: void(0);">Sobre</a>#}
+                            {#                            <a href="javascript: void(0);">Suporte</a>#}
+                            {#                            <a href="javascript: void(0);">Contate-nos</a>#}
                         </div>
                     </div>
                 </div>
