@@ -14,6 +14,7 @@ def index(request):
 
 
 ############# CLIENTE #################
+# Cadastra cliente
 @login_required
 def cadastrar_cliente(request):
     if request.method =='POST':
@@ -30,11 +31,13 @@ def cadastrar_cliente(request):
     form = ClienteForm()
     return render(request, 'sistema/cadastrar_cliente.html', {'form': form})
 
+# Lista todos os clientes
 @login_required
 def listar_clientes(request):
     dados = Cliente.objects.all().order_by('criado_em')
     return render(request, 'sistema/listar_clientes.html', {'dados':dados})
 
+# Edita dados do cliente específico
 @login_required
 def editar_cliente(request, id):
     cliente = Cliente.objects.get(id=id)
@@ -47,6 +50,7 @@ def editar_cliente(request, id):
 
     return render(request, 'sistema/editar_cliente.html', {'form': form})
 
+# Excluí um cliente que não está em uma locação
 @login_required
 def excluir_cliente(request, id):
     cliente = Cliente.objects.get(id=id)
