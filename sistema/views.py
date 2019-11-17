@@ -34,7 +34,7 @@ def cadastrar_cliente(request):
 # Lista todos os clientes
 @login_required
 def listar_clientes(request):
-    dados = Cliente.objects.all().order_by('criado_em')
+    dados = Cliente.objects.all().order_by('criado_em').reverse()
     return render(request, 'sistema/listar_clientes.html', {'dados':dados})
 
 # Edita dados do cliente específico
@@ -87,7 +87,7 @@ def cadastrar_veiculo(request):
 # Lista todos os automóveis
 @login_required
 def listar_veiculos(request):
-    dados = Automovel.objects.all().order_by('criado_em')
+    dados = Automovel.objects.all().order_by('criado_em').reverse()
     return render(request, 'sistema/listar_veiculos.html', {'dados':dados})
 
 # Edita dados do auto
@@ -116,12 +116,6 @@ def excluir_automovel(request, id):
     automovel.delete()
     messages.success(request, "Automóvel excluído com sucesso!")
     return redirect(listar_veiculos)
-
-# Lista somente os carros em locação
-@login_required
-def listar_auto_locados(request):
-    dados = Locacao.objects.filter(carro__status='Indisponível').order_by('data_locacao')
-    return render(request, 'sistema/lista_locados.html', {'dados': dados})
 
 ############# FIM VEÍCULO #################
 
@@ -152,13 +146,13 @@ def locar_veiculo(request):
 # Lista todas as locações
 @login_required
 def listar_locacoes(request):
-    dados = Locacao.objects.filter(status='Ativo').order_by('criado_em')
+    dados = Locacao.objects.filter(status='Ativo').order_by('criado_em').reverse()
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 # Lista locações que já passaram
 @login_required
 def historico_locacoes(request):
-    dados = Locacao.objects.filter(status='Inativo').order_by('criado_em')
+    dados = Locacao.objects.filter(status='Inativo').order_by('criado_em').reverse()
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 # Edita locação específica

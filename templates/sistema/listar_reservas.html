@@ -68,8 +68,10 @@
                                                 <div class="modal-footer">
                                                     <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Ok</button>
                                                     <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                                                    <a class="btn btn-info btn-sm" href="{% url 'editar_loc' dado.id %}">Editar</a>
-                                                    <a class="btn btn-success btn-sm" href="{% url 'finalizar_loc' dado.id %}">Finalizar</a>
+                                                    {% if dado.status == 'Ativo' %}
+                                                        <a class="btn btn-info btn-sm" href="{% url 'editar_loc' dado.id %}">Editar</a>
+                                                        <a class="btn btn-success btn-sm" href="{% url 'finalizar_loc' dado.id %}">Finalizar</a>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
