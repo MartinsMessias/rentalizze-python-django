@@ -126,8 +126,8 @@ def locar_veiculo(request):
             form.save()
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
-
-        messages.warning(request, 'Houve um erro!')
+        msg = 'Houve um erro!' + str(form.errors)
+        messages.warning(request, msg)
         return render(request, 'sistema/reserva.html', {'form':form})
 
     form = LocacaoForm()

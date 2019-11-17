@@ -103,10 +103,9 @@ class LocacaoForm(forms.ModelForm):
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
     carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
 
-
     class Meta:
         model = Locacao
-        exclude = ('criado_em', 'modificado_em', 'usuario',)
+        exclude = ('criado_em', 'modificado_em', 'usuario', 'status',)
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:

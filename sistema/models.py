@@ -49,7 +49,7 @@ class Locacao(models.Model):
     tipo = models.CharField(max_length=7, choices=TIPO_CHOICES)
     valor_locacao = models.FloatField(default=0)
     valor_diaria = models.FloatField(default=0)
-    status = models.CharField(max_length=7, choices=TIPO_CHOICES, null=True)
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES)
 
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
@@ -62,6 +62,7 @@ class Locacao(models.Model):
             carro = Automovel.objects.get(id=self.carro.id)
             carro.status = 'Indisponível' # Define o novo status para o carro com self.carro.id
             carro.save()
+            self.status = 'Ativo'
 
         super(Locacao, self).save(*args, **kwargs)
 
