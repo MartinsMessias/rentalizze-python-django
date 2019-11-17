@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
-import datetime
+
 
 
 # Renderiza a página inicial
@@ -49,6 +49,12 @@ def editar_cliente(request, id):
 @login_required
 def excluir_cliente(request, id):
     cliente = Cliente.objects.get(id=id)
+
+    # Não deixa um cliente ser excluído caso esteja em uma locação
+    if Locacao.objects.filter(cliente_id=cliente.id):
+        messages.warning(request, "Não é possível excluir o cliente! Está em uma locação!")
+        return redirect(listar_clientes)
+
     cliente.delete()
     messages.success(request, "Cliente excluído com sucesso!")
     return redirect(listar_clientes)
@@ -92,8 +98,14 @@ def editar_veiculo(request, id):
 @login_required
 def excluir_automovel(request, id):
     automovel = Automovel.objects.get(id=id)
+
+    # Não deixa um veículo ser excluído caso esteja em uma locação
+    if Locacao.objects.filter(carro_id=automovel.id):
+        messages.warning(request, "Não é possível excluir o automóvel! Está em uma locação!")
+        return redirect(listar_clientes)
+
     automovel.delete()
-    messages.success(request, "Automovel excluído com sucesso")
+    messages.success(request, "Automóvel excluído com sucesso!")
     return redirect(listar_veiculos)
 
 @login_required
@@ -129,6 +141,7 @@ def listar_locacoes(request):
 def editar_loc(request, id):
     locacao = Locacao.objects.get(id=id)
     form = LocacaoForm(request.POST or None, instance=locacao)
+
     if form.is_valid():
         form.save()
         messages.success(request, "Locação modificada com sucesso!")
@@ -139,9 +152,12 @@ def editar_loc(request, id):
 @login_required
 def excluir_loc(request, id):
     locacao = Locacao.objects.get(id=id)
+
+    # Antes de excluír, altera o status do automóvel
     carro = Automovel.objects.get(id=locacao.carro.id)
     carro.status = 'Disponível'
     carro.save()
+
     locacao.delete()
     messages.success(request, "Locação excluída com sucesso")
     return redirect(listar_locacoes)
@@ -151,6 +167,7 @@ def finalizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
     form = FimLocacaoForm()
 
+    # Em conclusão
     if form.is_valid():
         dados.valor_locacao += form.cleaned_data['valor_adicional']
 
