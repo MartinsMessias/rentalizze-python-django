@@ -147,7 +147,7 @@ class RegisterForm(forms.Form):
     password_repeat = forms.CharField(widget=forms.PasswordInput())
     first_name = forms.CharField(widget=forms.TextInput())
     last_name = forms.CharField(widget=forms.TextInput())
-    phone_number = forms.CharField(widget=forms.NumberInput(), required=False)
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control phone-inputmask'}), required=False)
 
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
