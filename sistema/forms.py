@@ -107,6 +107,7 @@ class LocacaoForm(forms.ModelForm):
                'onkeyup': 'calcular();', 'onload': 'calcular();'}))
 
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
+    carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
 
 
     class Meta:
@@ -119,6 +120,11 @@ class LocacaoForm(forms.ModelForm):
                 self.base_fields[l].widget.attrs['class'] = 'form-control'
 
         super(LocacaoForm, self).__init__(*args, **kwargs)
+
+class EditLocacaoForm(LocacaoForm):
+    carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status__icontains='disponível'))
+
+
 
 class FimLocacaoForm(forms.Form):
 
