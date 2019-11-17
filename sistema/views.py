@@ -104,7 +104,7 @@ def excluir_automovel(request, id):
     # Não deixa um veículo ser excluído caso esteja em uma locação
     if Locacao.objects.filter(carro_id=automovel.id):
         messages.warning(request, "Não é possível excluir o automóvel! Está em uma locação!")
-        return redirect(listar_clientes)
+        return redirect(listar_veiculos)
 
     automovel.delete()
     messages.success(request, "Automóvel excluído com sucesso!")
