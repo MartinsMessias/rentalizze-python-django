@@ -2,10 +2,11 @@
 Django settings for Rentalizze project.
 """
 import os
-import whitenoise
+
 try:
     import django_heroku
     import dj_database_url
+    import whitenoise
 except ModuleNotFoundError:
     pass
 
@@ -140,13 +141,14 @@ INPUT_FORMATS = [
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# Change 'default' database configuration with $DATABASE_URL.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 
 try:
     # Activate Django-Heroku.
     django_heroku.settings(locals())
+    # Change 'default' database configuration with $DATABASE_URL.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 except:
     pass
