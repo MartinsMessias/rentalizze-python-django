@@ -124,8 +124,7 @@ class EditLocacaoForm(LocacaoForm):
 class FimLocacaoForm(forms.Form):
 
     quilometragem = forms.FloatField(widget=forms.NumberInput())
-    hora_devolucao = forms.TimeField(
-        widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
+
     data_devolucao_f = forms.DateField(
         widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
     valor_adicional = forms.CharField(

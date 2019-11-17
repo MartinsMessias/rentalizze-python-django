@@ -126,8 +126,8 @@ def locar_veiculo(request):
             form.save()
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
-        msg = 'Houve um erro!' + str(form.errors)
-        messages.warning(request, msg)
+
+        messages.warning(request, 'Houve um erro!')
         return render(request, 'sistema/reserva.html', {'form':form})
 
     form = LocacaoForm()
@@ -173,23 +173,23 @@ def finalizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
     form = FimLocacaoForm()
 
-    if form.is_valid():
-        dados.valor_locacao += form.cleaned_data['valor_adicional']
-        form.save(commit=False)
-
     if request.method == 'POST':
         form = FimLocacaoForm(request.POST)
 
         if form.is_valid():
+            locacao = Locacao.objects.get(id=dados.id)
+            locacao.status = 'Inativo'
+            locacao.valor_locacao += float(form.cleaned_data['valor_adicional'])
+            print(locacao.valor_locacao)
             carro = Automovel.objects.get(id=dados.carro.id)
             carro.status = 'Disponível'
             carro.quilometragem_automovel += form.cleaned_data['quilometragem']
             carro.save()
-            locacao = Locacao.objects.get(id=dados.id)
-            locacao.status = 'Inativo'
+            locacao.save()
             messages.success(request, "Locação finalizada com sucesso!")
-            return redirect(listar_locacoes)
+            return redirect(historico_locacoes)
 
+    messages.warning(request, 'Houve um erro!')
     return render(request, 'sistema/fim_locacao.html', {'dados': dados,'form':form})
 ############# FIM LOCAÇÃO #################
 

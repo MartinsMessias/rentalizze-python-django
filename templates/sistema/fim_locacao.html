@@ -82,13 +82,14 @@
                 <div class="card-body">
                     <form class="card-header" method="post">
                         {% csrf_token %}
+                        {{ form.errors }}
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <label for="automovel">Quilometragem</label>
                                 {{ form.quilometragem }}
                             </div>
                             <div class="form-group col-md">
-                                <label for="dt_hora_devolucao">Data/Hora - Fim</label>
+                                <label for="dt_hora_devolucao">Data Fim</label>
                                 {{ form.data_devolucao_f }}
                             </div>
                             <div class="form-group col-md">
