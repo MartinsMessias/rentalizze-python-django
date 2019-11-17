@@ -155,18 +155,3 @@ class FimLocacaoForm(forms.Form):
                 self.base_fields[l].widget.attrs['class'] = 'form-control'
         super(FimLocacaoForm, self).__init__(*args, **kwargs)
 
-
-class RegisterForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput())
-    email = forms.EmailField(widget=forms.EmailInput())
-    password = forms.CharField(widget=forms.PasswordInput())
-    password_repeat = forms.CharField(widget=forms.PasswordInput())
-    first_name = forms.CharField(widget=forms.TextInput())
-    last_name = forms.CharField(widget=forms.TextInput())
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control phone-inputmask'}), required=False)
-
-    def __init__(self, *args, **kwargs):
-        for l in self.base_fields:
-            if not self.base_fields[l].widget.attrs.get('class'):
-                self.base_fields[l].widget.attrs['class'] = 'form-control'
-        super(RegisterForm, self).__init__(*args, **kwargs)
