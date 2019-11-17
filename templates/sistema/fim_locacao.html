@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-                <h3 class="mb-2">Edição de locação</h3>
+                <h3 class="mb-2">Devolução</h3>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         <div class="form-row">
                             <div class="form-group col-md bg-success-light">
                                 <h4>Inicío</h4>
-                                Saída dia: {{ dados.data_locacao | date:'d/m/Y'}} às {{ dados.hora_locacao }}
+                                Saída dia: {{ dados.data_locacao | date:'d/m/Y' }} às {{ dados.hora_locacao }}
                             </div>
                         </div>
                         <div class="form-row">
@@ -50,6 +50,19 @@
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <h4>Tipo: <span>{{ dados.tipo }}</span></h4>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label>Valor diária:</label>
+                                <label class="custom-control-inline">
+                                    R$<span id="diaria" class="bg-success-light">{{ dados.valor_diaria }}</span>
+                                </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label id="tot">Valor Subtotal:</label>
+                                <label class="custom-control-inline">
+                                    R$<span id="subtot" class="bg-success-light">{{ dados.valor_locacao }}</span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -76,12 +89,17 @@
                             </div>
                             <div class="form-group col-md">
                                 <label for="dt_hora_devolucao">Data/Hora - Fim</label>
-                                {{ form.data_devolucao }}
+                                {{ form.data_devolucao_f }}
                                 {{ form.hora_devolucao }}
                             </div>
                             <div class="form-group col-md">
-                                <label for="valor_adicional">Valor adicional/Taxas</label>
+                                <label for="id_valor_adicional" >Valor adicional/Taxas</label>
                                 R${{ form.valor_adicional }}
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="id_valor_locacao_f" id="total">Valor total atual</label>
+                                R${{ form.valor_locacao_f }}
+                                <a class="btn btn-success btn-sm border-0" onclick="calcular();">CALCULAR</a>
                             </div>
                         </div>
                         <div class="form-group row text-left">
@@ -95,4 +113,16 @@
             </div>
         </div>
     </div>
+    <script>
+        function calcular() {
+            var date1 = new Date({{ dados.data_locacao | date:'Y-m-d' }});
+            var date2 = new Date(document.getElementById('id_data_devolucao_f').value);
+            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10) - 18215;
+
+            var diaria = parseFloat(document.getElementById('diaria').innerText);
+            var adicional = parseFloat(document.getElementById('id_valor_adicional').value);
+            document.getElementById('total').innerText = 'Novo valor total para ' + String(diffDays)+' dia(s):';
+            document.getElementById('id_valor_locacao_f').value = parseFloat((diffDays * diaria) + adicional);
+        }
+    </script>
 {% endblock %}

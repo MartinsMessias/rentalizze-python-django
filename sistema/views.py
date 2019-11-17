@@ -1,4 +1,3 @@
-from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -170,9 +169,9 @@ def finalizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
     form = FimLocacaoForm()
 
-    # Em conclusão
     if form.is_valid():
         dados.valor_locacao += form.cleaned_data['valor_adicional']
+        form.save(commit=False)
 
     if request.method == 'POST':
         form = FimLocacaoForm(request.POST)
@@ -191,11 +190,10 @@ def finalizar_loc(request, id):
     return render(request, 'sistema/fim_locacao.html', {'dados': dados,'form':form})
 ############# FIM LOCAÇÃO #################
 
-############# USUÁRIO E CONTAS #################
-@login_required
-def accounts(request):
-    return HttpResponse(404)
 
+
+
+############# USUÁRIO E CONTAS #################
 @login_required
 def user_register(request):
 
@@ -253,7 +251,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important!
+            update_session_auth_hash(request, user)  # Atualiza o hash da sessão
             messages.success(request, 'Sua senha foi atualizada com sucesso!')
             return redirect('index')
         else:
@@ -262,13 +260,19 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'registration/change_password.html', {'form': form})
 
+# Mostra informações básicas do usuário atual
 @login_required
 def perfil(request):
     dados = User.objects.get(username__iexact=request.user.username)
     return render(request, 'registration/perfil.html', {'form': dados})
 
-
+# Lista todos usuários do sistema
 @login_required
 def listar_users(request):
     dados = User.objects.all()
     return render(request, 'registration/allusers.html', {'dados': dados})
+
+# Retorna 404 para /accounts/
+@login_required
+def accounts(request):
+    return HttpResponse(404)

@@ -133,14 +133,22 @@ class FimLocacaoForm(forms.Form):
     quilometragem = forms.FloatField(widget=forms.NumberInput())
     hora_devolucao = forms.TimeField(
         widget=forms.TimeInput(attrs={'value': time(), 'type': 'time', 'class': 'form-control'}))
-    data_devolucao = forms.DateField(
+    data_devolucao_f = forms.DateField(
         widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
     valor_adicional = forms.CharField(
         required=False,
-        widget=forms.TextInput(
-            attrs={'class': 'form-control decimal-inputmask'}
+        widget=forms.NumberInput(
+            attrs={'class': 'form-control','value':'0'}
         )
     )
+
+    valor_locacao_f = forms.CharField(
+        required=False,
+        widget=forms.NumberInput(
+            attrs={'class': 'form-control border-0 bg-success-light', 'readonly':'true'}
+        )
+    )
+
     def __init__(self, *args, **kwargs):
         for l in self.base_fields:
             if not self.base_fields[l].widget.attrs.get('class'):
