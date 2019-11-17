@@ -69,7 +69,7 @@ class ClienteForm(forms.ModelForm):
 
 class AutomovelForm(forms.ModelForm):
     ano = forms.IntegerField(widget=forms.NumberInput(attrs={'min': 1900}))
-    motor = forms.CharField(widget=forms.NumberInput(attrs={'min':'0.6','max':'6.8', 'value':'1.0'}))
+    motor = forms.FloatField(widget=forms.NumberInput(attrs={'min':'0.6','max':'6.8'}))
     class Meta:
         model = Automovel
         exclude = ('criado_em', 'modificado_em',)

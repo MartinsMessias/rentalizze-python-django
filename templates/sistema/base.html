@@ -40,7 +40,7 @@
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                             {% if user.is_authenticated %}
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">{{ user.username }}</h5>
+                                    <h5 class="mb-0 text-white nav-user-name">{{ user.first_name}}</h5>
                                     <span class="status"></span><span class="ml-2">{% now "j/M/Y" %}</span>
                                 </div>
                             {% endif %}
