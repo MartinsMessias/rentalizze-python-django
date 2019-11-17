@@ -7,7 +7,7 @@ try:
     import django_heroku
     import dj_database_url
     import whitenoise
-except:
+except ModuleNotFoundError:
     pass
 
 import os
@@ -140,7 +140,13 @@ INPUT_FORMATS = [
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
+# Change 'default' database configuration with $DATABASE_URL.
+try:
+    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+    # Simplified static file serving.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+except:
+    pass
 
 
 try:
