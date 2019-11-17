@@ -121,6 +121,8 @@ class LocacaoForm(forms.ModelForm):
 
         super(LocacaoForm, self).__init__(*args, **kwargs)
 
+
+# Gamb pra aparecer todos os carros no formulário de edicão Locação
 class EditLocacaoForm(LocacaoForm):
     carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status__icontains='disponível'))
 
