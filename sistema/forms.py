@@ -70,11 +70,13 @@ class ClienteForm(forms.ModelForm):
 class AutomovelForm(forms.ModelForm):
     ano = forms.IntegerField(widget=forms.NumberInput(attrs={'min': 1900}))
     motor = forms.FloatField(widget=forms.NumberInput(attrs={'min':'0.6','max':'6.8'}))
+
     class Meta:
         model = Automovel
         exclude = ('criado_em', 'modificado_em',)
 
     def __init__(self, *args, **kwargs):
+
         for l in self.base_fields:
             self.base_fields[l].widget.attrs['class'] = 'form-control'
             self.base_fields[l].widget.attrs['onkeyup'] = 'this.value=this.value.toUpperCase()'
@@ -102,6 +104,12 @@ class LocacaoForm(forms.ModelForm):
 
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
     carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
+
+    def customSave(self):
+        lv = self.save(commit=False)
+        lv.carro = self.carro
+        lv.save()
+        return lv
 
     class Meta:
         model = Locacao

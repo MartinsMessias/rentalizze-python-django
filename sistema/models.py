@@ -49,22 +49,11 @@ class Locacao(models.Model):
     tipo = models.CharField(max_length=7, choices=TIPO_CHOICES)
     valor_locacao = models.FloatField()
     valor_diaria = models.FloatField()
-    status = models.CharField(max_length=12, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=12, choices=STATUS_CHOICES, default='Ativo')
 
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
         return self.cliente.nome_cliente + ' | ' + inicio + '/' + fim
-
-    # Método save altera o status do autmóvel em questão assim
-    # que o novo objeto da model Locacao é criado
-    def save(self, *args, **kwargs):
-        if self.carro.status == 'Disponível':
-            carro = Automovel.objects.get(id=self.carro.id)
-            carro.status = 'Indisponível' # Define o novo status para o carro com self.carro.id
-            carro.save()
-            self.status = 'Ativo'
-
-        super(Locacao, self).save(*args, **kwargs)
 
 class Automovel(models.Model):
     STATUS_CHOICES = (
@@ -113,7 +102,7 @@ class Automovel(models.Model):
     criado_em = models.DateTimeField(auto_now=True)
     categoria = models.CharField(choices=CATEGORIA_CHOICES, max_length=50)
     modificacado_em = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=12, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=12, choices=STATUS_CHOICES, default='Disponível')
 
 
     def __str__(self):

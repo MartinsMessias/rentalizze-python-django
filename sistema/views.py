@@ -63,6 +63,7 @@ def excluir_cliente(request, id):
 
 
 ############# VEÍCULO #################
+# Cadastra um automóvel
 @login_required
 def cadastrar_veiculo(request):
     if request.method =='POST':
@@ -79,11 +80,13 @@ def cadastrar_veiculo(request):
     form = AutomovelForm()
     return render(request, 'sistema/cadastrar_veiculo.html', {'form':form})
 
+# Lista todos os automóveis
 @login_required
 def listar_veiculos(request):
     dados = Automovel.objects.all().order_by('criado_em')
     return render(request, 'sistema/listar_veiculos.html', {'dados':dados})
 
+# Edita dados do auto
 @login_required
 def editar_veiculo(request, id):
     automovel = Automovel.objects.get(id=id)
@@ -96,6 +99,7 @@ def editar_veiculo(request, id):
 
     return render(request, 'sistema/editar_veiculo.html', {'form': form})
 
+# Excluí um auto que não esteja em locação
 @login_required
 def excluir_automovel(request, id):
     automovel = Automovel.objects.get(id=id)
@@ -109,6 +113,7 @@ def excluir_automovel(request, id):
     messages.success(request, "Automóvel excluído com sucesso!")
     return redirect(listar_veiculos)
 
+# Lista somente os carros em locação
 @login_required
 def listar_auto_locados(request):
     dados = Locacao.objects.filter(carro__status='Indisponível').order_by('data_locacao')
@@ -117,6 +122,7 @@ def listar_auto_locados(request):
 ############# FIM VEÍCULO #################
 
 ############# LOCAÇÃO #################
+# Realiza locação
 @login_required
 def locar_veiculo(request):
     if request.method =='POST':
@@ -124,6 +130,12 @@ def locar_veiculo(request):
 
         if form.is_valid():
             form.save()
+
+            # Altera status do automóvel locado
+            carro = Automovel.objects.get(id=int(request.POST.get('carro')))
+            carro.status = 'Indisponível'
+            carro.save()
+
             messages.success(request, 'Locação realizada com sucesso!')
             return redirect(listar_locacoes)
 
@@ -133,16 +145,19 @@ def locar_veiculo(request):
     form = LocacaoForm()
     return render(request, 'sistema/reserva.html', {'form':form})
 
+# Lista todas as locações
 @login_required
 def listar_locacoes(request):
     dados = Locacao.objects.filter(status='Ativo').order_by('criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
+# Lista locações que já passaram
 @login_required
 def historico_locacoes(request):
     dados = Locacao.objects.filter(status='Inativo').order_by('criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
+# Edita locação específica
 @login_required
 def editar_loc(request, id):
     locacao = Locacao.objects.get(id=id)
@@ -155,6 +170,7 @@ def editar_loc(request, id):
 
     return render(request, 'sistema/editar_locacao.html', {'form': form})
 
+# Excluí locação
 @login_required
 def excluir_loc(request, id):
     locacao = Locacao.objects.get(id=id)
@@ -168,27 +184,36 @@ def excluir_loc(request, id):
     messages.success(request, "Locação excluída com sucesso")
     return redirect(listar_locacoes)
 
+# Realiza a devolução do automóvel
 @login_required
 def finalizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
-    form = FimLocacaoForm()
 
     if request.method == 'POST':
         form = FimLocacaoForm(request.POST)
 
         if form.is_valid():
+
+            # Altera dados antes da locação ser finalizada
             locacao = Locacao.objects.get(id=dados.id)
             locacao.status = 'Inativo'
-            locacao.valor_locacao = float(form.cleaned_data['valor_locacao_f'])
+
+            # Substituimos o valor salvo pelo valor do formulário recebido
+            locacao.valor_locacao = form.cleaned_data['valor_locacao_f'] # Caso o valor final seja alterado
+            locacao.data_devolucao = form.cleaned_data['data_devolucao_f'] # Caso a data seja alterada
+
+            # Altera dados do automóvel
             carro = Automovel.objects.get(id=dados.carro.id)
             carro.status = 'Disponível'
-            carro.quilometragem_automovel += form.cleaned_data['quilometragem']
+            carro.quilometragem_automovel = form.cleaned_data['quilometragem'] # Adiciona km ao veículo
+
             carro.save()
             locacao.save()
-            messages.success(request, "Locação finalizada com sucesso!")
-            return redirect(historico_locacoes)
 
-    messages.warning(request, 'Houve um erro!')
+            messages.success(request, "Locação finalizada com sucesso!")
+            return redirect(listar_locacoes)
+
+    form = FimLocacaoForm()
     return render(request, 'sistema/fim_locacao.html', {'dados': dados,'form':form})
 ############# FIM LOCAÇÃO #################
 
