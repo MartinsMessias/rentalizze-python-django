@@ -1,10 +1,13 @@
 """
 Django settings for Rentalizze project.
 """
+import os
+
 try:
     import django_heroku
     import dj_database_url
-except ModuleNotFoundError:
+    import whitenoise
+except:
     pass
 
 import os

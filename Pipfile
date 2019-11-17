@@ -13,5 +13,8 @@ psycopg2-binary = "*"
 django-heroku = "*"
 gunicorn = "*"
 django_currentuser = "*"
+dj_database_url = "*"
+whitenoise = "*"
+reportlab = "*"
 
 [dev-packages]
