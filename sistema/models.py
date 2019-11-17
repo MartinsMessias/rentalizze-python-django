@@ -48,7 +48,8 @@ class Locacao(models.Model):
     criado_em = models.DateTimeField(auto_now=True)
     modificacado_em = models.DateTimeField(auto_now_add=True)
     tipo = models.CharField(max_length=7, choices=TIPO_CHOICES)
-    valor_locacao = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    valor_locacao = models.FloatField(default=0)
+    valor_diaria = models.FloatField(default=0)
 
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)

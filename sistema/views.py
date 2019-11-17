@@ -129,7 +129,6 @@ def listar_locacoes(request):
 def editar_loc(request, id):
     locacao = Locacao.objects.get(id=id)
     form = LocacaoForm(request.POST or None, instance=locacao)
-
     if form.is_valid():
         form.save()
         messages.success(request, "Locação modificada com sucesso!")
@@ -152,6 +151,9 @@ def finalizar_loc(request, id):
     dados = Locacao.objects.get(id=id)
     form = FimLocacaoForm()
 
+    if form.is_valid():
+        dados.valor_locacao += form.cleaned_data['valor_adicional']
+
     if request.method == 'POST':
         form = FimLocacaoForm(request.POST)
 
@@ -161,6 +163,7 @@ def finalizar_loc(request, id):
             carro.quilometragem_automovel += form.cleaned_data['quilometragem']
             carro.save()
             locacao = Locacao.objects.get(id=dados.id)
+
             locacao.delete()
             messages.success(request, "Locação finalizada com sucesso!")
             return redirect(listar_locacoes)

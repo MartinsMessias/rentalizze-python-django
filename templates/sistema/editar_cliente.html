@@ -33,29 +33,17 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md">
                         <label for="rg_cliente">RG</label>
                         {{ form.rg_cliente }}
                         {{ form.rg_cliente.errors }}
                     </div>
                     <div class="form-group col-md">
-                        <label></label>
-                        <label class="custom-control custom-radio">
-                            <input id="cc" type="radio" name="c" class="custom-control-input" onclick="someComCNPJ();"><span class="custom-control-label">Pessoa Física</span>
-                        </label>
-                    </div>
-                    <div class="form-group col-md">
-                        <label></label>
-                        <label class="custom-control custom-radio">
-                            <input id="cb" type="radio" name="c" class="custom-control-input" onclick="someComCPF();"><span class="custom-control-label">Pessoa Jurídica</span>
-                        </label>
-                    </div>
-                    <div class="form-group col-md-3">
                         <label id="cpf_label">CPF</label>
                         {{ form.cpf_cliente }}
                         {{ form.cpf_cliente.errors }}
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md">
                         <label for="cnpj_cliente" id="cnpj_label" disabled="true">CNPJ</label>
                         {{ form.cnpj_cliente }}
                         {{ form.cnpj_cliente.errors }}

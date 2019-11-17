@@ -59,6 +59,20 @@
                                     {{ form.tipo.errors }}
                                 </label>
                             </div>
+                            <div class="form-group col-md-4"></div>
+                            <div class="form-group col-md-2">
+                                <label for="tipo">Valor diária:</label>
+                                <label class="custom-control-inline">
+                                    R$ {{ form.valor_diaria }}
+                                </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="tipo" id="tot">Valor Total:</label>
+                                <label class="custom-control-inline">
+                                    R${{ form.valor_locacao}}
+                                    <a class="btn btn-success btn-sm border-0" onclick="calcular();">CALCULAR</a>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group row text-left">
                             <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
@@ -71,4 +85,14 @@
             </div>
         </div>
     </div>
+    <script>
+        function calcular() {
+            var date1 = new Date(document.getElementById('id_data_locacao').value);
+            var date2 = new Date(document.getElementById('id_data_devolucao').value);
+            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
+            var diaria = document.getElementById('id_valor_diaria').value;
+            document.getElementById('tot').innerText = 'Valor total para ' + String(diffDays)+' dia(s):';
+            document.getElementById('id_valor_locacao').value = (diffDays * diaria);
+        }
+    </script>
 {% endblock %}
