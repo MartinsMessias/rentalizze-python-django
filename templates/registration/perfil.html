@@ -1,0 +1,35 @@
+{% extends 'sistema/base.html' %}
+{% load tags %}
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Meus dados</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 card">
+            <div class="card-body">
+                <label class="border">Nome de usuário: <span class="text-secondary">{{ form.username}}</span></label>
+                <div class="form-row">
+                    <div class="form-group col-md border">
+                        <label>Nome completo</label>
+                        <fieldset class="text-secondary">{{ form.first_name }} {{ form.last_name }}</fieldset>
+                    </div>
+                    <div class="form-group col-md border">
+                        <label>Email</label>
+                        <fieldset class="text-secondary">{{ form.email }}</fieldset>
+                    </div>
+                    <div class="form-group col-md border">
+                        <label>Telefone/Celular</label>
+                        <fieldset class="text-secondary">{{ form.phone_number }}</fieldset>
+                    </div>
+
+                </div>
+
+                <a href="{% url 'change_password' %}" class="btn btn-space btn-primary btn-sm">Alterar senha</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

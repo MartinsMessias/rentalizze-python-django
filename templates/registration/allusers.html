@@ -1,0 +1,80 @@
+{% extends 'sistema/base.html' %}
+{% load tags %}
+
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Usuários do sistema</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- data table  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Dados de usuários cadastrados</h5>
+                    <!-- MESSAGES-->
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        {% if dados %}
+                            <table id="dataTable" class="table table-striped table-bordered second" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuário</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for dado in dados %}
+                                    <tr>
+                                        <td>{{ dado.id }}</td>
+                                        <td>{{ dado.username }}</td>
+                                        <td>{{ dado.first_name }}</td>
+                                        <td>{{ dado.email }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuário</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        {% else %}
+                            <div class="text-center">
+                                <h3 class="alert-danger btn">Sem dados de usuários</h3>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group row text-left">
+                        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                            <a href="{% url 'user_register' %}" class="btn btn-space btn-primary btn-sm">Novo usuário</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end data table  -->
+        <!-- ============================================================== -->
+    </div>
+
+{% endblock %}

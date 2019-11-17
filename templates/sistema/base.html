@@ -44,8 +44,8 @@
                                     <span class="status"></span><span class="ml-2">{% now "j/M/Y" %}</span>
                                 </div>
                             {% endif %}
-                            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Conta</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Configurações</a>
+                            <a class="dropdown-item" href="{% url 'perfil' %}"><i class="fas fa-user mr-2"></i>Conta</a>
+                            <a class="dropdown-item" href="/admin/"><i class="fas fa-cog mr-2"></i>Configurações</a>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-power-off mr-2"></i>Logout</a>
                         </div>
                     </li>
@@ -79,7 +79,7 @@
     <div class="nav-left-sidebar sidebar-dark">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                <a class="d-xl-none d-lg-none" href="{% url 'index' %}">Dashboard</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -166,7 +166,7 @@
                                                     <a class="nav-link" href="{% url 'user_register' %}">Novo funcionário</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Listar funcionários</a>
+                                                    <a class="nav-link" href="{% url 'users' %}">Listar funcionários</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -211,7 +211,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <img src="{% static 'assets/images/automo.png' %}" style="width: 88%;position: absolute;top: 188%;filter: contrast(0.5);">
+                            <img class="fixed-bottom" src="{% static 'assets/images/automo.png' %}" style="width: 88%;position: absolute;top: 188%;filter: contrast(0.5);">
                         </li>
                     </ul>
                 </div>
@@ -232,17 +232,17 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer">
+        <div class="footer fixed-bottom">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        Copyright © 2019 Rentalizze
+                        Copyright © 2019 Rentalizze Aluguel de Veículos
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="javascript: void(0);">Sobre</a>
-                            <a href="javascript: void(0);">Suporte</a>
-                            <a href="javascript: void(0);">Contate-nos</a>
+{#                            <a href="javascript: void(0);">Sobre</a>#}
+{#                            <a href="javascript: void(0);">Suporte</a>#}
+{#                            <a href="javascript: void(0);">Contate-nos</a>#}
                         </div>
                     </div>
                 </div>

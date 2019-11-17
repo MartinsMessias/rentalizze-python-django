@@ -247,6 +247,7 @@ def user_register(request):
 
     return render(request, template, {'form': form})
 
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -254,10 +255,20 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Sua senha foi atualizada com sucesso!')
-            return redirect('change_password')
+            return redirect('index')
         else:
             messages.error(request, 'Houve um erro!.')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'registration/change_password.html', {'form': form})
-############# FIM #################
+
+@login_required
+def perfil(request):
+    dados = User.objects.get(username__iexact=request.user.username)
+    return render(request, 'registration/perfil.html', {'form': dados})
+
+
+@login_required
+def listar_users(request):
+    dados = User.objects.all()
+    return render(request, 'registration/allusers.html', {'dados': dados})
