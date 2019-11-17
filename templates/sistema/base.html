@@ -132,13 +132,7 @@
                             <div id="submenu-3" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Clientes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Veículos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Finaceiro</a>
+                                        <a class="nav-link" href="{% url 'historico_loc' %}">Histórico de locações</a>
                                     </li>
                                 </ul>
                             </div>
@@ -163,18 +157,18 @@
                                 </ul>
                             </div>
                         </li>
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-calendar"></i>Agenda</a>#}
+{#                            <div id="submenu-5" class="collapse submenu" style="">#}
+{#                                <ul class="nav flex-column">#}
+{#                                    <li class="nav-item">#}
+{#                                        <a class="nav-link" href="#">Consulta calendário</a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </li>#}
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-calendar"></i>Agenda</a>
-                            <div id="submenu-5" class="collapse submenu" style="">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Consulta calendário</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <img class="fixed-bottom" src="{% static 'assets/images/automo.png' %}" style="width: 88%;position: absolute;top: 188%;filter: contrast(0.5);">
+                            <img class="fixed-bottom" src="{% static 'assets/images/automo.png' %}" style="width: 100%;position: relative;filter: contrast(0.5);">
                         </li>
                     </ul>
                 </div>

@@ -17,9 +17,12 @@ urlpatterns = [
     path('excluir_automovel/<id>', views.excluir_automovel, name='excluir_veiculo'),
     path('excluir_cliente/<id>', views.excluir_cliente, name='excluir_cliente'),
     path('fim_locacao/<id>', views.finalizar_loc, name='finalizar_loc'),
+    path('historico_locacoes/', views.historico_locacoes, name='historico_loc'),
+    path('historico_clientes/<id>', views.historico_cliente, name='historico_cli'),
+    path('historico_vei/<id>', views.historico_veiculo, name='historico_vei'),
     path('accounts/', views.accounts, name='accounts'),
     path('senha/', views.change_password, name='change_password'),
     path('perfil/', views.perfil, name='perfil'),
     path('listar_usuarios/', views.listar_users, name='users'),
-    path('historico_locacoes/', views.historico_locacoes, name='historico_loc'),
 ]
+

@@ -63,6 +63,13 @@ def excluir_cliente(request, id):
     cliente.delete()
     messages.success(request, "Cliente excluído com sucesso!")
     return redirect(listar_clientes)
+
+# Lista dados de locações que já passaram
+@login_required
+def historico_cliente(request, id):
+    dados = Locacao.objects.filter(status='Inativo', cliente_id=id).order_by('criado_em').reverse()
+    return render(request, 'sistema/listar_reservas.html', {'dados':dados})
+
 ############# FIM CLIENTE #################
 
 
@@ -116,6 +123,12 @@ def excluir_automovel(request, id):
     automovel.delete()
     messages.success(request, "Automóvel excluído com sucesso!")
     return redirect(listar_veiculos)
+
+# Lista dados de locações que já passaram com esse carro
+@login_required
+def historico_veiculo(request, id):
+    dados = Locacao.objects.filter(status='Inativo', carro_id=id).order_by('criado_em').reverse()
+    return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 ############# FIM VEÍCULO #################
 
