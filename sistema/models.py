@@ -120,4 +120,3 @@ class Automovel(models.Model):
         carro = self.marca +' '+ self.modelo +' '+ str(self.ano) + ' - '
         carro += self.placa_automovel +' - Diária padrão R$ '+ str(self.valor_locacao)
         return carro + ' | STATUS:' + self.status
-

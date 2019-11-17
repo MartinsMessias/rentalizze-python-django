@@ -1,0 +1,74 @@
+{% extends "sistema/base.html" %}
+
+{% block conteudo_janela %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h3 class="mb-2">Cadastro de usuário</h3>
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 card">
+            <h5 class="card-header">Dados do usuário</h5>
+            <form class="card-body" method="post" action="{% url 'user_register' %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        <label for="{{ form.username.id_for_label }}">Usuário</label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="form-group col-md">
+                        <label for="{{ form.email.id_for_label }}">E-mail</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-group col-md">
+                        <label for="{{ form.phone_number.id_for_label }}">Telefone/Celular</label>
+                        {{ form.phone_number }}
+                        {{ form.phone_number.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        <label for="{{ form.password.id_for_label }}">Senha</label>
+                        {{ form.password }}
+                        {{ form.password.errors }}
+                    </div>
+                    <div class="form-group col-md">
+                        <label for="{{ form.password_repeat.id_for_label }}">Confirmar senha</label>
+                        {{ form.password_repeat }}
+                        {{ form.password_repeat.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        <label for="{{ form.first_name.id_for_label }}">Nome</label>
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                    </div>
+                    <div class="form-group col-md">
+                        <label for="{{ form.last_name.id_for_label }}">Sobrenome</label>
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                    </div>
+                </div>
+                <div class="form-group row text-left">
+                    <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                        <button type="submit" class="btn btn-space btn-primary btn-sm">Concluir</button>
+                        <button class="btn btn-space btn-secondary btn-sm">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

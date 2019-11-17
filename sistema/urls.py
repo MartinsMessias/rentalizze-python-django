@@ -19,4 +19,5 @@ urlpatterns = [
     path('listar_auto_locados/', views.listar_auto_locados, name='listar_auto_locados'),
     path('fim_locacao/<id>', views.finalizar_loc, name='finalizar_loc'),
     path('accounts/', views.accounts, name='accounts'),
+    path('register/', views.user_register, name='user_register'),
 ]

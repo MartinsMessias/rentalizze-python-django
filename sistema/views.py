@@ -1,9 +1,11 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
-
+from django.http import HttpResponseRedirect
+from .forms import RegisterForm
 
 
 # Renderiza a página inicial
@@ -188,7 +190,60 @@ def finalizar_loc(request, id):
     return render(request, 'sistema/fim_locacao.html', {'dados': dados,'form':form})
 ############# FIM LOCAÇÃO #################
 
+############# USUÁRIO E CONTAS #################
 @login_required
 def accounts(request):
     return HttpResponse(404)
 
+@login_required
+def user_register(request):
+
+    template = 'registration/cadastro_fun.html'
+
+    if request.method == 'POST':
+        # Cria uma instância de formulário e preenche com dados da solicitação
+        form = RegisterForm(request.POST)
+
+        # verifique se é válido:
+        if form.is_valid():
+            # verifica se usuário já existe
+            if User.objects.filter(username=form.cleaned_data['username']).exists():
+                return render(request, template, {
+                    'form': form,
+                    'error_message': 'Nome de usuário já está sendo usado!'
+                })
+            # verifica se email já existe
+            elif User.objects.filter(email=form.cleaned_data['email']).exists():
+                return render(request, template, {
+                    'form': form,
+                    'error_message': 'Já há um usuário com este email.'
+                })
+            # verifica se senhas conferem
+            elif form.cleaned_data['password'] != form.cleaned_data['password_repeat']:
+                return render(request, template, {
+                    'form': form,
+                    'error_message': 'As senhas não conferem!'
+                })
+            else:
+                # Cria o usuário:
+                user = User.objects.create_user(
+                    form.cleaned_data['username'],
+                    form.cleaned_data['email'],
+                    form.cleaned_data['password']
+                )
+                user.first_name = form.cleaned_data['first_name']
+                user.last_name = form.cleaned_data['last_name']
+                user.phone_number = form.cleaned_data['phone_number']
+                user.save()
+
+                # Redireciona para a página de listar usuários:
+                messages.success(request, "Usuário cadastrado com sucesso!")
+                return redirect(index)
+
+    # Caso não tenha dados em POST.
+    else:
+        form = RegisterForm()
+
+    return render(request, template, {'form': form})
+
+############# FIM #################
