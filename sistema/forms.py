@@ -85,12 +85,6 @@ class LocacaoForm(forms.ModelForm):
     data_locacao = forms.CharField(
         widget=forms.TextInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control date-inputmask'}))
 
-    hora_locacao = forms.CharField(
-        widget=forms.TextInput(attrs={'value': time(), 'type': 'time', 'class': 'time-inputmask form-control'}))
-
-    hora_devolucao = forms.CharField(
-        widget=forms.TextInput(attrs={'value': time(), 'type': 'time', 'class': ' time-inputmask form-control','onmouseout':'calcular();'}))
-
     data_devolucao = forms.CharField(
         widget=forms.TextInput(attrs={'value': date.today(), 'type': 'date', 'class': 'date-inputmask form-control'}))
 

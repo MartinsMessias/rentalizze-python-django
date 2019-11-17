@@ -22,4 +22,5 @@ urlpatterns = [
     path('senha/', views.change_password, name='change_password'),
     path('perfil/', views.perfil, name='perfil'),
     path('listar_usuarios/', views.listar_users, name='users'),
+    path('historico_locacoes/', views.historico_locacoes, name='historico_loc'),
 ]

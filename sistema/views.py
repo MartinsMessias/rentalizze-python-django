@@ -135,7 +135,12 @@ def locar_veiculo(request):
 
 @login_required
 def listar_locacoes(request):
-    dados = Locacao.objects.all().order_by('criado_em')
+    dados = Locacao.objects.filter(status='Ativo').order_by('criado_em')
+    return render(request, 'sistema/listar_reservas.html', {'dados':dados})
+
+@login_required
+def historico_locacoes(request):
+    dados = Locacao.objects.filter(status='Inativo').order_by('criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 @login_required
@@ -181,8 +186,7 @@ def finalizar_loc(request, id):
             carro.quilometragem_automovel += form.cleaned_data['quilometragem']
             carro.save()
             locacao = Locacao.objects.get(id=dados.id)
-
-            locacao.delete()
+            locacao.status = 'Inativo'
             messages.success(request, "Locação finalizada com sucesso!")
             return redirect(listar_locacoes)
 

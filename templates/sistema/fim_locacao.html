@@ -38,13 +38,13 @@
                         <div class="form-row">
                             <div class="form-group col-md bg-success-light">
                                 <h4>Inicío</h4>
-                                Saída dia: {{ dados.data_locacao | date:'d/m/Y' }} às {{ dados.hora_locacao }}
+                                Saída dia: {{ dados.data_locacao | date:'d/m/Y' }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md bg-danger-light">
                                 <h4>Fim</h4>
-                                Retorno dia: {{ dados.data_devolucao | date:'d/m/Y' }} às {{ dados.hora_devolucao }}
+                                Retorno dia: {{ dados.data_devolucao | date:'d/m/Y' }}
                             </div>
                         </div>
                         <div class="form-row">
@@ -90,7 +90,6 @@
                             <div class="form-group col-md">
                                 <label for="dt_hora_devolucao">Data/Hora - Fim</label>
                                 {{ form.data_devolucao_f }}
-                                {{ form.hora_devolucao }}
                             </div>
                             <div class="form-group col-md">
                                 <label for="id_valor_adicional" >Valor adicional/Taxas</label>

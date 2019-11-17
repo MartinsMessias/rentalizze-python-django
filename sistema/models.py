@@ -37,10 +37,9 @@ class Cliente(models.Model):
 
 
 class Locacao(models.Model):
+    STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
     TIPO_CHOICES = (('Reserva', 'Reserva'), ('Saída', 'Saída'))
-    hora_locacao = models.TimeField()
     data_locacao = models.DateField()
-    hora_devolucao = models.TimeField()
     data_devolucao = models.DateField()
     usuario =  CurrentUserField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
@@ -50,6 +49,7 @@ class Locacao(models.Model):
     tipo = models.CharField(max_length=7, choices=TIPO_CHOICES)
     valor_locacao = models.FloatField(default=0)
     valor_diaria = models.FloatField(default=0)
+    status = models.CharField(max_length=7, choices=TIPO_CHOICES, null=True)
 
     def __str__(self):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
@@ -102,7 +102,6 @@ class Automovel(models.Model):
     quilometragem_automovel = models.FloatField()
     chassi_automovel = models.IntegerField(unique=True)
     valor_locacao = models.FloatField()
-    valor_locacao_fds = models.FloatField()
     motor = models.CharField(max_length=3)
     marca = models.CharField(choices=MARCA_CHOICES, max_length=50)
     modelo = models.CharField(max_length=200)

@@ -47,8 +47,8 @@
                                         <td>{{ dado.tipo }}</td>
                                         <td>{{ dado.cliente }}</td>
                                         <td>{{ dado.carro.marca }} {{ dado.carro.modelo }} {{ dado.carro.ano }}</td>
-                                        <td>{{ dado.data_locacao | date:'d/m/Y'}} | {{ dado.hora_locacao }}</td>
-                                        <td>{{ dado.data_devolucao | date:'d/m/Y'}} | {{ dado.hora_devolucao }}</td>
+                                        <td>{{ dado.data_locacao | date:'d/m/Y'}} </td>
+                                        <td>{{ dado.data_devolucao | date:'d/m/Y'}}</td>
                                         <td class="text-uppercase">{{ dado.usuario }}</td>
                                         <td><a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="btn btn-primary btn-sm">Exibir</a></td>
                                     </tr>
