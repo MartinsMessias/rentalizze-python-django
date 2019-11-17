@@ -26,7 +26,7 @@ class Cliente(models.Model):
     status = models.CharField(max_length=7, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return self.nome_cliente + ' - ' + self.status
+        return self.nome_cliente + ' - ' + self.cpf_cliente
 
     def save(self, *args, **kwargs):
         if not self.cpf_cliente:
