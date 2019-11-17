@@ -3,3 +3,7 @@ db.sqlite3
 migrations
 __pycache__
 /templates/concept-master/
+venv
+*.pyc
+staticfiles/
+
