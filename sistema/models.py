@@ -55,10 +55,12 @@ class Locacao(models.Model):
         inicio, fim = str(self.data_locacao), str(self.data_devolucao)
         return self.cliente.nome_cliente + ' | ' + inicio + '/' + fim
 
+    # Método save altera o status do autmóvel em questão assim
+    # que o novo objeto da model Locacao é criado
     def save(self, *args, **kwargs):
         if self.carro.status == 'Disponível':
             carro = Automovel.objects.get(id=self.carro.id)
-            carro.status = 'Indisponível'
+            carro.status = 'Indisponível' # Define o novo status para o carro com self.carro.id
             carro.save()
 
         super(Locacao, self).save(*args, **kwargs)
@@ -92,7 +94,8 @@ class Automovel(models.Model):
         ('4', '4 Portas'),
         ('5', '5 Portas'),
     )
-    placa_automovel = models.CharField(max_length=15, unique=True, error_messages={'unique':"Já há um automóvel com esta placa!"})
+    placa_automovel = models.CharField(max_length=15, unique=True,
+                                       error_messages={'unique':"Já há um automóvel com esta placa!"})
     cor_automovel = models.CharField(max_length=20)
     nro_portas_automovel = models.CharField(max_length=10, choices=NRO_PORTAS_AUTOMOVEL_CHOICES)
     tipo_combustivel_automovel = models.CharField(max_length=50, choices=COMBUSTIVEL_CHOICES)

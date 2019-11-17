@@ -191,3 +191,4 @@ def finalizar_loc(request, id):
 @login_required
 def accounts(request):
     return HttpResponse(404)
+
