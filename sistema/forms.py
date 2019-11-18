@@ -68,7 +68,6 @@ class ClienteForm(forms.ModelForm):
         return self.cleaned_data['cnpj_cliente'] or None
 
 class AutomovelForm(forms.ModelForm):
-    ano = forms.IntegerField(widget=forms.NumberInput(attrs={'min': 1900}))
     motor = forms.FloatField(widget=forms.NumberInput(attrs={'min':'0.6','max':'6.8'}))
 
     class Meta:
