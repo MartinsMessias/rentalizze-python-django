@@ -237,8 +237,23 @@ ul li {}
     font-weight: 300;
     color: #3d3f5d;
 }
+input[type="search"] {
+    background-color: #ffffff;
+    border-radius: 2px;
+}
 
 
+.paginate_button {
+    padding: 2px 10px;
+    margin-right: 2px;
+    background-color: #17a2b8;
+    color: white;
+}
+
+.paginate_button:hover {
+    background-color: #17a2b87a;
+    color: #313133;
+}
 /*--------------------
  Form
 ---------------------*/

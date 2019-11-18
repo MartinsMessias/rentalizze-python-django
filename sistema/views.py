@@ -10,7 +10,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 # Renderiza a página inicial
 @login_required
 def index(request):
-    return render(request, 'sistema/index.html', locals())
+    return redirect(listar_locacoes)
 
 
 ############# CLIENTE #################
