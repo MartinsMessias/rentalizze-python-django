@@ -97,8 +97,7 @@ class Automovel(models.Model):
     modelo = models.CharField(max_length=200)
     ano = models.PositiveIntegerField(
         validators=[
-            MinValueValidator(1900),
-            MaxValueValidator(datetime.datetime.now().year)])
+            MinValueValidator(1900)])
     criado_em = models.DateTimeField(auto_now=True)
     categoria = models.CharField(choices=CATEGORIA_CHOICES, max_length=50)
     modificacado_em = models.DateTimeField(auto_now_add=True)
