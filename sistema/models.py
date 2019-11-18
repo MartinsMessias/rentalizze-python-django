@@ -95,9 +95,7 @@ class Automovel(models.Model):
     motor = models.CharField(max_length=3)
     marca = models.CharField(choices=MARCA_CHOICES, max_length=50)
     modelo = models.CharField(max_length=200)
-    ano = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(1900)])
+    ano = models.PositiveIntegerField()
     criado_em = models.DateTimeField(auto_now=True)
     categoria = models.CharField(choices=CATEGORIA_CHOICES, max_length=50)
     modificacado_em = models.DateTimeField(auto_now_add=True)
