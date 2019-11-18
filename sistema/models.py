@@ -90,7 +90,7 @@ class Automovel(models.Model):
     nro_portas_automovel = models.CharField(max_length=10, choices=NRO_PORTAS_AUTOMOVEL_CHOICES)
     tipo_combustivel_automovel = models.CharField(max_length=50, choices=COMBUSTIVEL_CHOICES)
     quilometragem_automovel = models.FloatField()
-    chassi_automovel = models.IntegerField(unique=True)
+    chassi_automovel = models.CharField(unique=True)
     valor_locacao = models.FloatField()
     motor = models.CharField(max_length=3)
     marca = models.CharField(choices=MARCA_CHOICES, max_length=50)
