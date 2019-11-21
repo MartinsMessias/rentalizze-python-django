@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from datetime import date, time
+from datetime import date
 
 class ClienteForm(forms.ModelForm):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
@@ -16,10 +16,14 @@ class ClienteForm(forms.ModelForm):
         ('RO', 'Rondônia'), ('RR', 'Roraima'), ('SC', 'Santa Catarina'),
         ('SP', 'São Paulo'), ('SE', 'Sergipe'), ('TO', 'Tocantins')
     )
+
+    # Tipos e atributos dos campos que vai aparecer no template
     cpf_cliente = forms.CharField(
-        required=False,
-        widget=forms.TextInput(
+        required=False, # Que não vai ser obrigatório no template
+        widget=forms.TextInput( # Definimos os atributos do campo, como ele vai aparecer no template
             attrs={'class': 'form-control cpf-inputmask', 'id': 'cpf_cliente', 'onkeyup': 'TestaCPF(this);'}
+            # Lá(template) ele vai ser gerado assim:
+            # <input class="form-control cpf-inputmask" type="text" id="cpf_cliente" onkeyup="TestaCPF(this);">
         )
     )
 
@@ -53,14 +57,17 @@ class ClienteForm(forms.ModelForm):
         model = Cliente
         exclude = ('criado_em', 'modificado_em',)
 
+    # Incializa toda vem que esse formulário for usado
     def __init__(self, *args, **kwargs):
+        # Coloca em todos os campos que não tem uma 'class' do CSS, um 'form-control'.
         for l in self.base_fields:
             if not self.base_fields[l].widget.attrs.get('class'):
                 self.base_fields[l].widget.attrs['class'] = 'form-control'
 
         super(ClienteForm, self).__init__(*args, **kwargs)
 
-    # Aceitar CPF/CPNJ com valor 'None'
+    # Valida CPF/CPNJ com valor 'None' direto do formulário
+    # Sem isso eles não passariam no form.is_valid() na views.py
     def clean_cpf_cliente(self):
         return self.cleaned_data['cpf_cliente'] or None
 
@@ -76,7 +83,7 @@ class AutomovelForm(forms.ModelForm):
         exclude = ('criado_em', 'modificado_em',)
 
     def __init__(self, *args, **kwargs):
-
+        # Define uma class CSS 'form-control' e o adiciona um js pra deixar as letras em maiúsculas.
         for l in self.base_fields:
             self.base_fields[l].widget.attrs['class'] = 'form-control'
             self.base_fields[l].widget.attrs['onkeyup'] = 'this.value=this.value.toUpperCase()'
@@ -105,11 +112,6 @@ class LocacaoForm(forms.ModelForm):
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
     carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
 
-    def customSave(self):
-        lv = self.save(commit=False)
-        lv.carro = self.carro
-        lv.save()
-        return lv
 
     class Meta:
         model = Locacao
@@ -123,9 +125,11 @@ class LocacaoForm(forms.ModelForm):
         super(LocacaoForm, self).__init__(*args, **kwargs)
 
 
-# Gamb pra aparecer todos os carros no formulário de edicão Locação
+
+# Formulário herdando tudo de LocacaoForm e alteramos somente o campo 'carro'
+# pra aparecer todos os carros 'disponível' e 'indisponível' no formulário de edicão Locação
 class EditLocacaoForm(LocacaoForm):
-    carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status__icontains='disponível'))
+    carro = forms.ModelChoiceField(queryset=Automovel.objects.all())
 
 
 
@@ -135,6 +139,7 @@ class FimLocacaoForm(forms.Form):
 
     data_devolucao_f = forms.DateField(
         widget=forms.DateInput(attrs={'value': date.today(), 'type': 'date', 'class': 'form-control'}))
+
     valor_adicional = forms.FloatField(
         required=False,
         widget=forms.NumberInput(
