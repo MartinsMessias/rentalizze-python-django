@@ -1,8 +1,6 @@
-import datetime
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django_currentuser.db.models import CurrentUserField
+from django.contrib.auth.models import User # Importa tabela de usuários do Django
+from django_currentuser.db.models import CurrentUserField # Campo do Usuário atual
 
 class Cliente(models.Model):
     STATUS_CHOICES = (('Ativo', 'Ativo'), ('Inativo', 'Inativo'))
@@ -28,11 +26,16 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome_cliente + ' - ' + self.cpf_cliente
 
+    # Esse método vai ser executado toda vez que der um .save() em Cliente em views.py
+    # Aqui foi configurado para permitir um cliente ser salvo com CPF ou CNPJ vazios.
+    # Foi necessário pois os campos CPF e CNPJ estão com UNIQUE=True, porem não permitia 2 ou + clientes com CPF vázios
     def save(self, *args, **kwargs):
+        # Deve permitir salvar um cliente com o CPF ou o CPNJ vazio. Não os dois.
         if not self.cpf_cliente:
             self.cpf_cliente = None
         else:
             self.cnpj_cliente = None
+
         super(Cliente, self).save(*args, **kwargs)
 
 
@@ -82,7 +85,7 @@ class Automovel(models.Model):
         ('2', '2 Portas'),
         ('3', '3 Portas'),
         ('4', '4 Portas'),
-        ('5', '5 Portas'),
+        ('5', '5 Portas'), # Existe!
     )
     placa_automovel = models.CharField(max_length=15, unique=True,
                                        error_messages={'unique':"Já há um automóvel com esta placa!"})
@@ -104,5 +107,5 @@ class Automovel(models.Model):
 
     def __str__(self):
         carro = self.marca +' '+ self.modelo +' '+ str(self.ano) + ' - '
-        carro += self.placa_automovel +' - Diária padrão R$ '+ str(self.valor_locacao)
-        return carro + ' | STATUS:' + self.status
+        carro += self.placa_automovel +' -- Diária padrão R$ '+ str(self.valor_locacao)
+        return carro
