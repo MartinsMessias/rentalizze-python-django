@@ -2,10 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import *
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-
+from .forms import *
 
 # Renderiza a página inicial
 @login_required
@@ -15,7 +14,7 @@ def index(request):
 
 ############# CLIENTE #################
 # Cadastra cliente
-@login_required
+@login_required  # <<< requer login para acessar essa view
 def cadastrar_cliente(request):
     if request.method =='POST':
         form = ClienteForm(request.POST)
@@ -56,6 +55,7 @@ def excluir_cliente(request, id):
     cliente = Cliente.objects.get(id=id)
 
     # Não deixa um cliente ser excluído caso esteja em uma locação
+    # Filtra os ID para verificar se existe Locação com o cliente
     if Locacao.objects.filter(cliente_id=cliente.id):
         messages.warning(request, "Não é possível excluir o cliente! Está em uma locação!")
         return redirect(listar_clientes)
@@ -85,6 +85,7 @@ def cadastrar_veiculo(request):
             messages.success(request, 'Veículo cadastrado com sucesso!')
             return redirect(listar_veiculos)
 
+        # Caso o form seja inválido
         messages.warning(request, 'Houve um erro!')
         return render(request, 'sistema/cadastrar_veiculo.html', {'form': form})
 
@@ -116,6 +117,7 @@ def excluir_automovel(request, id):
     automovel = Automovel.objects.get(id=id)
 
     # Não deixa um veículo ser excluído caso esteja em uma locação
+    # Filtra nos ID para verificar se o carro está em uma locação
     if Locacao.objects.filter(carro_id=automovel.id):
         messages.warning(request, "Não é possível excluir o automóvel! Está em uma locação!")
         return redirect(listar_veiculos)
@@ -127,6 +129,7 @@ def excluir_automovel(request, id):
 # Lista dados de locações que já passaram com esse carro
 @login_required
 def historico_veiculo(request, id):
+    #Locações finalizadas recebem o status de 'Inativo'
     dados = Locacao.objects.filter(status='Inativo', carro_id=id).order_by('criado_em').reverse()
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
@@ -198,6 +201,7 @@ def excluir_loc(request, id):
 # Realiza a devolução do automóvel
 @login_required
 def finalizar_loc(request, id):
+    # Essa var 'dados' só vai ser usada no template
     dados = Locacao.objects.get(id=id)
 
     if request.method == 'POST':
@@ -205,19 +209,23 @@ def finalizar_loc(request, id):
 
         if form.is_valid():
 
-            # Altera dados antes da locação ser finalizada
+            # Locações finalizadas recebem o status de 'Inativo'
             locacao = Locacao.objects.get(id=dados.id)
             locacao.status = 'Inativo'
 
-            # Substituimos o valor salvo pelo valor do formulário recebido
-            locacao.valor_locacao = form.cleaned_data['valor_locacao_f'] # Caso o valor final seja alterado
-            locacao.data_devolucao = form.cleaned_data['data_devolucao_f'] # Caso a data seja alterada
+            # Depois de passar pelo 'is_valid()' os dados do form estarão em 'form.cleaned_data[]'
+            # Significa que os dados estão 'limpos' e em formato Python.
 
-            # Altera dados do automóvel
+            # Substituimos o valor salvo pelo valor recebido do formulário
+            locacao.valor_locacao = form.cleaned_data['valor_locacao_f']    # Caso o valor final seja alterado
+            locacao.data_devolucao = form.cleaned_data['data_devolucao_f']  # Caso a data seja alterada
+
+            # Altera dados(status, km) do automóvel após a finalização de locação
             carro = Automovel.objects.get(id=dados.carro.id)
-            carro.status = 'Disponível'
+            carro.status = 'Disponível' # Após o fim da locação o carro está disponível novamente
             carro.quilometragem_automovel = form.cleaned_data['quilometragem'] # Adiciona km ao veículo
 
+            # Salva
             carro.save()
             locacao.save()
 
@@ -230,26 +238,28 @@ def finalizar_loc(request, id):
 
 
 ############# USUÁRIO E CONTAS #################
-# Modificação de senha
+# Modificação de senha do usuário atual
 @login_required
 def change_password(request):
     if request.method == 'POST':
+        # Envia para o form os dados do 'POST' e da instância do usuário atual
         form = PasswordChangeForm(request.user, request.POST)
+
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Atualiza o hash da sessão
             messages.success(request, 'Sua senha foi atualizada com sucesso!')
             return redirect('index')
         else:
-            messages.error(request, 'Houve um erro!.')
-    else:
-        form = PasswordChangeForm(request.user)
+            messages.error(request, 'Houve um erro!')
+
+    form = PasswordChangeForm(request.user) # Envia para o template os dados da instância do usuário atual
     return render(request, 'registration/change_password.html', {'form': form})
 
-# Mostra informações básicas do usuário atual
+# Mostra informações do usuário
 @login_required
 def perfil(request):
-    dados = User.objects.get(username__iexact=request.user.username)
+    dados = User.objects.get(id=request.user.id)
     return render(request, 'registration/perfil.html', {'form': dados})
 
 # Lista todos usuários do sistema
