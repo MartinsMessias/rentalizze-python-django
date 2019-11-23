@@ -2709,18 +2709,18 @@ exports.globalDefaults = {
     locale: null,
     isRTL: false,
     buttonText: {
-        prev: 'prev',
-        next: 'next',
+        prev: 'anterior',
+        next: 'próximo',
         prevYear: 'prev year',
         nextYear: 'next year',
-        year: 'year',
-        today: 'today',
-        month: 'month',
-        week: 'week',
-        day: 'day'
+        year: 'ano',
+        today: 'hoje',
+        month: 'mês',
+        week: 'semana',
+        day: 'dia'
     },
     // buttonIcons: null,
-    allDayText: 'all-day',
+    allDayText: 'dia todo',
     // allows setting a min-height to the event segment to prevent short events overlapping each other
     agendaEventMinHeight: 0,
     // jquery-ui theming

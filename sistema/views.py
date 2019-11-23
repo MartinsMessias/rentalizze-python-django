@@ -1,15 +1,29 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from datetime import datetime
 from .forms import *
 
 # Renderiza a página inicial
 @login_required
 def index(request):
-    return redirect(listar_locacoes)
+    data = date.today()
+    clientes = Cliente.objects.all()
+
+    carros = Automovel.objects.all()
+    carros_ativos = Automovel.objects.filter(status='Indisponível')
+
+    locacoes = Locacao.objects.all()
+    locacoes_ativas = Locacao.objects.filter(status='Ativo')
+
+    receita = Locacao.objects.filter(status='Inativo').aggregate(valor_locacao=Sum('valor_locacao')).get('valor_locacao')
+    receita_andamento = Locacao.objects.filter(status='Ativo').aggregate(valor_locacao=Sum('valor_locacao')).get('valor_locacao')
+
+    return render(request, 'sistema/index.html', locals())
 
 
 ############# CLIENTE #################

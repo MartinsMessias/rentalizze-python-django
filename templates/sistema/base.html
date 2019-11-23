@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css'%}">
     <link rel="stylesheet" href="{% static 'assets/vendor/inputmask/css/inputmask.css'%}" />
     <link rel="stylesheet" href="{% static 'assets/vendor/datatables/css/dataTables.bootstrap4.css'%}">
-
+    <link href="{% static 'assets/vendor/full-calendar/css/fullcalendar.css'%}" rel='stylesheet' />
+    <link href="{% static 'assets/vendor/full-calendar/css/fullcalendar.print.css'%}" rel='stylesheet' media='print' />
     <title>Rentalizze - Admin Dashboard</title>
 </head>
 
@@ -157,16 +158,16 @@
                                 </ul>
                             </div>
                         </li>
-{#                        <li class="nav-item">#}
-{#                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-calendar"></i>Agenda</a>#}
-{#                            <div id="submenu-5" class="collapse submenu" style="">#}
-{#                                <ul class="nav flex-column">#}
-{#                                    <li class="nav-item">#}
-{#                                        <a class="nav-link" href="#">Consulta calendário</a>#}
-{#                                    </li>#}
-{#                                </ul>#}
-{#                            </div>#}
-{#                        </li>#}
+                        {#                        <li class="nav-item">#}
+                        {#                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-calendar"></i>Agenda</a>#}
+                        {#                            <div id="submenu-5" class="collapse submenu" style="">#}
+                        {#                                <ul class="nav flex-column">#}
+                        {#                                    <li class="nav-item">#}
+                        {#                                        <a class="nav-link" href="#">Consulta calendário</a>#}
+                        {#                                    </li>#}
+                        {#                                </ul>#}
+                        {#                            </div>#}
+                        {#                        </li>#}
                         <li class="nav-item">
                             <img class="fixed-bottom" src="{% static 'assets/images/automo.png' %}" style="width: 100%;position: relative;filter: contrast(0.5);">
                         </li>
@@ -225,8 +226,43 @@
 <script src="{% static 'assets/vendor/inputmask/js/jquery.inputmask.bundle.js'%}"></script>
 <script src="{% static 'assets/vendor/datatables/js/jquery.dataTables.js'%}"></script>
 <script src="{% static 'assets/libs/js/datatables-demo.js'%}"></script>
+<script src="{% static 'assets/vendor/full-calendar/js/moment.min.js'%}"></script>
+<script src="{% static 'assets/vendor/full-calendar/js/fullcalendar.js'%}"></script>
+<script src="{% static 'assets/vendor/full-calendar/js/jquery-ui.min.js'%}"></script>
+
 
 <script>
+    // CALENDÁRIO TIPO AGENDA PRA MOSTRAR AS LOCAÇÕES ATIVAS E SEU PERÍODO
+    $(function() {
+        "use strict";
+
+        $(document).ready(function() {
+
+            $('#calendar1').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listWeek'
+                },
+                defaultDate: '{{data | date:'Y-m-d'}}',
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {% for loc in locacoes_ativas %}
+                        {
+                            title: '{{ loc.cliente }}',
+                            start: '{{ loc.data_locacao | date:'Y-m-d'}}',
+                            end: '{{ loc.data_devolucao | date:'Y-m-d' }}',
+                            backgroundColor: '#4285F4',
+                        },
+                    {% endfor %}
+
+                ]
+            });
+
+        });
+    });
     $(function(e) {
         "use strict";
         $(".date-inputmask").inputmask("dd/mm/yyyy"),
