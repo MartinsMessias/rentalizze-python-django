@@ -115,6 +115,7 @@
     </div>
     <script>
         function calcular() {
+            //CORRIGIR
             var date1 = new Date({{ dados.data_locacao | date:'Y-m-d' }});
             var date2 = new Date(document.getElementById('id_data_devolucao_f').value);
             var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10)- 18222;
