@@ -101,13 +101,13 @@ class LocacaoForm(forms.ModelForm):
         required=False,
         widget=forms.NumberInput(
             attrs={'readonly': 'true', 'class': 'btn-sm bg-success-light border-0', 'min': '0',
-               'onkeyup': 'calcular();', 'onload': 'calcular();'}))
+               'onkeyup': 'calcular();'}))
 
     valor_diaria = forms.FloatField(
         required=False,
         widget=forms.NumberInput(
             attrs={'class': 'form-control decimal-inputmask',
-               'onkeyup': 'calcular();', 'onload': 'calcular();'}))
+               'onkeyup': 'calcular();'}))
 
     cliente = forms.ModelChoiceField(queryset=Cliente.objects.filter(status='Ativo'))
     carro = forms.ModelChoiceField(queryset=Automovel.objects.filter(status='Disponível'))
