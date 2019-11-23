@@ -118,7 +118,7 @@
             var date1 = new Date({{ dados.data_locacao | date:'Y-m-d' }});
             var date2 = new Date(document.getElementById('id_data_devolucao_f').value);
 
-            var diffDays = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+            var diffDays = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))-18223;
 
             var diaria = parseFloat(document.getElementById('diaria').innerText.replace(',','.'));
             var adicional = parseFloat(document.getElementById('id_valor_adicional').value);
