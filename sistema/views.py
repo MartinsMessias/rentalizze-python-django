@@ -146,7 +146,7 @@ def locar_veiculo(request):
             form.save()
 
             # Altera status do automóvel locado
-            carro = Automovel.objects.get(id=int(request.POST.get('carro')))
+            carro = Automovel.objects.get(id=int(request.POST.get('carro'))) # Pega ID do <select>
             carro.status = 'Indisponível'
             carro.save()
 
@@ -169,7 +169,7 @@ def listar_locacoes(request):
 @login_required
 def historico_locacoes(request):
     dados = Locacao.objects.filter(status='Inativo').order_by('criado_em').reverse()
-    return render(request, 'sistema/listar_reservas.html', {'dados':dados})
+    return render(request, 'sistema/listar_reservas.html', {'dados':dados, 'fim':True})
 
 # Edita locação específica
 @login_required
