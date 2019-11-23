@@ -117,9 +117,12 @@
         function calcular() {
             var date1 = new Date({{ dados.data_locacao | date:'Y-m-d' }});
             var date2 = new Date(document.getElementById('id_data_devolucao_f').value);
-            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 2);
-            var diaria = parseFloat(document.getElementById('diaria').innerText.replace(',','.')).toFixed(2);
+
+            var diffDays = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+
+            var diaria = parseFloat(document.getElementById('diaria').innerText.replace(',','.'));
             var adicional = parseFloat(document.getElementById('id_valor_adicional').value);
+
             document.getElementById('total').innerText = 'Novo valor total para ' + String(diffDays)+' dia(s):';
             document.getElementById('id_valor_locacao_f').value = ((diaria * diffDays) + adicional).toFixed(2);
         }
