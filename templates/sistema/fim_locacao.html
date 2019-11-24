@@ -113,16 +113,20 @@
             </div>
         </div>
     </div>
+    <span id="ini_data" style="display: none;">{{ dados.data_locacao | date:'Y-m-d' }}</span>
     <script>
         function calcular() {
-            //CORRIGIR
-            var date1 = new Date({{ dados.data_locacao | date:'Y-m-d' }});
+            // calcula quantidade de dias entre duas datas e multiplica diária x dias
+            var date1 = new Date(document.getElementById('ini_data').innerText);
             var date2 = new Date(document.getElementById('id_data_devolucao_f').value);
-            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10)- 18222;
+            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
+
             var diaria = parseFloat(document.getElementById('diaria').innerText.replace(',','.')).toFixed(2);
             var adicional = parseFloat(document.getElementById('id_valor_adicional').value);
+
             document.getElementById('total').innerText = 'Novo valor total para ' + String(diffDays) + ' dia(s):';
             document.getElementById('id_valor_locacao_f').value = ((diaria * diffDays) + adicional).toFixed(2);
         }
     </script>
+
 {% endblock %}
