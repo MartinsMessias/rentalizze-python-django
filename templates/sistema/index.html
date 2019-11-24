@@ -39,12 +39,12 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="text-muted">Receita em R$</h5>
+                    <h5 class="text-muted">Receita R$</h5>
                     <div class="metric-value d-inline-block">
                         <h1 class="mb-1 text-primary">{{ receita }}</h1>
                     </div>
                     <div class="metric-label d-inline-block float-right text-success">
-                        <i class="fa fa-fw fa-caret-square-right"></i><span>Receber {{ receita_andamento }}</span>
+                        <i class="fa fa-fw fa-caret-square-right"></i><span>{% if receita_andamento %}Receber {{ receita_andamento }}{% endif %}</span>
                     </div>
                 </div>
                 <div id="sparkline-3">
