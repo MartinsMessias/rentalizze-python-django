@@ -24,7 +24,9 @@ class Cliente(models.Model):
     status = models.CharField(max_length=7, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return self.nome_cliente + ' - ' + self.cpf_cliente
+        if self.cpf_cliente:
+            return self.nome_cliente + ' - ' + self.cpf_cliente
+        return self.nome_cliente + ' - ' + self.cnpj_cliente
 
     # Esse método vai ser executado toda vez que der um .save() em Cliente em views.py
     # Aqui foi configurado para permitir um cliente ser salvo com CPF ou CNPJ vazios.
