@@ -47,7 +47,7 @@ def cadastrar_cliente(request):
 # Lista todos os clientes
 @login_required
 def listar_clientes(request):
-    dados = Cliente.objects.all().order_by('criado_em').reverse()
+    dados = Cliente.objects.all().order_by('-criado_em')
     return render(request, 'sistema/listar_clientes.html', {'dados':dados})
 
 # Edita dados do cliente específico
@@ -144,7 +144,7 @@ def excluir_automovel(request, id):
 @login_required
 def historico_veiculo(request, id):
     #Locações finalizadas recebem o status de 'Inativo'
-    dados = Locacao.objects.filter(status='Inativo', carro_id=id).order_by('criado_em').reverse()
+    dados = Locacao.objects.filter(status='Inativo', carro_id=id).order_by('-criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 ############# FIM VEÍCULO #################
@@ -176,13 +176,13 @@ def locar_veiculo(request):
 # Lista todas as locações
 @login_required
 def listar_locacoes(request):
-    dados = Locacao.objects.filter(status='Ativo').order_by('criado_em').reverse()
+    dados = Locacao.objects.filter(status='Ativo').order_by('-criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados})
 
 # Lista locações que já passaram
 @login_required
 def historico_locacoes(request):
-    dados = Locacao.objects.filter(status='Inativo').order_by('criado_em').reverse()
+    dados = Locacao.objects.filter(status='Inativo').order_by('-criado_em')
     return render(request, 'sistema/listar_reservas.html', {'dados':dados, 'fim':True})
 
 # Edita locação específica
