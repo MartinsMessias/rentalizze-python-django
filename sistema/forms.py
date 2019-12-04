@@ -57,7 +57,7 @@ class ClienteForm(forms.ModelForm):
         model = Cliente
         exclude = ('criado_em', 'modificado_em',)
 
-    # Incializa toda vem que esse formulário for usado
+    # Incializa toda vez em que esse formulário for usado
     def __init__(self, *args, **kwargs):
         # Coloca em todos os campos que não tem uma 'class' do CSS, um 'form-control'.
         for l in self.base_fields:
