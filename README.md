@@ -8,7 +8,7 @@
 
 </div>
 
-
+<!-- 
 ## 🖥 Visualização:
 
 ### Web
@@ -18,7 +18,7 @@
 <p>  
   <img alt="Web Preview" title="Web-preview" src="https://i.imgur.com/cSzjkEY.png" width="100%">
 </p>
-
+ -->
 ---
 
 ## 📖 Sobre:
@@ -82,7 +82,4 @@ Para ver o deploy de teste
 ##### Senha: *19962019@#*
 
 ---
-
-
-Desenvolvido por Messias Martins !
 # Rentalizze
